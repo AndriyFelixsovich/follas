@@ -14,9 +14,10 @@ export default function Index({ category }) {
                         <div className="flex-grow">
                             <div className="flex items-center mb-4">
                                 <div className="bg-fuchsia-600 rounded-md w-10 h-10 mr-2"></div>
-                                <a href={cat.name}>
-                                <h3 className="text-lg font-medium">{cat.name}</h3>
-                                </a>
+
+                                <Link href={`/category/${cat.id}`} className="text-lg font-medium">
+                                    {cat.name}
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'index'])->name('site');
 
+Route::get('/category/{id}', [CategoryController::class, 'index'])->name('category.index');
 
 /*Route::get('/', function () {
     return Inertia::render('Front/index', [
