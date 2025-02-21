@@ -10,11 +10,13 @@ export default function Index({ category }) {
             <div class="container mx-auto p-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     {category.map((cat) => (
-                    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                    <div  key={cat.id} className="bg-white rounded-lg shadow-md p-6 flex flex-col">
                         <div className="flex-grow">
                             <div className="flex items-center mb-4">
                                 <div className="bg-fuchsia-600 rounded-md w-10 h-10 mr-2"></div>
+                                <a href={cat.name}>
                                 <h3 className="text-lg font-medium">{cat.name}</h3>
+                                </a>
                             </div>
                         </div>
                     </div>
