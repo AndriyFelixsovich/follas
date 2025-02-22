@@ -1,5 +1,5 @@
-import Header from '@/Pages/Front/Components/Header';
-import Footer from '@/Pages/Front/Components/Footer.jsx';
+import Header from '@/Pages/Front/Components/Header/Header';
+import Footer from '@/Pages/Front/Components/Footer/Footer';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
@@ -14,10 +14,10 @@ export default function MainLayout({ header, children }) {
         useState(false);*/
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header/>
-            <main className="p-6 flex-grow">{children}</main>
-            <Footer />
-        </div>
+			<>
+				<Header/>
+					<main>{children}</main>
+				<Footer />
+			</>
     );
 }

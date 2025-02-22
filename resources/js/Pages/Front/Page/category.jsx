@@ -1,7 +1,7 @@
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from "@/Layouts/MainLayout.jsx";
 
-export default function Index({ category }) {
+const Category = ({ category }) => {
 
     return (
         <MainLayout>
@@ -33,3 +33,5 @@ export default function Index({ category }) {
         </MainLayout>
     );
 }
+
+export default Category;
