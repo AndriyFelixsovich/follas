@@ -8,6 +8,7 @@ class Category extends Model
 {
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        // Зв'язок - Категорія може мати багато продуктів
+        return $this->hasMany(Product::class, 'category_id');
     }
 }

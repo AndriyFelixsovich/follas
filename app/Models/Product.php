@@ -18,6 +18,7 @@ class Product extends Model
     ];
 
   public function categories(){
-      return $this->belongsToMany(Category::class);
+      // Зв'язок - Продукт може мати одну категорію
+      return $this->belongsTo(Category::class, 'category_id');
   }
 }

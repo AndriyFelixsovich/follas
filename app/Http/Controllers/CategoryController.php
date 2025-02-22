@@ -13,14 +13,13 @@ class CategoryController extends Controller
 
         // Отримуємо категорію по $id
         $category = Category::findOrFail($id);
-//        $products = Category::with('products')->findOrFail($id);
-//        $products = $category->products;
+        // Отримуємо всі продукти з категорії
+        $products = $category->products;;
 
-//        $products = Product::with('categories')->take(100)->get();
 
         return Inertia::render('Front/Page/category',[
             'category' => $category,
-//            'products' => $products
+            'products' => $products
         ]);
 
     }

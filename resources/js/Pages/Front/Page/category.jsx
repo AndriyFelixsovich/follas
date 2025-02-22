@@ -1,22 +1,19 @@
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from "@/Layouts/MainLayout.jsx";
 
-const Category = ({ category }) => {
+const Category = ({ category, products }) => {
 
     return (
         <MainLayout>
             <Head title="Main"/>
             <h1 className="text-2xl font-bold text-center">{category.name}</h1>
 
-            {/*{products.map((product)=>(
-            <div className="bg-white rounded-lg shadow-md p-4 flex items-center">
+            {products.map((product)=>(
+            <div key={product.id} className="bg-white rounded-lg shadow-md p-4 flex items-center">
                 <img src="путь_к_изображению.jpg" alt="Зображення товару" className="w-16 h-16 mr-4"/>
                 <div className="flex-grow">
                     <div className="flex items-center">
                         <span className="text-sm font-medium mr-2">{product.name}</span>
-                        <span className="text-xs text-gray-500">{product.categories.length > 0
-                            ? product.categories.map((cat) => cat.name).join(', ')
-                            : "Без категорії"}</span>
                     </div>
                     <div className="text-sm">
                         <span className="font-medium">{product.origin_number}</span>
@@ -29,7 +26,7 @@ const Category = ({ category }) => {
                     </button>
                 </div>
             </div>
-            ))}*/}
+            ))}
         </MainLayout>
     );
 }
