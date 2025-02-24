@@ -1,0 +1,22 @@
+import Header from '@/Pages/Front/Components/Header/Header';
+import Footer from '@/Pages/Front/Components/Footer/Footer';
+import Container from '@/Pages/Front/_ui/Container/Container';
+import styles from './style.module.scss';
+import {Link} from "@inertiajs/react";
+
+const NotFound = () => {
+  return (
+    <>
+      <Header/>
+        <main className={styles.page_404}>
+          <Container>
+            <h1>Page not found</h1>
+            <Link href="/">Go to home</Link>
+          </Container>
+        </main>
+      <Footer/>
+    </>
+  );
+}
+
+export default NotFound;

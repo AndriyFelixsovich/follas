@@ -5,9 +5,9 @@ import Wishlist from '@/Pages/Front/_ui/Icons/Wishlist';
 import Login from '@/Pages/Front/_ui/Icons/Login';
 import Cart from '@/Pages/Front/_ui/Icons/Cart';
 import logo from '/resources/img/follas_logo.jpg';
-import styles from './style.module.scss';  
+import styles from './style.module.scss';
 
-const Footer = () => {
+const Header = () => {
   return (
     <header>
       <Container>
@@ -39,4 +39,4 @@ const Footer = () => {
   );
 }
 
-export default Footer;
+export default Header;
