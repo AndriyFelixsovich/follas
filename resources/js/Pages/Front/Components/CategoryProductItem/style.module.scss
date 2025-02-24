@@ -1,0 +1,23 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+
+.category_product_item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2.5rem;
+	font-weight: 500;
+	padding: 1.5rem;
+	box-shadow: 5px 5px 7px 5px rgba(0,0,0,0.26);
+	border-radius: 0.5rem;
+	.info {
+		.title {
+			margin: 1rem 0;
+		}
+	}
+}
