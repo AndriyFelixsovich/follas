@@ -10,7 +10,8 @@ $media-7: 1200px;
 	.category_page_wrap {
 		display: grid;
 		grid-row-gap: 2rem;
-		margin-top: 1rem;
+		margin-top: 3rem;
+    margin-bottom: 5rem;
 		@media (min-width: $media-1) {
 			grid-template-columns: 48% 48%;
 			grid-column-gap: 1rem;
