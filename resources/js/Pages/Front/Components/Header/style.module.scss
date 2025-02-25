@@ -4,12 +4,13 @@ header {
 
   .inner {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+	  grid-template-columns: 16% 32% 15% 18%;
+	  justify-content: space-between;
   }
 
   .col_2 {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
   }

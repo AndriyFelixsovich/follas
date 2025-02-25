@@ -5,6 +5,7 @@ import Wishlist from '@/Pages/Front/_ui/Icons/Wishlist';
 import Login from '@/Pages/Front/_ui/Icons/Login';
 import Cart from '@/Pages/Front/_ui/Icons/Cart';
 import HeaderNav from '@/Pages/Front/Components/HeaderNav/HeaderNav';
+import Search from '@/Pages/Front/Components/Search/Search';
 import logo from '/resources/img/follas_logo.jpg';
 import styles from './style.module.scss';
 
@@ -28,6 +29,7 @@ const Header = () => {
 								<Login width="30" height="30" />
 							</Link>
 						</div>
+					<Search />
 				</div>
       </Container>
     </header>

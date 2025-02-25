@@ -1,0 +1,14 @@
+.form {
+	display: flex;
+	align-items: center;
+	position: relative;
+	button {
+		position: absolute;
+		top: 1.3rem;
+		right: .3rem;
+	}
+	input {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
