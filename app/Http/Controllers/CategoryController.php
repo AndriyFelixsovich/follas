@@ -10,14 +10,11 @@ use Inertia\Inertia;
 class CategoryController extends Controller
 {
     public function index($id) {
-
-        // Отримуємо категорію по $id
         $category = Category::findOrFail($id);
-        // Отримуємо всі продукти з категорії
         $products = $category->products;;
 
 
-        return Inertia::render('Front/Page/category',[
+        return Inertia::render('Front/Page/Сategory',[
             'category' => $category,
             'products' => $products
         ]);

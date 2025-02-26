@@ -5,9 +5,9 @@ const HeaderNav = () => {
   return (
 	 <nav className={styles.nav}>
 		 <ul>
-			 <li><Link href="{{ route('blog') }}">Blog</Link></li>
-			 <li><Link href="{{ route('about') }}">About Us</Link></li>
-			 <li><Link href="{{ route('contact') }}">Contact</Link></li>
+			 <li><Link href="/blog">Blog</Link></li>
+			 <li><Link href="/about">About Us</Link></li>
+			 <li><Link href="/contacts">Contact</Link></li>
 		 </ul>
 	 </nav>
   );

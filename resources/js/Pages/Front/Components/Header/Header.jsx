@@ -25,7 +25,7 @@ const Header = () => {
 							<Link href="#">
 								<Cart width="30" height="30" />
 							</Link>
-							<Link href="#">
+							<Link href="/profile">
 								<Login width="30" height="30" />
 							</Link>
 						</div>
