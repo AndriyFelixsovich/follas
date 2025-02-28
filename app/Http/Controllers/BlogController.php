@@ -5,6 +5,6 @@ use Inertia\Inertia;
 
 class BlogController extends Controller {
     public function index() {
-       return Inertia::render('Front/Page/Blog');
+       return Inertia::render('Page/Blog');
     }
 }

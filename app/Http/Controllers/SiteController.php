@@ -11,10 +11,9 @@ class SiteController extends Controller
 {
     public function index()
     {
-        //Отримуємо всі категорії
         $category = Category::all();
 
-        return Inertia::render('Front/index',['category' => $category]);
+        return Inertia::render('index',['category' => $category]);
     }
 }
 

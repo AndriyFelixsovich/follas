@@ -1,5 +1,5 @@
-import Header from '@/Pages/Front/Components/Header/Header';
-import Footer from '@/Pages/Front/Components/Footer/Footer';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 import { ReactNode } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';

@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Link } from '@inertiajs/react';
-import Container from '@/Pages/Front/_ui/Container/Container';
-import Image from '@/Pages/Front/_ui/Image/Image';
-import WishlistIcon from '@/Pages/Front/_ui/Icons/Wishlist';
-import LoginIcon from '@/Pages/Front/_ui/Icons/Login';
-import CartIcon from '@/Pages/Front/_ui/Icons/Cart';
-import HeaderNav from '@/Pages/Front/Components/HeaderNav/HeaderNav';
-import Search from '@/Pages/Front/Components/Search/Search';
-import logo from '/resources/img/follas_logo.jpg';
+import Container from '../_ui/Container/Container';
+import Image from '../_ui/Image/Image';
+import WishlistIcon from '../_ui/Icons/Wishlist';
+import LoginIcon from '../_ui/Icons/Login';
+import CartIcon from '../_ui/Icons/Cart';
+import HeaderNav from '../HeaderNav/HeaderNav';
+import Search from '../Search/Search';
+import logo from '../../../img/follas_logo.jpg';
 import styles from './style.module.scss';
 
 const Header: FC = () => {

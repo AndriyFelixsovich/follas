@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Link } from '@inertiajs/react';
-import Container from '@/Pages/Front/_ui/Container/Container';
-import Image from '@/Pages/Front/_ui/Image/Image';
-import logo from '/resources/img/follas_logo.jpg';
+import Container from '../_ui/Container/Container';
+import Image from '../_ui/Image/Image';
+import logo from '../../../img/follas_logo.jpg';
 import styles from './style.module.scss';
 
 const Footer: FC = () => {

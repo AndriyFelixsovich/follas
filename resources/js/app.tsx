@@ -14,7 +14,7 @@ createInertiaApp({
 			import.meta.glob('./Pages/**/*.tsx')
 		);
 	},
-	setup({ el, App, props }: { el: HTMLElement; App: React.ElementType; props: InertiaAppProps }) {
+	setup({ el, App, props }: { el: HTMLElement; App: React.ElementType; }) {
 		const root = createRoot(el);
 
 		root.render(<App {...props} />);

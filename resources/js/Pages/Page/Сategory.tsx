@@ -1,10 +1,10 @@
 import { Head, useForm } from '@inertiajs/react';
 import { FC } from 'react';
-import Container from '@/Pages/Front/_ui/Container/Container';
-import CategoryProductItem from '@/Pages/Front/Components/CategoryProductItem/CategoryProductItem';
 import styles from './category.module.scss';
-import MainLayout from "@/Layouts/MainLayout";
-import Pagination from '@/Pages/Front/Components/Pagination/Pagination';
+import CategoryProductItem from '../../Components/CategoryProductItem/CategoryProductItem';
+import Container from '../../Components/_ui/Container/Container';
+import MainLayout from "../../Layouts/MainLayout";
+import Pagination from '../../Components/Pagination/Pagination';
 
 interface Category {
 	id: number;

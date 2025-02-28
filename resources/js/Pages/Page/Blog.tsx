@@ -1,8 +1,8 @@
 import {Head} from '@inertiajs/react';
 import {FC} from "react";
-import Container from '@/Pages/Front/_ui/Container/Container';
 import styles from './blog.module.scss';
-import MainLayout from "@/Layouts/MainLayout";
+import Container from '../../Components/_ui/Container/Container';
+import MainLayout from "../../Layouts/MainLayout";
 
 const Blog: FC = () => {
 

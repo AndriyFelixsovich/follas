@@ -5,6 +5,6 @@ use Inertia\Inertia;
 
 class AboutUsController extends Controller {
     public function index() {
-       return Inertia::render('Front/Page/About');
+       return Inertia::render('Page/About');
     }
 }

@@ -1,6 +1,6 @@
-import Header from '@/Pages/Front/Components/Header/Header';
-import Footer from '@/Pages/Front/Components/Footer/Footer';
-import Container from '@/Pages/Front/_ui/Container/Container';
+import Header from '@/js/Components/Header/Header';
+import Footer from '@/js/Components/Footer/Footer';
+import Container from '@/js/Components/_ui/Container/Container';
 import styles from './style.module.scss';
 import {Link} from "@inertiajs/react";
 

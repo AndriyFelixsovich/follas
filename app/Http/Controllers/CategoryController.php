@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $products = $category->products()->paginate(20);
 
-        return Inertia::render('Front/Page/Сategory',[
+        return Inertia::render('Page/Сategory',[
             'category' => $category,
             'products' => $products
         ]);

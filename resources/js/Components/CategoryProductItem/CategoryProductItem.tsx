@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from '@inertiajs/react';
-import Image from '../../_ui/Image/Image';
+import Image from '../_ui/Image/Image';
 import styles from './style.module.scss';
 
 interface Product {

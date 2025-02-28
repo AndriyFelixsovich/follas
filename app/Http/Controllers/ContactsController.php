@@ -5,6 +5,6 @@ use Inertia\Inertia;
 
 class ContactsController extends Controller {
     public function index() {
-       return Inertia::render('Front/Page/Contacts');
+       return Inertia::render('Page/Contacts');
     }
 }
