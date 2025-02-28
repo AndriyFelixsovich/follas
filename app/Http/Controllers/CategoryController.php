@@ -11,8 +11,7 @@ class CategoryController extends Controller
 {
     public function index($id) {
         $category = Category::findOrFail($id);
-        $products = $category->products;;
-
+        $products = $category->products()->paginate(20);
 
         return Inertia::render('Front/Page/Сategory',[
             'category' => $category,
