@@ -1,0 +1,32 @@
+.pagination {
+	ul {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		margin-top: 2rem;
+		margin-bottom: 3rem;
+	}
+	li {
+		border-radius: 0.5rem;
+		background: #D0D0D0;
+		width: 2rem;
+		height: 2rem;
+		text-align: center;
+		line-height: 1.7;
+		&.selectedPage {
+			background: red;
+			color: #fff;
+		}
+		&:first-child {
+			width: fit-content;
+			padding: 0.5rem;
+			line-height: 0.7;
+		}
+		&:last-child {
+			width: fit-content;
+			padding: 0.5rem;
+			line-height: 0.7;
+		}
+	}
+}
+
