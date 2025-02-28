@@ -1,7 +1,8 @@
 import { Link } from '@inertiajs/react';
+import {FC} from "react";
 import styles from './style.module.scss';
 
-const Search = () => {
+const Search: FC = () => {
   return (
 	  <form className={styles.form} action="#">
 		  <input type="text" placeholder="Search"/>

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { Link } from '@inertiajs/react';
 import styles from './style.module.scss';
 
-const HeaderNav = () => {
+const HeaderNav: FC = () => {
   return (
 	 <nav className={styles.nav}>
 		 <ul>

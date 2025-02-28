@@ -1,10 +1,10 @@
 import {Head} from '@inertiajs/react';
+import {FC} from "react";
 import Container from '@/Pages/Front/_ui/Container/Container';
-import CategoryProductItem from '@/Pages/Front/Components/CategoryProductItem/CategoryProductItem';
 import styles from './blog.module.scss';
-import MainLayout from "@/Layouts/MainLayout.jsx";
+import MainLayout from "@/Layouts/MainLayout";
 
-const About = () => {
+const Blog: FC = () => {
 
 	return (
 		<MainLayout>
@@ -17,4 +17,4 @@ const About = () => {
 		</MainLayout>);
 }
 
-export default About;
+export default Blog;

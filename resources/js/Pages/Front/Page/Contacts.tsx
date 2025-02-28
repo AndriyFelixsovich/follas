@@ -1,10 +1,10 @@
 import {Head} from '@inertiajs/react';
+import { FC } from 'react';
 import Container from '@/Pages/Front/_ui/Container/Container';
-import CategoryProductItem from '@/Pages/Front/Components/CategoryProductItem/CategoryProductItem';
 import styles from './contacts.module.scss';
-import MainLayout from "@/Layouts/MainLayout.jsx";
+import MainLayout from "@/Layouts/MainLayout";
 
-const Contacts = () => {
+const Contacts: FC = () => {
 
 	return (
 		<MainLayout>
