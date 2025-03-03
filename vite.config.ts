@@ -16,4 +16,9 @@ export default defineConfig({
 			'@': path.resolve(__dirname, 'resources/js'),
 		},
 	},
+	css: {
+		modules: {
+			localsConvention: "camelCase",
+		}
+	}
 });

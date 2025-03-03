@@ -1,8 +1,8 @@
 import { Head, Link } from '@inertiajs/react';
 import { FC } from 'react';
-import Container from '../Components/_ui/Container/Container';
-import CategoryItem from '../Components/CategoryItem/CategoryItem';
-import MainLayout from "../Layouts/MainLayout";
+import Container from '@/Components/_ui/Container/Container';
+import CategoryItem from '@/Components/CategoryItem/CategoryItem';
+import MainLayout from "@/Layouts/MainLayout";
 import styles from './index.module.scss';
 
 interface Category {

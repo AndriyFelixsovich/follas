@@ -1,17 +1,17 @@
 import { FC } from 'react';
 import { Link } from '@inertiajs/react';
-import Container from '../_ui/Container/Container';
-import Image from '../_ui/Image/Image';
-import WishlistIcon from '../_ui/Icons/Wishlist';
-import LoginIcon from '../_ui/Icons/Login';
-import CartIcon from '../_ui/Icons/Cart';
-import HeaderNav from '../HeaderNav/HeaderNav';
-import Search from '../Search/Search';
+import Container from '@/Components/_ui/Container/Container';
+import Image from '@/Components/_ui/Image/Image';
+import WishlistIcon from '@/Components/_ui/Icons/Wishlist';
+import LoginIcon from '@/Components/_ui/Icons/Login';
+import CartIcon from '@/Components/_ui/Icons/Cart';
+import HeaderNav from '@/Components/HeaderNav/HeaderNav';
+import Search from '@/Components/Search/Search';
 import logo from '../../../img/follas_logo.jpg';
 import styles from './style.module.scss';
 
 const Header: FC = () => {
-  return (
+	return (
     <header>
       <Container>
 				<div className={styles.inner}>

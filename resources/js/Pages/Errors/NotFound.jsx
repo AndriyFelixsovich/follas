@@ -1,8 +1,8 @@
-import Header from '@/js/Components/Header/Header';
-import Footer from '@/js/Components/Footer/Footer';
-import Container from '@/js/Components/_ui/Container/Container';
-import styles from './style.module.scss';
 import {Link} from "@inertiajs/react";
+import Header from '@/Components/Header/Header';
+import Footer from '@/Components/Footer/Footer';
+import Container from '@/Components/_ui/Container/Container';
+import styles from './style.module.scss';
 
 const NotFound = () => {
   return (

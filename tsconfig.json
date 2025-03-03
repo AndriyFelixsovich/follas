@@ -11,13 +11,15 @@
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"baseUrl": "./resources",
+		"baseUrl": ".",
+		"typeRoots": ["node_modules/@types", "resources/js"],
 		"paths": {
-			"@/*": ["*"]
+			"@/*": ["resources/js/*"]
 		}
 	},
 	"include": [
 		"resources/**/*",
+		"resources/js/global.d.ts"
 	],
 	"exclude": ["node_modules", "vendor"]
 }
