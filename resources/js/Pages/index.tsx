@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { FC } from 'react';
 import Container from '@/Components/_ui/Container/Container';
 import CategoryItem from '@/Components/CategoryItem/CategoryItem';
@@ -14,7 +14,7 @@ interface IndexProps {
 	category: Category[];
 }
 
-const Index: FC<IndexProps> = ({ category }) => {
+const Index: FC<IndexProps> = ({ category = [] }) => {
 	return (
 		<MainLayout>
 			<Head title="Main" />

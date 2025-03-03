@@ -11,23 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modelautos', function (Blueprint $table) {
+        Schema::create('marka_autos', function (Blueprint $table) {
 					$table->id();
-					$table->unsignedBigInteger('category_id')->nullable()->index();
 					$table->string('name');
 					$table->string('image_path')->nullable();
 					$table->boolean('status')->default(1);
-					$table->integer('start_year')->nullable();
-					$table->integer('end_year')->nullable();
 					$table->timestamps();
-
-					$table->foreign('category_id')
-						->references('id')
-						->on('categories')
-						->cascadeOnDelete()
-						->cascadeOnUpdate();
-					;
-				});
+        });
     }
 
     /**
@@ -35,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modelautos');
+        Schema::dropIfExists('marka_autos');
     }
 };

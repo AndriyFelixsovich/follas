@@ -12,8 +12,8 @@ class Category extends Model
 		return $this->hasMany(Product::class, 'category_id');
 	}
 
-	public function modelautos()
-	{
-		return $this->hasMany(Modelauto::class, 'category_id');
-	}
+//	public function modelautos()
+//	{
+//		return $this->hasMany(Modelauto2::class, 'category_id');
+//	}
 }
