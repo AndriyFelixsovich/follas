@@ -36,7 +36,7 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 			<Head title="Main" />
 			<div className={styles.category_page}>
 				<Container>
-					<h1>{category.name}</h1>
+					<h1 className={styles.title}>{category.name}</h1>
 					<div className={styles.category_page_wrap}>
 						{products.data.map((product_cat) => (
 							<CategoryProductItem product={product_cat} key={product_cat.id} />

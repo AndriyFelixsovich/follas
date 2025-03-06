@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html {
     -webkit-text-size-adjust: 100%;
     -webkit-overflow-scrolling: touch;
@@ -13,7 +9,8 @@ body {
 	margin: 0;
 	font-size: 18px;
     position: relative;
-    color: #212529;
+	background: #f2f3f7;
+    color: #2e3b4c;
 }
 
 main {
@@ -49,3 +46,7 @@ p {
 	word-break: break-all;
 }
 
+a {
+	text-decoration: none;
+	color: #2e3b4c;
+}
