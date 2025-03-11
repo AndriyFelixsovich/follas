@@ -1,8 +1,9 @@
-import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import InputError from '@/Components/Auth/InputError/InputError';
+import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import TextInput from '@/Components/Auth/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
+import styles from "@/Layouts/guest_layout.module.scss";
 
 interface ForgotPasswordProps {
 	status?: string;
@@ -24,7 +25,7 @@ export default function ForgotPassword({ status }: ForgotPasswordProps) {
 	};
 
 	return (
-		<GuestLayout>
+		<GuestLayout className={styles.forgot_pass}>
 			<Head title="Forgot Password" />
 
 			<div className="mb-4 text-sm text-gray-600">
@@ -53,9 +54,7 @@ export default function ForgotPassword({ status }: ForgotPasswordProps) {
 				<InputError message={errors.email} className="mt-2" />
 
 				<div className="mt-4 flex items-center justify-end">
-					<PrimaryButton className="ms-4" disabled={processing}>
-						Email Password Reset Link
-					</PrimaryButton>
+					<PrimaryButton disabled={processing}>Email Password Reset Link</PrimaryButton>
 				</div>
 			</form>
 		</GuestLayout>

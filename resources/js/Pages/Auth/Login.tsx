@@ -1,9 +1,9 @@
 import React, { FormEvent } from 'react';
-import Checkbox from '@/Components/Checkbox';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import Checkbox from '@/Components/Auth/Checkbox/Checkbox';
+import InputError from '@/Components/Auth/InputError/InputError';
+import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import TextInput from '@/Components/Auth/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
@@ -31,9 +31,7 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 			<Head title="Log in" />
 
 			{status && (
-				<div className="mb-4 text-sm font-medium text-green-600">
-					{status}
-				</div>
+				<div>{status}</div>
 			)}
 
 			<form onSubmit={submit}>
@@ -45,7 +43,6 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 						type="email"
 						name="email"
 						value={data.email}
-						className="mt-1 block w-full"
 						autoComplete="username"
 						isFocused={true}
 						onChange={(e) => setData('email', e.target.value)}
@@ -71,7 +68,7 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 				</div>
 
 				<div className="mt-4 block">
-					<label className="flex items-center">
+					<label className="flex items-center cursor-pointer">
 						<Checkbox
 							name="remember"
 							checked={data.remember}
@@ -86,19 +83,17 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 					</label>
 				</div>
 
-				<div className="mt-4 flex items-center justify-end">
+				<div className="mt-4 flex items-center justify-between">
 					{canResetPassword && (
 						<Link
 							href={route('password.request')}
-							className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+							className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 						>
 							Forgot your password?
 						</Link>
 					)}
 
-					<PrimaryButton className="ms-4" disabled={processing}>
-						Log in
-					</PrimaryButton>
+					<PrimaryButton className="ms-4" disabled={processing}>Log in</PrimaryButton>
 				</div>
 			</form>
 		</GuestLayout>

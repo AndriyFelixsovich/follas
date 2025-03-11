@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
+import Dropdown from '@/Components/Auth/Dropdown/Dropdown';
+import NavLink from '@/Components/Auth/NavLink/NavLink';
+import ResponsiveNavLink from '@/Components/Auth/ResponsiveNavLink/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 
 interface AuthenticatedLayoutProps {
@@ -24,7 +23,7 @@ const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({ header, child
 						<div className="flex">
 							<div className="flex shrink-0 items-center">
 								<Link href="/">
-									<ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+									ApplicationLogo
 								</Link>
 							</div>
 

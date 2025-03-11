@@ -1,21 +1,24 @@
 import React from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import Image from '@/Components/_ui/Image/Image';
 import { Link } from '@inertiajs/react';
+import styles from './guest_layout.module.scss';
+import logo from "../../img/follas_logo.jpg";
 
 interface GuestLayoutProps {
 	children: React.ReactNode;
+	className?: string;
 }
 
-const GuestLayout: React.FC<GuestLayoutProps> = ({ children }) => {
-	return (
-		<div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-			<div>
-				<Link href="/">
-					<ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-				</Link>
-			</div>
+const GuestLayout: React.FC<GuestLayoutProps> = ({ children, className }) => {
+	const layoutClass = className ? `${styles.guest_layout_wpr} ${className}` : styles.guest_layout_wpr;
 
-			<div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
+	return (
+		<div className={layoutClass}>
+				<Link href="/">
+					<Image src={logo} alt={logo} width={'80'} height={'80'} />
+				</Link>
+
+			<div className={styles.guest_layout_inner}>
 				{children}
 			</div>
 		</div>
@@ -23,4 +26,3 @@ const GuestLayout: React.FC<GuestLayoutProps> = ({ children }) => {
 };
 
 export default GuestLayout;
-y

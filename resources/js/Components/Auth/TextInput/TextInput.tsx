@@ -1,10 +1,5 @@
-import {
-	forwardRef,
-	useEffect,
-	useImperativeHandle,
-	useRef,
-	InputHTMLAttributes,
-} from "react";
+import {forwardRef, useEffect, useImperativeHandle, useRef, InputHTMLAttributes,} from "react";
+import styles from './style.module.scss';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	isFocused?: boolean;
@@ -28,8 +23,8 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 			<input
 				{...props}
 				type={type}
-				className={`rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${className}`}
 				ref={localRef}
+				className={styles.input}
 			/>
 		);
 	}

@@ -1,5 +1,6 @@
 import { HTMLProps } from 'react';
 import React from 'react';
+import styles from './style.module.scss';
 
 interface InputErrorProps extends HTMLProps<HTMLParagraphElement> {
 	message: string | null;
@@ -8,7 +9,7 @@ interface InputErrorProps extends HTMLProps<HTMLParagraphElement> {
 
 const InputError: React.FC<InputErrorProps> = ({ message, className = '', ...props }) => {
 	return message ? (
-		<p {...props} className={`text-sm text-red-600 ${className}`}>
+		<p {...props} className={styles.p}>
 			{message}
 		</p>
 	) : null;
