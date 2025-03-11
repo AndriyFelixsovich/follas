@@ -5,28 +5,7 @@ import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProduc
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from '@/Components/Pagination/Pagination';
-
-interface Category {
-	id: number;
-	name: string;
-}
-
-interface Product {
-	id: number;
-	name: string;
-	price: string;
-}
-
-interface Products {
-	current_page: number;
-	data: Product[];
-	links: any;
-}
-
-interface CategoryProps {
-	category: Category;
-	products: Products;
-}
+import { CategoryProps } from '@/Pages/Page/category.interface';
 
 const Category: FC<CategoryProps> = ({ category, products }) => {
 	const { data, setData } = useForm<{ page: number }>({ page: products.current_page });
