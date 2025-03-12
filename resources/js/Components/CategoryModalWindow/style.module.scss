@@ -5,6 +5,10 @@ $media-4: 1024px;
 $media-5: 1366px;
 $media-6: 1400px;
 
+.md_item {
+	display: block;
+}
+
 .md_modal {
 	position: fixed;
 	top: 50%;
@@ -19,8 +23,8 @@ $media-6: 1400px;
 
 .md_close {
 	position: absolute;
-	top: 20px;
-	right: 25px;
+	top: 3px;
+	right: 0;
 	cursor: pointer;
 }
 

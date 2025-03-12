@@ -17,7 +17,7 @@ interface CategoryImageItemProps {
 const CategoryModalWindow: FC<CategoryImageItemProps> = ({ modal, index, onClose }) => {
 
 	return (
-		<div>
+		<div className={styles.md_item}>
 			<div className={`${styles.md_modal} ${styles.md_effect} ${styles.md_show}`}>
 				<div className={styles.md_content}>
 					<h3>{modal.description}</h3>

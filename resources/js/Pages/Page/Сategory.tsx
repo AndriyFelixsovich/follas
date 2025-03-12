@@ -5,6 +5,7 @@ import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProduc
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from '@/Components/Pagination/Pagination';
+import CategoryTopBar from '@/Components/CategoryTopBar/CategoryTopBar';
 import { CategoryProps } from '@/Pages/Page/category.interface';
 
 const Category: FC<CategoryProps> = ({ category, products }) => {
@@ -16,6 +17,7 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 			<div className={styles.category_page}>
 				<Container>
 					<h1 className={styles.title}>{category.name}</h1>
+					<CategoryTopBar />
 					<div className={styles.category_page_wrap}>
 						{products.data.map((product_cat) => (
 							<CategoryProductItem product={product_cat} key={product_cat.id} />

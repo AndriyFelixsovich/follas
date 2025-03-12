@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import { Link } from '@inertiajs/react';
-import { CSSTransition } from 'react-transition-group';
 import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
 import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
@@ -37,8 +36,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 
 			<div className={styles.info}>
 				<p>{product.name}</p>
-				<div>{product.origin_number}</div>
 				<div className={styles.title}>{product.description}</div>
+				<div>{product.origin_number}</div>
 			</div>
 
 			<Input />
