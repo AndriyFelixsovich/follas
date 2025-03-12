@@ -12,6 +12,7 @@
 		"@types/node": "^22.13.5",
 		"@types/react": "^19.0.10",
 		"@types/react-dom": "^19.0.4",
+		"@types/react-transition-group": "^4.4.12",
 		"@vitejs/plugin-react": "^4.2.0",
 		"autoprefixer": "^10.4.12",
 		"axios": "^1.7.4",
@@ -27,6 +28,9 @@
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.2.0",
-		"lightgallery": "^2.8.3"
+		"@reduxjs/toolkit": "^2.6.1",
+		"lightgallery": "^2.8.3",
+		"react-redux": "^9.2.0",
+		"react-transition-group": "^4.4.5"
 	}
 }

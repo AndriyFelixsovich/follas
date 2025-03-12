@@ -1,0 +1,73 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+
+.md_modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 600px;
+	max-width: 100%;
+	z-index: 2000;
+	visibility: hidden;
+	backface-visibility: hidden;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.md_close {
+	position: absolute;
+	top: 20px;
+	right: 25px;
+	cursor: pointer;
+}
+
+.md_show {visibility: visible;}
+
+.md_overlay {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	visibility: hidden;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.5);
+	transition: all 0.3s;
+}
+
+.md_show ~ .md_overlay {
+	opacity: 1;
+	visibility: visible;
+}
+
+.md_content {
+	height: 300px;
+	background: #fff;
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 0 3px 15px -2px #222;
+	padding: 15px;
+}
+
+.md_effect .md_content {
+	transform: scale(0.7);
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+.md_show.md_effect .md_content {
+	transform: scale(1);
+	opacity: 1;
+}
+
+img {
+	display: flex;
+	margin: 0 auto;
+}
+
+
+
