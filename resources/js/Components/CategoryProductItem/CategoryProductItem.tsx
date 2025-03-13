@@ -16,12 +16,18 @@ interface Product {
 
 interface CategoryProductItemProps {
 	product: Product;
+	index: number;
 }
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
-	const [modals, setModals] = useState([]);
-	const openModal = product => setModals(prev => [...prev, product]);
-	const closeModal = product => setModals(prev => prev.filter(modal => modal !== product));
+	const [modals, setModals] = useState<Product[]>([]);
+
+	const openModal = (product: Product) => {
+		setModals(prev => [...prev, product]);
+	}
+	const closeModal = (product: Product) => {
+		setModals(prev => prev.filter(modal => modal !== product));
+	}
 
 	return (
 		<div className={styles.category_product_item}>

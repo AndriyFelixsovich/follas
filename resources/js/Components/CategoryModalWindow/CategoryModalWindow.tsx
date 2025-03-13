@@ -3,15 +3,17 @@ import Image from '@/Components/_ui/Image/Image';
 import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 import styles from './style.module.scss';
 
-interface ImageProps {
+interface Product {
 	image_path: string;
 	description: string;
+	origin_number: string;
+	name: string;
 }
 
 interface CategoryImageItemProps {
-	modal: ImageProps;
+	modal: Product;
 	index: number;
-	onClose: (modal: ImageProps) => void;
+	onClose: (modal: Product) => void;
 }
 
 const CategoryModalWindow: FC<CategoryImageItemProps> = ({ modal, index, onClose }) => {
