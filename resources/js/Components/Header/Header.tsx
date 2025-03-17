@@ -21,10 +21,10 @@ const Header: FC = () => {
 						<HeaderNav />
 					<Search />
 						<div className={styles.col_2}>
-							<Link href="#">
+							<Link href="/wishlist">
 								<WishlistIcon width="30" height="30" />
 							</Link>
-							<Link href="#">
+							<Link href="/shopping-cart">
 								<CartIcon width="30" height="30" />
 							</Link>
 							<Link href="/profile">
