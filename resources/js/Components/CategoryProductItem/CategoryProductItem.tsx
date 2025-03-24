@@ -1,10 +1,10 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
-import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
+import CartBtn from '@/Components/_ui/CartBtn/CartBtn';
+import WishlistBtn from '@/Components/_ui/WishlistBtn/WishlistBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
-import CartIcon from '@/Components/_ui/Icons/CartIcon';
 import styles from './style.module.scss';
 
 interface Product {
@@ -29,6 +29,10 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		setModals(prev => prev.filter(modal => modal !== product));
 	}
 
+	const addToWishlist = () => {
+		console.log(product)
+	}
+
 	return (
 		<div className={styles.category_product_item}>
 
@@ -48,8 +52,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 
 			<Input />
 
-			<button><WishlistIcon width={30} height={30}/></button>
-			<button><CartIcon width={30} height={30}/></button>
+			<WishlistBtn onClick={addToWishlist} width={30} height={30} fill="#0c0310" />
+			<CartBtn width={30} height={30} fill="#fff" />
 
 		</div>
 	);

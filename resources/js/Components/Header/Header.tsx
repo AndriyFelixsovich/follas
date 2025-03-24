@@ -25,7 +25,7 @@ const Header: FC = () => {
 								<WishlistIcon width="30" height="30" />
 							</Link>
 							<Link href="/shopping-cart">
-								<CartIcon width="30" height="30" />
+								<CartIcon width="30" height="30" fill="transparent" />
 							</Link>
 							<Link href="/profile">
 								<LoginIcon width="30" height="30" />
