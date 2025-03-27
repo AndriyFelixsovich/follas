@@ -20,7 +20,7 @@ const Index: FC<IndexProps> = ({ category = [] }) => {
 			<Head title="Main" />
 			<Container>
 				<div className={styles.home_page}>
-					<h1>Follow the best internet store!</h1>
+					<h1>Follas the best internet store!</h1>
 					<div className={styles.category_item_wrap}>
 						{category.map(cat => (
 							<CategoryItem cat={cat} key={cat.id} />

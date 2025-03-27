@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
-import logo from '../../../img/follas_logo.jpg';
+import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 interface Category {

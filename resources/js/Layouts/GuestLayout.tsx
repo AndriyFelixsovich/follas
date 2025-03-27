@@ -2,7 +2,7 @@ import React from 'react';
 import Image from '@/Components/_ui/Image/Image';
 import { Link } from '@inertiajs/react';
 import styles from './guest_layout.module.scss';
-import logo from "../../img/follas_logo.jpg";
+import logo from "../../img/follas_logo.svg";
 
 interface GuestLayoutProps {
 	children: React.ReactNode;

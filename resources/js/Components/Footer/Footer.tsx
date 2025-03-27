@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from '@inertiajs/react';
 import Container from '@/Components/_ui/Container/Container';
 import Image from '@/Components/_ui/Image/Image';
-import logo from '../../../img/follas_logo.jpg';
+import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const Footer: FC = () => {
@@ -13,7 +13,7 @@ const Footer: FC = () => {
 					<Link href='/'>
 						<Image src={logo} alt={logo} width={'80'} height={'80'} />
 					</Link>
-					<h2>© Powered by Follos</h2>
+					<h3>© 2025 Follas. All rights reserved.</h3>
 				</div>
       </Container>
     </footer>

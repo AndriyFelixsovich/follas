@@ -7,7 +7,7 @@ import LoginIcon from '@/Components/_ui/Icons/LoginIcon';
 import CartIcon from '@/Components/_ui/Icons/CartIcon';
 import HeaderNav from '@/Components/HeaderNav/HeaderNav';
 import Search from '@/Components/Search/Search';
-import logo from '../../../img/follas_logo.jpg';
+import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const Header: FC = () => {
@@ -16,19 +16,19 @@ const Header: FC = () => {
       <Container>
 				<div className={styles.inner}>
 				<Link href='/'>
-					<Image src={logo} alt={logo} width={'80'} height={'80'} />
+					<Image src={logo} alt={logo} width={'100'} height={'100'} />
 				</Link>
 						<HeaderNav />
 					<Search />
 						<div className={styles.col_2}>
 							<Link href="/wishlist">
-								<WishlistIcon width="30" height="30" />
+								<WishlistIcon width="30" height="30" fill="#2e3b4c" />
 							</Link>
 							<Link href="/shopping-cart">
-								<CartIcon width="30" height="30" fill="transparent" />
+								<CartIcon width="30" height="30" stroke="#2e3b4c" fill="transparent" />
 							</Link>
 							<Link href="/profile">
-								<LoginIcon width="30" height="30" />
+								<LoginIcon width="30" height="30" fill="#2e3b4c" />
 							</Link>
 						</div>
 				</div>

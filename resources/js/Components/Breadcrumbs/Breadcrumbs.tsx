@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Link} from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
 import ChevronRight from '@/Components/_ui/Icons/ChevronRight';
-import logo from '../../../img/follas_logo.jpg';
+import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 interface IBreadcrumbs {

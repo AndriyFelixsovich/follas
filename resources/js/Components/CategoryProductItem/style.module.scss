@@ -38,6 +38,11 @@ $media-6: 1400px;
 	.image_block {
 		cursor: pointer;
 	}
+	.controls {
+		display: flex;
+		gap: 3rem;
+	}
+
 }
 
 

@@ -4,6 +4,7 @@ import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
 import CartBtn from '@/Components/_ui/CartBtn/CartBtn';
 import WishlistBtn from '@/Components/_ui/WishlistBtn/WishlistBtn';
+import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
 import styles from './style.module.scss';
 
@@ -21,7 +22,7 @@ interface CategoryProductItemProps {
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 	const [modals, setModals] = useState<Product[]>([]);
-	const [quantityValue, sQuantityValue] = useState('')
+	const [inputValue, setInputValue] = useState('')
 
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
@@ -32,16 +33,20 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 
 	const handlerQuantityValue = e => {
 		const value = e.target.value;
-		sQuantityValue(value)
-		console.log(value)
+		setInputValue(value)
+		console.log('Quantity', value)
 	}
 
 	const addToWishlist = () => {
-		console.log(product)
+		console.log("product wishlist", product)
 	}
 
 	const addToCart = () => {
-		console.log(product)
+		console.log("product cart", product)
+	}
+
+	const viewProductInfo =() => {
+		console.log("product viewProductInfo")
 	}
 
 	return (
@@ -61,10 +66,12 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 				<div>{product.origin_number}</div>
 			</div>
 
-			<Input quantityValue={quantityValue} handlerQuantityValue={handlerQuantityValue} />
-
-			<WishlistBtn onClick={addToWishlist} width={30} height={30} fill="#0c0310" />
+		<div className={styles.controls}>
+			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
+			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
+			<WishlistBtn onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" />
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
+		</div>
 
 		</div>
 	);
