@@ -3,11 +3,13 @@ import styles from './style.module.scss';
 
 interface InputProps {
 	placeholder?: string;
+	quantityValue: number;
+	handlerQuantityValue: () => void;
 }
 
-const Input: FC<InputProps> = ({ placeholder }) => {
+const Input: FC<InputProps> = ({ placeholder, quantityValue, handlerQuantityValue }) => {
 	return (
-		<input type="text" placeholder={placeholder} className={styles.input} />
+		<input type="text" className={styles.input} placeholder={placeholder} value={quantityValue} onChange={handlerQuantityValue}/>
 	);
 }
 

@@ -21,6 +21,7 @@ interface CategoryProductItemProps {
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 	const [modals, setModals] = useState<Product[]>([]);
+	const [quantityValue, sQuantityValue] = useState('')
 
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
@@ -29,7 +30,17 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		setModals(prev => prev.filter(modal => modal !== product));
 	}
 
+	const handlerQuantityValue = e => {
+		const value = e.target.value;
+		sQuantityValue(value)
+		console.log(value)
+	}
+
 	const addToWishlist = () => {
+		console.log(product)
+	}
+
+	const addToCart = () => {
 		console.log(product)
 	}
 
@@ -50,10 +61,10 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 				<div>{product.origin_number}</div>
 			</div>
 
-			<Input />
+			<Input quantityValue={quantityValue} handlerQuantityValue={handlerQuantityValue} />
 
 			<WishlistBtn onClick={addToWishlist} width={30} height={30} fill="#0c0310" />
-			<CartBtn width={30} height={30} fill="#fff" />
+			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 
 		</div>
 	);

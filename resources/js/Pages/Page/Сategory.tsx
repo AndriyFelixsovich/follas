@@ -21,14 +21,24 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 
 				<Container>
 					<h1 className={styles.title}>{category.name}</h1>
-					<CategoryTopBar />
-					<div className={styles.category_page_wrap}>
-						{products.data.map((product_cat) => (
-							<CategoryProductItem product={product_cat} key={product_cat.id} index={0} />
-						))}
-					</div>
+
+					{products.data.length > 0 ? (
+						<>
+							<CategoryTopBar />
+								<div className={styles.category_page_wrap}>
+									{products.data.map((product_cat) => (
+										<CategoryProductItem product={product_cat} key={product_cat.id} index={0} />
+									))}
+								</div>
+
+								<Pagination links={products.links} setCurrentPage={(page:any) => setData('page', page)} />
+						</>
+					) : (
+						<h2>Category is empty! </h2>
+					)}
+
 				</Container>
-				<Pagination links={products.links} setCurrentPage={(page:any) => setData('page', page)} />
+
 			</div>
 		</MainLayout>
 	);

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
 
 interface IWishlistBtn {
@@ -9,9 +9,16 @@ interface IWishlistBtn {
 }
 
 const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick}) => {
+	const [isActive, setActive] = useState(false);
+
+	const handlerClick = () => {
+		setActive(prev => !prev)
+		if(onClick) onClick();
+	}
+
 	return (
-		<button onClick={onClick}>
-			<WishlistIcon width={width} height={height} fill={fill} />
+		<button onClick={handlerClick}>
+			<WishlistIcon width={width} height={height} fill={isActive ? "#28a745" : fill} />
 		</button>
 	);
 }
