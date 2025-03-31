@@ -1,7 +1,8 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import styles from '../profile.module.scss';
+import InputError from '@/Components/Auth/InputError/InputError';
+import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
+import TextInput from '@/Components/Auth/TextInput/TextInput';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
@@ -55,65 +56,74 @@ export default function UpdatePasswordForm({ className = '' }: UpdatePasswordFor
 	};
 
 	return (
-		<section className={className}>
+		<section className={styles.edit_col}>
 			<header>
 				<h2 className="text-lg font-medium text-gray-900">Update Password</h2>
-
-				<p className="mt-1 text-sm text-gray-600">
+				<p className="mt-1 text-sm text-gray-600 text-center">
 					Ensure your account is using a long, random password to stay secure.
 				</p>
 			</header>
 
 			<form onSubmit={updatePassword} className="mt-6 space-y-6">
 				<div>
-					<InputLabel htmlFor="current_password" value="Current Password" />
+					<InputLabel htmlFor="current_password" value="Current Password" className="mt-2"/>
 
-					<TextInput
-						id="current_password"
-						ref={currentPasswordInput}
-						value={data.current_password}
-						onChange={(e) => setData('current_password', e.target.value)}
-						type="password"
-						className="mt-1 block w-full"
-						autoComplete="current-password"
-					/>
+					<div className="mt-2">
+						<TextInput
+							id="current_password"
+							ref={currentPasswordInput}
+							value={data.current_password}
+							onChange={(e) => setData('current_password', e.target.value)}
+							type="password"
+							className="mt-1 block w-full"
+							autoComplete="current-password"
+						/>
+					</div>
 
 					<InputError message={errors.current_password} className="mt-2" />
 				</div>
 
 				<div>
-					<InputLabel htmlFor="password" value="New Password" />
+					<InputLabel htmlFor="password" value="New Password" className="mt-2"/>
 
-					<TextInput
-						id="password"
-						ref={passwordInput}
-						value={data.password}
-						onChange={(e) => setData('password', e.target.value)}
-						type="password"
-						className="mt-1 block w-full"
-						autoComplete="new-password"
-					/>
+					<div className="mt-2">
+						<TextInput
+							id="password"
+							ref={passwordInput}
+							value={data.password}
+							onChange={(e) => setData('password', e.target.value)}
+							type="password"
+							className="mt-1 block w-full"
+							autoComplete="new-password"
+						/>
+					</div>
 
 					<InputError message={errors.password} className="mt-2" />
 				</div>
 
 				<div>
-					<InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+					<InputLabel htmlFor="password_confirmation" value="Confirm Password" className="mt-2"/>
 
-					<TextInput
-						id="password_confirmation"
-						value={data.password_confirmation}
-						onChange={(e) => setData('password_confirmation', e.target.value)}
-						type="password"
-						className="mt-1 block w-full"
-						autoComplete="new-password"
-					/>
+					<div className="mt-2">
+						<TextInput
+							id="password_confirmation"
+							value={data.password_confirmation}
+							onChange={(e) => setData('password_confirmation', e.target.value)}
+							type="password"
+							className="mt-1 block w-full"
+							autoComplete="new-password"
+						/>
+					</div>
+
 
 					<InputError message={errors.password_confirmation} className="mt-2" />
 				</div>
 
 				<div className="flex items-center gap-4">
-					<PrimaryButton disabled={processing}>Save</PrimaryButton>
+
+					<div className="mt-2">
+						<PrimaryButton>Save</PrimaryButton>
+					</div>
 
 					<Transition
 						show={recentlySuccessful}

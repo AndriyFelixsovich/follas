@@ -1,0 +1,19 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+
+
+.edit_col {
+	background: #fff;
+	padding: 0.5rem;
+}
+
+.edit_row_1 {
+	display: grid;
+	grid-template-columns: repeat(2, 49.5%);
+	grid-column-gap: 1rem;
+	margin-bottom: 1rem;
+}

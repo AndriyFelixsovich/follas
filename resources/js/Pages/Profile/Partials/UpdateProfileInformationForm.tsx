@@ -1,7 +1,8 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+import styles from '../profile.module.scss';
+import InputError from '@/Components/Auth/InputError/InputError';
+import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
+import TextInput from '@/Components/Auth/TextInput/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 
@@ -33,46 +34,45 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
 	};
 
 	return (
-		<section className={className}>
+		<section className={styles.edit_col}>
 			<header>
-				<h2 className="text-lg font-medium text-gray-900">
-					Profile Information
-				</h2>
-
-				<p className="mt-1 text-sm text-gray-600">
-					Update your account's profile information and email address.
-				</p>
+				<h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+				<p className="mt-1 text-sm text-gray-600 text-center">Update your account's profile information and email address.</p>
 			</header>
 
 			<form onSubmit={submit} className="mt-6 space-y-6">
 				<div>
-					<InputLabel htmlFor="name" value="Name" />
+					<InputLabel htmlFor="name" value="Name" className="mt-2"/>
 
+				<div className="mt-2">
 					<TextInput
 						id="name"
-						className="mt-1 block w-full"
+						className="mt-2 block w-full"
 						value={data.name}
 						onChange={(e) => setData('name', e.target.value)}
 						required
 						isFocused
 						autoComplete="name"
 					/>
+				</div>
 
 					<InputError className="mt-2" message={errors.name} />
 				</div>
 
 				<div>
-					<InputLabel htmlFor="email" value="Email" />
+					<InputLabel htmlFor="email" value="Email" className="mt-2" />
+						<div className="mt-2">
 
-					<TextInput
-						id="email"
-						type="email"
-						className="mt-1 block w-full"
-						value={data.email}
-						onChange={(e) => setData('email', e.target.value)}
-						required
-						autoComplete="username"
-					/>
+						<TextInput
+							id="email"
+							type="email"
+							className="mt-1 block w-full"
+							value={data.email}
+							onChange={(e) => setData('email', e.target.value)}
+							required
+							autoComplete="username"
+						/>
+						</div>
 
 					<InputError className="mt-2" message={errors.email} />
 				</div>
@@ -101,7 +101,10 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
 				)}
 
 				<div className="flex items-center gap-4">
-					<PrimaryButton disabled={processing}>Save</PrimaryButton>
+
+					<div className="mt-2">
+						<PrimaryButton>Save</PrimaryButton>
+					</div>
 
 					<Transition
 						show={recentlySuccessful}

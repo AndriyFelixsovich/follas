@@ -27,7 +27,7 @@ $media-7: 600px;
 	}
 }
 
-.forgot_pass{
+.forgot_pass {
 	.guest_layout_inner {
 		display: flex;
 		flex-direction: column;
@@ -35,5 +35,27 @@ $media-7: 600px;
 		@media (min-width: $media-7) {
 			flex-direction: row;
 		}
+	}
+}
+
+.authenticated_layout_wrp {
+		header {
+			.inner {
+				display: grid;
+				align-items: center;
+				grid-template-columns: repeat(3, 33.3%);
+			}
+			a {
+				font-size: 1rem;
+			}
+		}
+	.controls {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		justify-content: flex-end;
+	}
+	.main {
+		margin-top: 2rem;
 	}
 }
