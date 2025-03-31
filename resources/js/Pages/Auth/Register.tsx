@@ -1,9 +1,11 @@
+import "./auth.scss";
 import InputError from '@/Components/Auth/InputError/InputError';
 import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
-import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
+import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 
 interface FormData {
 	name: string;
@@ -109,17 +111,9 @@ export default function Register() {
 					/>
 				</div>
 
-				<div className="mt-4 flex items-center justify-end">
-					<Link
-						href={route('login')}
-						className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-					>
-						Already registered?
-					</Link>
-
-					<PrimaryButton className="ms-4" disabled={processing}>
-						Register
-					</PrimaryButton>
+				<div className="controls">
+					<PrimaryLink href={route('login')}>Already registered?</PrimaryLink>
+					<PrimaryButton>Register</PrimaryButton>
 				</div>
 			</form>
 		</GuestLayout>

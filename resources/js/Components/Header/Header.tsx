@@ -12,6 +12,7 @@ import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const Header: FC = () => {
+
 	return (
     <header>
       <Container>
@@ -22,19 +23,19 @@ const Header: FC = () => {
 						<HeaderNav />
 					<Search />
 						<div className={styles.col_2}>
-							<Link href="/wishlist">
+							<Link href={route('wishlist.index')}>
 								<div className={styles.quantity_wrp}>
 									<TotalHeaderQuantity />
 									<WishlistIcon width="30" height="30" fill="#2e3b4c" />
 								</div>
 							</Link>
-							<Link href="/shopping-cart">
+							<Link href={route('shoppingCart.index')}>
 								<div className={styles.quantity_wrp}>
 									<TotalHeaderQuantity />
 									<CartIcon width="30" height="30" stroke="#2e3b4c" fill="transparent" />
 								</div>
 							</Link>
-							<Link href="/profile">
+							<Link href={route('login')}>
 								<LoginIcon width="30" height="30" fill="#2e3b4c" />
 							</Link>
 						</div>

@@ -15,7 +15,7 @@ const GuestLayout: React.FC<GuestLayoutProps> = ({ children, className }) => {
 	return (
 		<div className={layoutClass}>
 				<Link href="/">
-					<Image src={logo} alt={logo} width={'80'} height={'80'} />
+					<Image src={logo} alt={logo} width={'120'} height={'80'} />
 				</Link>
 
 			<div className={styles.guest_layout_inner}>

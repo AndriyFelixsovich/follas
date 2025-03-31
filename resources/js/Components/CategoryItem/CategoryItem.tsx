@@ -16,10 +16,10 @@ interface CategoryItemProps {
 const CategoryItem: FC<CategoryItemProps> = ({ cat }) => {
 	return (
 		<div className={styles.category_item}>
-			<Link href={`/category/${cat.id}`}>
+			<Link href={route('category.index', { id: cat.id })}>
 				<Image src={logo} alt={logo} width={'80'} height={'80'} />
 			</Link>
-			<Link href={`/category/${cat.id}`}>{cat.name}</Link>
+			<Link href={route('category.index', { id: cat.id })}>{cat.name}</Link>
 		</div>
 	);
 };

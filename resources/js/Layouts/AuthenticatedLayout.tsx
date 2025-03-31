@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
+import styles from './guest_layout.module.scss';
 import Dropdown from '@/Components/Auth/Dropdown/Dropdown';
 import NavLink from '@/Components/Auth/NavLink/NavLink';
 import ResponsiveNavLink from '@/Components/Auth/ResponsiveNavLink/ResponsiveNavLink';
+
+import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
+
+import logo from '../../img/follas_logo.svg';
+import Image from '@/Components/_ui/Image/Image';
+
 import { Link, usePage } from '@inertiajs/react';
 
 interface AuthenticatedLayoutProps {
@@ -16,14 +24,14 @@ const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({ header, child
 	const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
 	return (
-		<div className="min-h-screen bg-gray-100">
+		<div>
 			<nav className="border-b border-gray-100 bg-white">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 					<div className="flex h-16 justify-between">
 						<div className="flex">
 							<div className="flex shrink-0 items-center">
 								<Link href="/">
-									ApplicationLogo
+									<Image src={logo} alt={logo} width={'100'} height={'100'} />
 								</Link>
 							</div>
 
@@ -32,7 +40,6 @@ const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({ header, child
 									href={route('dashboard')}
 									active={route().current('dashboard')}
 								>
-									Dashboard
 								</NavLink>
 							</div>
 						</div>

@@ -1,9 +1,12 @@
+import "./auth.scss";
+import styles from "@/Layouts/guest_layout.module.scss";
 import InputError from '@/Components/Auth/InputError/InputError';
-import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
+import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
 import { Head, useForm } from '@inertiajs/react';
-import styles from "@/Layouts/guest_layout.module.scss";
+import React, { FC } from "react";
 
 interface ForgotPasswordProps {
 	status?: string;
@@ -53,8 +56,10 @@ export default function ForgotPassword({ status }: ForgotPasswordProps) {
 
 				<InputError message={errors.email} className="mt-2" />
 
-				<div className="mt-4 flex items-center justify-end">
-					<PrimaryButton disabled={processing}>Email Password Reset Link</PrimaryButton>
+				<div className="controls">
+					<PrimaryButton>Email Password Reset Link</PrimaryButton>
+
+					<PrimaryLink href={route('login')}>Back to login</PrimaryLink>
 				</div>
 			</form>
 		</GuestLayout>

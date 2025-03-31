@@ -2,10 +2,11 @@ import React, { FormEvent } from 'react';
 import Checkbox from '@/Components/Auth/Checkbox/Checkbox';
 import InputError from '@/Components/Auth/InputError/InputError';
 import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
-import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
+import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 
 interface LoginProps {
 	status?: string;
@@ -72,28 +73,20 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 						<Checkbox
 							name="remember"
 							checked={data.remember}
-							onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-								setData("remember", e.target.checked)
-							}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("remember", e.target.checked)}
 							style={{ width: "fit-content" }}
 						/>
-						<span className="ms-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
+						<span className="ms-2 text-sm text-gray-600">Remember me</span>
 					</label>
 				</div>
 
 				<div className="mt-4 flex items-center justify-between">
 					{canResetPassword && (
-						<Link
-							href={route('password.request')}
-							className="rounded-md text-sm text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-						>
-							Forgot your password?
-						</Link>
+						<PrimaryLink href={route('password.request')}>Forgot your password?</PrimaryLink>
 					)}
 
-					<PrimaryButton className="ms-4" disabled={processing}>Log in</PrimaryButton>
+					<PrimaryLink href={route('register')}>Registration</PrimaryLink>
+					<PrimaryButton>Log in</PrimaryButton>
 				</div>
 			</form>
 		</GuestLayout>

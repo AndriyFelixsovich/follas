@@ -6,9 +6,9 @@ const HeaderNav: FC = () => {
   return (
 	 <nav className={styles.nav}>
 		 <ul>
-			 <li><Link href="/blog">Blog</Link></li>
-			 <li><Link href="/about">About Us</Link></li>
-			 <li><Link href="/contacts">Contact</Link></li>
+			 <li><Link href={route('blog.index')}>Blog</Link></li>
+			 <li><Link href={route('about.index')}>About Us</Link></li>
+			 <li><Link href={route('contacts.index')}>Contact</Link></li>
 		 </ul>
 	 </nav>
   );
