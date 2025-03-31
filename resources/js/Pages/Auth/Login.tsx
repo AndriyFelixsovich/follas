@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import Checkbox from '@/Components/Auth/Checkbox/Checkbox';
-import InputError from '@/Components/Auth/InputError/InputError';
+import InputError from '@/Components/_ui/InputError/InputError';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';

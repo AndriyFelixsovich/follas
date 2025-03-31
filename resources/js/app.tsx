@@ -4,7 +4,6 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 
-// @ts-ignore
 const appName: string = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 type SetupProps = {
@@ -18,7 +17,6 @@ createInertiaApp({
 	resolve: (name: string) => {
 		return resolvePageComponent(
 			`./Pages/${name}.tsx`,
-			// @ts-ignore
 			import.meta.glob<() => Promise<{ default: React.ComponentType<any> }>>('./Pages/**/*.tsx')
 		);
 	},

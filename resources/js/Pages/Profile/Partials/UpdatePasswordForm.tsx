@@ -1,5 +1,5 @@
 import styles from '../profile.module.scss';
-import InputError from '@/Components/Auth/InputError/InputError';
+import InputError from '@/Components/_ui/InputError/InputError';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
