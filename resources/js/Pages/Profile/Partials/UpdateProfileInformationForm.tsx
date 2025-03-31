@@ -1,6 +1,6 @@
 import styles from '../profile.module.scss';
 import InputError from '@/Components/Auth/InputError/InputError';
-import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
 import { Transition } from '@headlessui/react';
@@ -42,7 +42,7 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
 
 			<form onSubmit={submit} className="mt-6 space-y-6">
 				<div>
-					<InputLabel htmlFor="name" value="Name" className="mt-2"/>
+					<InputLabel htmlFor="name" value="Name" />
 
 				<div className="mt-2">
 					<TextInput
@@ -60,7 +60,7 @@ export default function UpdateProfileInformation({mustVerifyEmail, status, class
 				</div>
 
 				<div>
-					<InputLabel htmlFor="email" value="Email" className="mt-2" />
+					<InputLabel htmlFor="email" value="Email" />
 						<div className="mt-2">
 
 						<TextInput

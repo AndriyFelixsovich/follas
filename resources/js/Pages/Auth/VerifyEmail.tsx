@@ -1,4 +1,4 @@
-import PrimaryButton from '@/Components/Auth/PrimaryButton/PrimaryButton';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
@@ -34,9 +34,7 @@ export default function VerifyEmail({ status }: VerifyEmailProps) {
 
 			<form onSubmit={submit}>
 				<div className="mt-4 flex items-center justify-between">
-					<PrimaryButton disabled={processing}>
-						Resend Verification Email
-					</PrimaryButton>
+					<PrimaryButton>Resend Verification Email</PrimaryButton>
 
 					<Link
 						href={route('logout')}

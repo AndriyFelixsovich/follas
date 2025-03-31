@@ -4,7 +4,7 @@ import logo from '../../img/follas_logo.svg';
 import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
 import Container from '@/Components/_ui/Container/Container';
 import Image from '@/Components/_ui/Image/Image';
-import { usePage } from '@inertiajs/react';
+import { usePage, Link } from '@inertiajs/react';
 
 interface AuthenticatedLayoutProps {
 	children: React.ReactNode;
@@ -28,7 +28,7 @@ const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({ children }) =
 						<div className={styles.controls}>
 							<PrimaryLink href={route('dashboard')}>Dashboard</PrimaryLink>
 							<PrimaryLink href={route('profile.edit')}>Profile</PrimaryLink>
-							<PrimaryLink href={route('logout')} method="post">Log Out</PrimaryLink>
+							<Link className={styles.button_link} href={route('logout')} method="post">Log Out</Link>
 						</div>
 					</div>
 				</Container>

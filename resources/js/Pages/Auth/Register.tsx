@@ -1,6 +1,6 @@
 import "./auth.scss";
 import InputError from '@/Components/Auth/InputError/InputError';
-import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
@@ -87,10 +87,7 @@ export default function Register() {
 				</div>
 
 				<div className="mt-4">
-					<InputLabel
-						htmlFor="password_confirmation"
-						value="Confirm Password"
-					/>
+					<InputLabel htmlFor="password_confirmation" value="Confirm Password"/>
 
 					<TextInput
 						id="password_confirmation"

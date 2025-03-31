@@ -1,6 +1,6 @@
 import styles from '../profile.module.scss';
 import InputError from '@/Components/Auth/InputError/InputError';
-import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
+import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import TextInput from '@/Components/Auth/TextInput/TextInput';
 import { Transition } from '@headlessui/react';
@@ -66,7 +66,7 @@ export default function UpdatePasswordForm({ className = '' }: UpdatePasswordFor
 
 			<form onSubmit={updatePassword} className="mt-6 space-y-6">
 				<div>
-					<InputLabel htmlFor="current_password" value="Current Password" className="mt-2"/>
+					<InputLabel htmlFor="current_password" value="Current Password"/>
 
 					<div className="mt-2">
 						<TextInput
@@ -84,7 +84,7 @@ export default function UpdatePasswordForm({ className = '' }: UpdatePasswordFor
 				</div>
 
 				<div>
-					<InputLabel htmlFor="password" value="New Password" className="mt-2"/>
+					<InputLabel htmlFor="password" value="New Password" />
 
 					<div className="mt-2">
 						<TextInput
@@ -102,7 +102,7 @@ export default function UpdatePasswordForm({ className = '' }: UpdatePasswordFor
 				</div>
 
 				<div>
-					<InputLabel htmlFor="password_confirmation" value="Confirm Password" className="mt-2"/>
+					<InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
 					<div className="mt-2">
 						<TextInput

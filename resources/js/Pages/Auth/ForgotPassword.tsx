@@ -57,7 +57,7 @@ export default function ForgotPassword({ status }: ForgotPasswordProps) {
 				<InputError message={errors.email} className="mt-2" />
 
 				<div className="controls">
-					<PrimaryButton>Email Password Reset Link</PrimaryButton>
+					<PrimaryButton>Reset Password</PrimaryButton>
 
 					<PrimaryLink href={route('login')}>Back to login</PrimaryLink>
 				</div>

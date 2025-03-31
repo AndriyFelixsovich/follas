@@ -58,4 +58,16 @@ $media-7: 600px;
 	.main {
 		margin-top: 2rem;
 	}
+	img {
+		margin: 0;
+	}
+}
+
+.button_link {
+	color: rgb(75, 85, 99);
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	cursor: pointer;
+	padding: 0;
+	border: 0;
 }

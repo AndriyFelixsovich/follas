@@ -1,5 +1,5 @@
 import styles from '../profile.module.scss';
-import DangerButton from '@/Components/Auth/DangerButton/DangerButton';
+import DangerButton from '@/Components/_ui/DangerButton/DangerButton';
 import InputError from '@/Components/Auth/InputError/InputError';
 import InputLabel from '@/Components/Auth/InputLabel/InputLabel';
 import Modal from '@/Components/Auth/Modal/Modal';
@@ -53,9 +53,7 @@ export default function DeleteUserForm({ className = '' }: DeleteUserFormProps) 
 	return (
 		<section className={styles.edit_col}>
 			<header>
-				<h2 className="text-lg font-medium text-gray-900">
-					Delete Account
-				</h2>
+				<h2 className="text-lg font-medium text-gray-900">Delete Account</h2>
 
 				<p className="mt-1 text-sm text-gray-600 text-center">
 					Once your account is deleted, all of its resources and data
@@ -63,11 +61,9 @@ export default function DeleteUserForm({ className = '' }: DeleteUserFormProps) 
 					please download any data or information that you wish to
 					retain.
 				</p>
-			</header>
 
-			<DangerButton onClick={confirmUserDeletion}>
-				Delete Account
-			</DangerButton>
+				<DangerButton className={styles.danger_btn} onClick={confirmUserDeletion}>Delete Account</DangerButton>
+			</header>
 
 			<Modal show={confirmingUserDeletion} onClose={closeModal}>
 				<form onSubmit={deleteUser} className="p-6">
@@ -110,9 +106,7 @@ export default function DeleteUserForm({ className = '' }: DeleteUserFormProps) 
 					</div>
 
 					<div className="mt-6 flex justify-end">
-						<SecondaryButton onClick={closeModal}>
-							Cancel
-						</SecondaryButton>
+						<SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
 						<DangerButton className="ms-3" disabled={processing}>
 							Delete Account
