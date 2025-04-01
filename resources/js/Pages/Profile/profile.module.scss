@@ -22,3 +22,18 @@ $media-6: 1400px;
 	display: block;
 	margin: 1rem auto;
 }
+
+.modal {
+	p {
+		font-size: 16px;
+		text-align: center;
+	}
+	.modal_content {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		input {
+			width: 50%;
+		}
+	}
+}

@@ -3,7 +3,7 @@ import InputError from '@/Components/_ui/InputError/InputError';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import PrimaryLink from '@/Components/_ui/PrimaryLink/PrimaryLink';
-import TextInput from '@/Components/Auth/TextInput/TextInput';
+import TextInput from '@/Components/_ui/TextInput/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
 

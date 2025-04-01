@@ -2,7 +2,7 @@ import styles from '../profile.module.scss';
 import InputError from '@/Components/_ui/InputError/InputError';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
-import TextInput from '@/Components/Auth/TextInput/TextInput';
+import TextInput from '@/Components/_ui/TextInput/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 

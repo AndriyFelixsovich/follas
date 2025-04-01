@@ -1,10 +1,8 @@
 import styles from '../profile.module.scss';
 import DangerButton from '@/Components/_ui/DangerButton/DangerButton';
+import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import InputError from '@/Components/_ui/InputError/InputError';
-import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
-import Modal from '@/Components/Auth/Modal/Modal';
-import SecondaryButton from '@/Components/Auth/SecondaryButton/SecondaryButton';
-import TextInput from '@/Components/Auth/TextInput/TextInput';
+import TextInput from '@/Components/_ui/TextInput/TextInput';
 import { useForm } from '@inertiajs/react';
 import { useRef, useState } from 'react';
 
@@ -13,42 +11,27 @@ interface DeleteUserFormProps {
 }
 
 export default function DeleteUserForm({ className = '' }: DeleteUserFormProps) {
-	const [confirmingUserDeletion, setConfirmingUserDeletion] = useState<boolean>(false);
 	const passwordInput = useRef<HTMLInputElement | null>(null);
+	const [showModal, setShowModal] = useState(false);
 
-	const {
-		data,
-		setData,
-		delete: destroy,
-		processing,
-		reset,
-		errors,
-		clearErrors,
-	} = useForm<{ password: string }>({
+	const { data, setData, delete: destroy, reset, errors } = useForm<{ password: string }>({
 		password: '',
 	});
-
-	const confirmUserDeletion = () => {
-		setConfirmingUserDeletion(true);
-	};
 
 	const deleteUser = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		destroy(route('profile.destroy'), {
-			preserveScroll: true,
-			onSuccess: () => closeModal(),
+			onSuccess: () => {
+				setShowModal(false);
+				reset();
+			},
 			onError: () => passwordInput.current?.focus(),
 			onFinish: () => reset(),
 		});
 	};
 
-	const closeModal = () => {
-		setConfirmingUserDeletion(false);
-
-		clearErrors();
-		reset();
-	};
+	const closeModal = () => setShowModal(false);
 
 	return (
 		<section className={styles.edit_col}>
@@ -56,64 +39,25 @@ export default function DeleteUserForm({ className = '' }: DeleteUserFormProps) 
 				<h2 className="text-lg font-medium text-gray-900">Delete Account</h2>
 
 				<p className="mt-1 text-sm text-gray-600 text-center">
-					Once your account is deleted, all of its resources and data
-					will be permanently deleted. Before deleting your account,
-					please download any data or information that you wish to
-					retain.
+					Once your account is deleted, all of its resources and data will be permanently deleted. Before
+					deleting your account, please download any data or information that you wish to retain.
 				</p>
 
-				<DangerButton className={styles.danger_btn} onClick={confirmUserDeletion}>Delete Account</DangerButton>
+				<DangerButton className={styles.danger_btn} onClick={() => setShowModal(true)}>Delete Account</DangerButton>
 			</header>
 
-			<Modal show={confirmingUserDeletion} onClose={closeModal}>
-				<form onSubmit={deleteUser} className="p-6">
-					<h2 className="text-lg font-medium text-gray-900">
-						Are you sure you want to delete your account?
-					</h2>
-
-					<p className="mt-1 text-sm text-gray-600">
-						Once your account is deleted, all of its resources and
-						data will be permanently deleted. Please enter your
-						password to confirm you would like to permanently delete
-						your account.
-					</p>
-
-					<div className="mt-6">
-						<InputLabel
-							htmlFor="password"
-							value="Password"
-							className="sr-only"
-						/>
-
-						<TextInput
-							id="password"
-							type="password"
-							name="password"
-							ref={passwordInput}
-							value={data.password}
-							onChange={(e) =>
-								setData('password', e.target.value)
-							}
-							className="mt-1 block w-3/4"
-							isFocused
-							placeholder="Password"
-						/>
-
-						<InputError
-							message={errors.password}
-							className="mt-2"
-						/>
+			{showModal && (
+				<div className={styles.modal}>
+					<h3>Are you sure?</h3>
+					<p>Enter your password to confirm deletion.</p>
+					<div className={styles.modal_content}>
+						<TextInput type="password" value={data.password} onChange={(e) => setData('password', e.target.value)} ref={passwordInput}/>
+						<DangerButton onClick={deleteUser}>Confirm</DangerButton>
+						<PrimaryButton onClick={closeModal}> Cancel</PrimaryButton>
 					</div>
-
-					<div className="mt-6 flex justify-end">
-						<SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
-
-						<DangerButton className="ms-3" disabled={processing}>
-							Delete Account
-						</DangerButton>
-					</div>
-				</form>
-			</Modal>
+					{errors.password && <InputError message={errors.password} />}
+				</div>
+			)}
 		</section>
 	);
 }
