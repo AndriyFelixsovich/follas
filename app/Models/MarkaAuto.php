@@ -20,7 +20,7 @@ class MarkaAuto extends Model
 
 	public function products()
 	{
-		return $this->belongsToMany(Product::class, 'marka_auto_product', 'marka_auto_id', 'product_id')
+		return $this->belongsToMany(Product::class, 'product_relation_marka', 'marka_auto_id', 'product_id')
 			->withTimestamps();
 	}
 }

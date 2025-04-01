@@ -23,19 +23,18 @@ class Product extends Model
 
 	public function markaAutos()
 	{
-		return $this->belongsToMany(MarkaAuto::class, 'marka_auto_product', 'product_id', 'marka_auto_id')
+		return $this->belongsToMany(MarkaAuto::class, 'product_relation_marka', 'product_id', 'marka_auto_id')
 			->withTimestamps();
 	}
 
-//  public function categories(){
-//      // Зв'язок - Продукт може мати одну категорію
-//      return $this->belongsTo(Category::class, 'category_id');
-//  }
+	public function modelAutos()
+	{
+		return $this->belongsToMany(ModelAuto::class, 'model_autos');
+	}
 
-//	public function models(): BelongsToMany
-//	{
-//		// Зв'язок - Продукт може мати декілька моделей авто'
-//		return $this->belongsToMany(Modelauto2::class, 'product_models', 'product_id', 'modelauto_id');
-//	}
+	public function modelAutoYears()
+	{
+		return $this->belongsToMany(ModelAutoYear::class, 'model_auto_years');
+	}
 
 }
