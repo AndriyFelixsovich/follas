@@ -29,7 +29,7 @@ class WishlistController extends Controller
 				$wishlist[] = $product_id;
 				$request->session()->put('wishlist', $wishlist);
 			}
-      return Inertia::render('successSession',['success' => 'Продукт доданий до списку успішно']);
+			return redirect()->back()->with('success', 'Продукт доданий до списку успішно');
 		}
 	}
 }
