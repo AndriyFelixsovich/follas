@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Link } from '@inertiajs/react';
+import { useForm   } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
 import CartBtn from '@/Components/_ui/CartBtn/CartBtn';
@@ -9,6 +10,7 @@ import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalW
 import styles from './style.module.scss';
 
 interface Product {
+	id: number;
 	image_path: string;
 	description: string;
 	origin_number: string;
@@ -36,9 +38,22 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		setInputValue(value)
 		console.log('Quantity', value)
 	}
-
+	const { post } = useForm({ product_id: product.id,});
 	const addToWishlist = () => {
-		console.log("product wishlist", product)
+		post('/wishlist/add', {
+			data: {
+				product_id: product.id,
+			},
+			preserveScroll: true,
+			onSuccess: (page) => {
+				if (page.props.success) {
+					console.log(page)
+				}
+			},
+			onError: (errors) => {
+				console.error(errors);
+			},
+		});
 	}
 
 	const addToCart = () => {

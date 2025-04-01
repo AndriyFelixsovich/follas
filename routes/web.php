@@ -16,11 +16,20 @@ use Inertia\Inertia;
 Route::get('/', [SiteController::class, 'index'])->name('site');
 Route::get('/category/{id}', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
 Route::get('/shopping-cart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::fallback([ErrorController::class, 'notFound']);
+
+
+Route::group([
+	'prefix' => 'wishlist',
+	'as' => 'wishlist.'
+], function () {
+	Route::get('/', [WishlistController::class, 'index'])->name('index');
+	Route::post('/add', [WishlistController::class, 'add'])->name('add');
+});
 
 /*Route::get('/', function () {
     return Inertia::render('Front/index', [
