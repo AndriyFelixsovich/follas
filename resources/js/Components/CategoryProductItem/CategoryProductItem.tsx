@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState,useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import { useForm   } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
@@ -22,9 +22,18 @@ interface CategoryProductItemProps {
 	index: number;
 }
 
+interface PageProps {
+	flash?: {
+		success?: string;
+		error?: string;
+	};
+}
+
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 	const [modals, setModals] = useState<Product[]>([]);
-	const [inputValue, setInputValue] = useState('')
+	const [inputValue, setInputValue] = useState('');
+	const { post } = useForm({ product_id: product.id,});
+	const [localSuccessMessage, setLocalSuccessMessage] = useState<string | null>(null);
 
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
@@ -38,23 +47,33 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		setInputValue(value)
 		console.log('Quantity', value)
 	}
-	const { post } = useForm({ product_id: product.id,});
 	const addToWishlist = () => {
-		post('/wishlist/add', {
+		post('/wishlist/toggleWishlistItem', {
 			data: {
 				product_id: product.id,
 			},
 			preserveScroll: true,
-			onSuccess: (page) => {
-				if (page.props.success) {
-					console.log(page)
+			onSuccess: (page: { props: PageProps }) => {
+				if (page.props.flash?.success) {
+					setLocalSuccessMessage(page.props.flash.success);
 				}
 			},
-			onError: (errors) => {
-				console.error(errors);
+			onError: (page: { props: PageProps }) => {
+				if (page.props.flash?.error) {
+					setLocalSuccessMessage(page.props.flash.error);
+				}
 			},
 		});
 	}
+
+	useEffect(() => {
+		if (localSuccessMessage) {
+			const timer = setTimeout(() => {
+				setLocalSuccessMessage(null);
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [localSuccessMessage]);
 
 	const addToCart = () => {
 		console.log("product cart", product)
@@ -84,7 +103,18 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		<div className={styles.controls}>
 			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
 			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
-			<WishlistBtn onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" />
+			<WishlistBtn
+				onClick={addToWishlist}
+				width={30}
+				height={30}
+				fill="#2e3b4c"
+				productId={product.id}
+			/>
+			{localSuccessMessage && (
+				<div className="alert alert-success">
+					{localSuccessMessage}
+				</div>
+			)}
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 		</div>
 

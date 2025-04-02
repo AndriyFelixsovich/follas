@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState,useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
 
 interface IWishlistBtn {
@@ -6,11 +7,24 @@ interface IWishlistBtn {
 	height: number | string;
 	fill: number | string;
 	onClick?: () => void;
+	productId: number;
 }
 
-const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick}) => {
-	const [isActive, setActive] = useState(false);
+interface PageProps {
+	wishlist?: number[];
+}
 
+const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick,productId }) => {
+	const [isActive, setActive] = useState(false);
+	const { wishlist } = usePage().props as PageProps;
+
+	useEffect(() => {
+		if (wishlist && Array.isArray(wishlist) && wishlist.includes(productId)) {
+			setActive(true);
+		} else {
+			setActive(false);
+		}
+	}, [wishlist, productId]);
 	const handlerClick = () => {
 		setActive(prev => !prev)
 		if(onClick) onClick();
