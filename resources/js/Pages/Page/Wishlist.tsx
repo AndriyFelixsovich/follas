@@ -5,7 +5,7 @@ import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
 
 
-const Wishlist: FC = () => {
+const Wishlist: FC = ({productsInWishlist}) => {
 
 	return (
 		<MainLayout>
