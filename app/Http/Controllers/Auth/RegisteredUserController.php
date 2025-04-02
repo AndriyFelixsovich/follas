@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\WishlistService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,11 @@ use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
+		protected $wishlistService;
+		public function __construct(WishlistService $wishlistService)
+		{
+			$this->wishlistService = $wishlistService;
+		}
     /**
      * Display the registration view.
      */
@@ -45,6 +51,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+				$this->wishlistService->transferWishlistFromSession($request);
 
         return redirect(route('dashboard', absolute: false));
     }

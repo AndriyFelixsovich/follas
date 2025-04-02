@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Services\WishlistService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,12 @@ use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
 {
+		protected $wishlistService;
+
+		public function __construct(WishlistService $wishlistService)
+		{
+			$this->wishlistService = $wishlistService;
+		}
     /**
      * Display the login view.
      */
@@ -32,6 +39,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+				$this->wishlistService->transferWishlistFromSession($request);
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
