@@ -37,7 +37,6 @@ class WishlistController extends Controller
 				}
 				return redirect()->back()->with('error', 'Продукт не знайдено в списку бажань');
 			}
-      return Inertia::render('successSession',['success' => 'Продукт доданий до списку успішно']);
 		}
 	}
 }
