@@ -28,14 +28,14 @@ class WishlistController extends Controller
 			if (!in_array($product_id, $wishlist)) {
 				$wishlist[] = $product_id;
 				$request->session()->put('wishlist', $wishlist);
-				return redirect()->back()->with('success', 'Продукт доданий до списку успішно');
+				return redirect()->back()->with('success', 'Product added to wishlist');
 			}else{
 				if (($key = array_search($product_id, $wishlist)) !== false) {
 					unset($wishlist[$key]);
 					$request->session()->put('wishlist', $wishlist);
-					return redirect()->back()->with('success', 'Продукт видалено успішно');
+					return redirect()->back()->with('success', 'Product removed from wishlist');
 				}
-				return redirect()->back()->with('error', 'Продукт не знайдено в списку бажань');
+				return redirect()->back()->with('error', 'Wishlist product not found');
 			}
 		}
 	}

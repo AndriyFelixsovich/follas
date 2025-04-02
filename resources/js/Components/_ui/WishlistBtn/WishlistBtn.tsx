@@ -25,6 +25,7 @@ const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick,productId })
 			setActive(false);
 		}
 	}, [wishlist, productId]);
+
 	const handlerClick = () => {
 		setActive(prev => !prev)
 		if(onClick) onClick();

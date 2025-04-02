@@ -1,5 +1,7 @@
 import React, { FC, useState,useEffect } from 'react';
 import { Link } from '@inertiajs/react';
+import styles from './style.module.scss';
+import {Product, CategoryProductItemProps, PageProps} from './interface';
 import { useForm   } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
@@ -7,27 +9,8 @@ import CartBtn from '@/Components/_ui/CartBtn/CartBtn';
 import WishlistBtn from '@/Components/_ui/WishlistBtn/WishlistBtn';
 import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
-import styles from './style.module.scss';
+import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
 
-interface Product {
-	id: number;
-	image_path: string;
-	description: string;
-	origin_number: string;
-	name: string;
-}
-
-interface CategoryProductItemProps {
-	product: Product;
-	index: number;
-}
-
-interface PageProps {
-	flash?: {
-		success?: string;
-		error?: string;
-	};
-}
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 	const [modals, setModals] = useState<Product[]>([]);
@@ -47,6 +30,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		setInputValue(value)
 		console.log('Quantity', value)
 	}
+
 	const addToWishlist = () => {
 		post('/wishlist/toggleWishlistItem', {
 			data: {
@@ -70,7 +54,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		if (localSuccessMessage) {
 			const timer = setTimeout(() => {
 				setLocalSuccessMessage(null);
-			}, 3000);
+			}, 2000);
 			return () => clearTimeout(timer);
 		}
 	}, [localSuccessMessage]);
@@ -111,9 +95,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 				productId={product.id}
 			/>
 			{localSuccessMessage && (
-				<div className="alert alert-success">
-					{localSuccessMessage}
-				</div>
+				<SuccessModalWindow message={localSuccessMessage} />
 			)}
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 		</div>
