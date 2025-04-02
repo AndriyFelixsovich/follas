@@ -12,6 +12,7 @@ const ShoppingCart: FC = () => {
 			<div>
 				<Container>
 					<h1>Shopping Cart</h1>
+					<p>Shopping Cart is empty!</p>
 				</Container>
 			</div>
 		</MainLayout>);
