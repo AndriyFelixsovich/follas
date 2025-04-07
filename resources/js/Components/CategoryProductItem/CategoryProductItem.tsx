@@ -11,8 +11,7 @@ import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
 import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
 
-
-const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
+const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage = false }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [inputValue, setInputValue] = useState('');
 	const { post } = useForm({ product_id: product.id,});
@@ -87,13 +86,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product }) => {
 		<div className={styles.controls}>
 			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
 			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
-			<WishlistBtn
-				onClick={addToWishlist}
-				width={30}
-				height={30}
-				fill="#2e3b4c"
-				productId={product.id}
-			/>
+			<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
 			{localSuccessMessage && (
 				<SuccessModalWindow message={localSuccessMessage} />
 			)}

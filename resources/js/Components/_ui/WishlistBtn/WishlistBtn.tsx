@@ -1,20 +1,22 @@
-import React, { FC, useState,useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
+import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 
 interface IWishlistBtn {
 	width: number | string;
 	height: number | string;
-	fill: number | string;
+	fill: string;
 	onClick?: () => void;
 	productId: number;
+	isWishlistPage?: boolean;
 }
 
 interface PageProps {
 	wishlist?: number[];
 }
 
-const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick,productId }) => {
+const WishlistBtn: FC<IWishlistBtn> = ({ width, height, fill, onClick, productId, isWishlistPage }) => {
 	const [isActive, setActive] = useState(false);
 	const { wishlist } = usePage().props as PageProps;
 
@@ -27,15 +29,19 @@ const WishlistBtn: FC<IWishlistBtn> = ({width, height, fill,onClick,productId })
 	}, [wishlist, productId]);
 
 	const handlerClick = () => {
-		setActive(prev => !prev)
-		if(onClick) onClick();
-	}
+		setActive(prev => !prev);
+		if (onClick) onClick();
+	};
 
 	return (
 		<button onClick={handlerClick}>
-			<WishlistIcon width={width} height={height} fill={isActive ? "#28a745" : fill} />
+			{isWishlistPage ? (
+				<CloseIcon width={width} height={height} fill={isActive ? '#dc3545' : '#dc3545'} />
+			) : (
+				<WishlistIcon width={width} height={height} fill={isActive ? '#28a745' : fill} />
+			)}
 		</button>
 	);
-}
+};
 
 export default WishlistBtn;

@@ -1,7 +1,11 @@
 import { FC, useState } from 'react';
 import styles from './style.module.scss';
 
-const CategoryTopBar: FC = () => {
+interface ICategoryTopBar {
+	isWishlistPage?: boolean;
+}
+
+const CategoryTopBar: FC<ICategoryTopBar> = ({ isWishlistPage = false }) => {
 
 	return (
 		<div className={styles.top_bar}>
@@ -12,7 +16,11 @@ const CategoryTopBar: FC = () => {
 						<td>Description</td>
 						<td>Orig. No.</td>
 						<td>Quantity</td>
-						<td>Add to wishlist</td>
+						{isWishlistPage ? (
+							<td>Remove from wishlist</td>
+						) : (
+							<td>Add to wishlist</td>
+						)}
 						<td>Add to cart </td>
 					</tr>
 				</tbody>

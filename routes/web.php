@@ -7,6 +7,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ErrorController;
 use Illuminate\Foundation\Application;
@@ -16,6 +17,7 @@ use Inertia\Inertia;
 Route::get('/', [SiteController::class, 'index'])->name('site');
 Route::get('/category/{id}', [CategoryController::class, 'index'])->name('category.index')->middleware('wishlist');
 Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
+Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 
 Route::get('/shopping-cart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');

@@ -9,6 +9,7 @@ export interface Product {
 export interface CategoryProductItemProps {
 	product: Product;
 	index: number;
+	isWishlistPage?: boolean;
 }
 
 export interface PageProps {
