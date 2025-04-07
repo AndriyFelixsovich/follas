@@ -19,7 +19,7 @@ interface IWishlist {
 	productsInWishlist: IProduct[];
 }
 
-const Wishlist: FC<IWishlist> = ({ productsInWishlist, isWishlistPage = false }) => {
+const Wishlist: FC<IWishlist> = ({ productsInWishlist }) => {
 
 	return (
 		<MainLayout>

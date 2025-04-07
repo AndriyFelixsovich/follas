@@ -1,26 +1,38 @@
 import { Head } from '@inertiajs/react';
 import { FC } from "react";
 import styles from './catalog.module.scss';
-import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProductItem';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
-import Pagination from '@/Components/Pagination/Pagination';
-import CategoryTopBar from '@/Components/CategoryTopBar/CategoryTopBar';
 import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
+import CategoryItem from "@/Components/CategoryItem/CategoryItem";
 
-const Catalog: FC = () => {
+interface IProductCategory {
+	id: number;
+	name: string;
+}
 
+interface ICatalog {
+	category: IProductCategory[];
+}
+
+const Catalog: FC<ICatalog> = ({ category }) => {
 	return (
 		<MainLayout>
-			<Head title="Catalog"/>
-			<div>
-				<Breadcrumbs categoryName="Catalog"/>
+			<div className={styles.catalog}>
+				<Head title="Catalog"/>
+				<div>
+					<Breadcrumbs categoryName="Catalog"/>
 
-				<Container>
-					<h1>Catalog</h1>
-					<CategoryTopBar />
-				</Container>
+					<Container>
+						<h1>Catalog</h1>
+						<div className={styles.catalog_item_wrap}>
+							{category.map(cat => (
+								<CategoryItem cat={cat} key={cat.id} />
+							))}
+						</div>
+					</Container>
 
+				</div>
 			</div>
 		</MainLayout>);
 }

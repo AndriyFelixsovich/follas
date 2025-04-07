@@ -17,7 +17,7 @@ const CategoryTopBar: FC<ICategoryTopBar> = ({ isWishlistPage = false }) => {
 						<td>Orig. No.</td>
 						<td>Quantity</td>
 						{isWishlistPage ? (
-							<td>Remove from wishlist</td>
+							<td>Remove</td>
 						) : (
 							<td>Add to wishlist</td>
 						)}
