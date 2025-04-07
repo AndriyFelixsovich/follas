@@ -17,10 +17,8 @@ class WishlistController extends Controller
 			$wishlistItems = Wishlist::where('user_id', $userId)->pluck('product_id');
 			$productsInWishlist = Product::whereIn('id', $wishlistItems)->get();
 		} else {
-			if (!empty($productWishlistId)) {
 				$productWishlistId = $request->session()->get('wishlist', []);
 				$productsInWishlist = Product::whereIn('id', $productWishlistId)->get();
-			}
 		}
 
 		return Inertia::render('Page/Wishlist', ['productsInWishlist' => $productsInWishlist]);
