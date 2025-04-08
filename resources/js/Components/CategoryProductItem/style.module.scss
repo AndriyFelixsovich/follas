@@ -1,9 +1,10 @@
 $media-1: 575px;
 $media-2: 767px;
-$media-3: 992px;
+$media-3: 930px;
 $media-4: 1024px;
 $media-5: 1366px;
 $media-6: 1400px;
+$media-7: 450px;
 
 .category_product_item {
 	display: flex;
@@ -13,12 +14,19 @@ $media-6: 1400px;
 	gap: 3.5rem;
 	border-bottom: 1px solid #e1e7f2;
 	margin-bottom: 1rem;
+	flex-direction: column;
+	@media (min-width: $media-3) {
+		flex-direction: row;
+	}
 	.info {
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(3, 32.4%);
+		grid-template-columns: 100%;
 		gap: 1rem;
 		align-items: center;
+		@media (min-width: $media-7) {
+			grid-template-columns: repeat(3, 32.4%);
+		}
 	}
 	input {
 		width: 2.222rem;

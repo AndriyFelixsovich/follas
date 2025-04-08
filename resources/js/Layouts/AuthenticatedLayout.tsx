@@ -23,7 +23,7 @@ const AuthenticatedLayout: React.FC<AuthenticatedLayoutProps> = ({ children }) =
 							<Image src={logo} alt={logo} width={'100'} height={'100'} />
 						</PrimaryLink>
 
-						<h2>Dashboard</h2>
+						<h2 className={styles.title}>Dashboard</h2>
 
 						<div className={styles.controls}>
 							<PrimaryLink href={route('dashboard')}>Dashboard</PrimaryLink>

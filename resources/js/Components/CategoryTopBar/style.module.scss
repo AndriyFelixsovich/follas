@@ -8,6 +8,10 @@ $media-6: 1400px;
 
 .top_bar {
 	margin-top: 3rem;
+	display: none;
+	@media (min-width: 992px) {
+		display: block;
+	}
 }
 
 table	{
@@ -19,8 +23,8 @@ table	{
 		td {
 			color: #6d7682;
 			font-weight: 400;
-			font-size: 13px;
-			line-height: 16px;
+			font-size: .8rem;
+			line-height: 1.5;
 			border-bottom: none;
 			border-top: 1px solid #e1e7f2;
 			padding-top: .7rem;

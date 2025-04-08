@@ -43,7 +43,10 @@ $media-7: 600px;
 			.inner {
 				display: grid;
 				align-items: center;
-				grid-template-columns: repeat(3, 33.3%);
+				grid-template-columns: 30% 70%;
+				@media (min-width: $media-1) {
+					grid-template-columns: repeat(3, 33.3%);
+				}
 			}
 			a {
 				font-size: 1rem;
@@ -60,6 +63,12 @@ $media-7: 600px;
 	}
 	img {
 		margin: 0;
+	}
+	.title {
+		display: none;
+		@media (min-width: $media-1) {
+			display: block;
+		}
 	}
 }
 
