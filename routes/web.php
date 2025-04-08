@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\BlogController;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'index'])->name('site');
-Route::get('/category/{id}', [CategoryController::class, 'index'])->name('category.index')->middleware('wishlist');
+Route::get('/category/{id}', [ProductController::class, 'index'])->name('category.index')->middleware('wishlist');
 Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 

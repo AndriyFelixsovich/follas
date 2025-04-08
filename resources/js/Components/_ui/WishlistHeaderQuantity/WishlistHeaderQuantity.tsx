@@ -1,4 +1,5 @@
-import {FC} from "react";
+import { FC } from "react";
+import { usePage } from '@inertiajs/react';
 import styles from "./style.module.scss";
 
 const WishlistHeaderQuantity: FC = () => {

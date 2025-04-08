@@ -8,7 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     public function index($id) {
         $category = MarkaAuto::findOrFail($id);
