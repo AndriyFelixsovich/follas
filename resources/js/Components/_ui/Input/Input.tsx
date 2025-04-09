@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styles from './style.module.scss';
 
 interface InputProps {
 	placeholder?: string;
-	inputValue: number;
+	id?: string;
+	inputValue: string;
 	onInputHandler: () => void;
 }
 
-const Input: FC<InputProps> = ({ placeholder, inputValue, onInputHandler }) => {
+const Input: FC<InputProps> = ({ id,placeholder, inputValue, onInputHandler }) => {
 	return (
-		<input type="text" aria-label="input" className={styles.input} placeholder={placeholder} value={inputValue} onChange={onInputHandler}/>
+		<input type="text" aria-label="input" id={id} className={styles.input} placeholder={placeholder} value={inputValue} onChange={onInputHandler}/>
 	);
 }
 

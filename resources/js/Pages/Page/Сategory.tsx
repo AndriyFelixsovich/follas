@@ -13,13 +13,24 @@ import { CategoryProps } from '@/Pages/Page/category.interface';
 const Category: FC<CategoryProps> = ({ category, products }) => {
 	const { data, setData } = useForm<{ page: number }>({ page: products.current_page });
 
-	const [inputValue, setInputValue] = useState('');
+	const [inputValuePart, setInputValuePart] = useState('');
+	const [inputValueDescription, setInputValueDescription] = useState('');
+	const [inputValueOrig, setInputValueOrig] = useState('');
 
 	const handlerSearchValue = e => {
 		const value = e.target.value;
-		setInputValue(value)
-		console.log('handlerSearchValue', value)
-	}
+		const id = e.target.id;
+
+		if (id === 'IMS') {
+			setInputValuePart(value);
+		} else if (id === 'description') {
+			setInputValueDescription(value);
+		} else if (id === 'orig') {
+			setInputValueOrig(value);
+		}
+
+		console.log('handlerSearchValue', id, value);
+	};
 
 	return (
 		<MainLayout>
@@ -32,9 +43,9 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 					<h1 className={styles.title}>{category.name}</h1>
 
 					<div className={styles.search_bar}>
-						<SearchBarInput label="Search by IMS Part No." id="IMS" inputValue={inputValue} onHandlerSearchValue={handlerSearchValue} />
-						<SearchBarInput label="Search by Description." id="description" inputValue={inputValue} onHandlerSearchValue={handlerSearchValue} />
-						<SearchBarInput label="Search by Orig. No" id="orig" inputValue={inputValue} onHandlerSearchValue={handlerSearchValue} />
+						<SearchBarInput label="Search by IMS Part No." id="IMS" inputValue={inputValuePart}  onInputHandler={handlerSearchValue}/>
+						<SearchBarInput label="Search by Description." id="description" inputValue={inputValueDescription} onInputHandler={handlerSearchValue} />
+						<SearchBarInput label="Search by Orig. No" id="orig" inputValue={inputValueOrig} onInputHandler={handlerSearchValue} />
 					</div>
 
 					{products.data.length > 0 ? (
