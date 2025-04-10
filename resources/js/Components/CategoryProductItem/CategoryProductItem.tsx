@@ -14,6 +14,7 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [inputValue, setInputValue] = useState('');
+	const [showSuccess, setShowSuccess] = useState(false);
 	const { post } = useForm({ product_id: product.id,});
 	const { message } = usePage().props.flash;
 
@@ -36,8 +37,12 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				product_id: product.id,
 			},
 			preserveScroll: true,
+			onSuccess: () => {
+				setShowSuccess(true);
+				setTimeout(() => setShowSuccess(false), 3000);
+			}
 		});
-	}
+	};
 
 	const addToCart = () => {
 		console.log("product cart", product)
@@ -68,7 +73,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
 			<div className={styles.wishlist_btn_wrp}>
 				<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
-				{ message && (
+				{ message && showSuccess && (
 					<SuccessModalWindow message={message} />
 				)}
 			</div>
