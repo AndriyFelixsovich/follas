@@ -16,7 +16,7 @@ createInertiaApp({
 	title: (title: string): string => `${title} - ${appName}`,
 	resolve: (name: string) => {
 		return resolvePageComponent(
-			`./Pages/${name.startsWith('Page/') ? name : `Page/${name}`}.tsx`,
+			`./Pages/${name}.tsx`,
 			import.meta.glob<() => Promise<{ default: React.ComponentType<any> }>>('./Pages/**/*.tsx')
 		);
 	},

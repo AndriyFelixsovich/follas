@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'index'])->name('site');
-Route::get('/category/{id}', [ProductController::class, 'index'])->name('category.index')->middleware('wishlist');
+Route::get('/category/{id}', [ProductController::class, 'index'])->name('category.index');
 Route::inertia('Page/About', 'Page/About')->name('about');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 
