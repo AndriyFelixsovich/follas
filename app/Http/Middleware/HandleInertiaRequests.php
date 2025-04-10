@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -29,11 +31,22 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+			$wishlistItemsObj = [];
+
+			if (auth()->check()) {
+				$wishlistItemsObj = Wishlist::query()->where('id', auth()->id())->pluck('product_id')->toArray();
+			} else {
+				$wishlistItemsObj = $request->session()->get('wishlist', []);
+			}
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
             ],
+						'wishlistItemsObj' => $wishlistItemsObj,
+						'flash' => [
+							'message' => fn () => $request->session()->get('message')
+						],
         ];
     }
 }
