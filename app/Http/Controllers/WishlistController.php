@@ -41,14 +41,14 @@ class WishlistController extends Controller
 					'product_id' => $product_id,
 					'user_id' => $userId]);
 
-				return redirect()->back()->with('message', 'Product auth added to wishlist');
+				return redirect()->back()->with('message', 'Product added to wishlist');
 			} else {
 				Wishlist::query()
 					->where('user_id', $userId)
 					->where('product_id', $product_id)
 					->delete();
 
-				return redirect()->back()->with('message', 'Product auth removed from wishlist');
+				return redirect()->back()->with('message', 'Product removed from wishlist');
 			}
 		} else {
 			$wishlist = $request->session()->get('wishlist', []);

@@ -66,11 +66,13 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 		<div className={styles.controls}>
 			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
+			<div className={styles.wishlist_btn_wrp}>
+				<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
+				{ message && (
+					<SuccessModalWindow message={message} />
+				)}
+			</div>
 			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
-			<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
-			{ message && (
-				<SuccessModalWindow message={message} />
-			)}
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 		</div>
 

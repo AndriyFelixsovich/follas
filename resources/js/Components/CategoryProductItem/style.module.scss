@@ -29,7 +29,7 @@ $media-7: 450px;
 		}
 	}
 	input {
-		width: 2.222rem;
+		width: 3.222rem;
 		height: 2.222rem;
 		text-align: center;
 	}
@@ -50,7 +50,9 @@ $media-7: 450px;
 		display: flex;
 		gap: 3rem;
 	}
-
+	.wishlist_btn_wrp {
+		position: relative;
+	}
 }
 
 
