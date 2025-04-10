@@ -16,7 +16,7 @@ use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'index'])->name('site');
 Route::get('/category/{id}', [ProductController::class, 'index'])->name('category.index')->middleware('wishlist');
-Route::get('/about', [AboutUsController::class, 'index'])->name('about.index');
+Route::inertia('Page/About', 'Page/About')->name('about');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 
 Route::get('/shopping-cart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
@@ -31,7 +31,7 @@ Route::group([
 ], function () {
 	Route::get('/', [WishlistController::class, 'index'])->name('index');
 	Route::post('/toggleWishlistItem', [WishlistController::class, 'toggleWishlistItem'])->name('toggleWishlistItem');
-})->middleware('wishlist');
+});
 
 /*Route::get('/', function () {
     return Inertia::render('Front/index', [
