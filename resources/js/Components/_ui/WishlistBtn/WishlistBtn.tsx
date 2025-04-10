@@ -13,20 +13,20 @@ interface IWishlistBtn {
 }
 
 interface PageProps {
-	wishlist?: number[];
+	wishlistItemsObj?: {};
 }
 
 const WishlistBtn: FC<IWishlistBtn> = ({ width, height, fill, onClick, productId, isWishlistPage }) => {
 	const [isActive, setActive] = useState(false);
-	const { wishlist } = usePage().props as PageProps;
+	const { wishlistItemsObj } = usePage().props as PageProps;
 
 	useEffect(() => {
-		if (wishlist && Array.isArray(wishlist) && wishlist.includes(productId)) {
+		if (wishlistItemsObj && Array.isArray(wishlistItemsObj) && wishlistItemsObj.includes(productId)) {
 			setActive(true);
 		} else {
 			setActive(false);
 		}
-	}, [wishlist, productId]);
+	}, [wishlistItemsObj, productId]);
 
 	const handlerClick = () => {
 		setActive(prev => !prev);

@@ -41,14 +41,14 @@ class WishlistController extends Controller
 					'product_id' => $product_id,
 					'user_id' => $userId]);
 
-				return redirect()->back()->with('success', 'Product auth added to wishlist');
+				return redirect()->back()->with('message', 'Product auth added to wishlist');
 			} else {
 				Wishlist::query()
 					->where('user_id', $userId)
 					->where('product_id', $product_id)
 					->delete();
 
-				return redirect()->back()->with('success', 'Product auth removed from wishlist');
+				return redirect()->back()->with('message', 'Product auth removed from wishlist');
 			}
 		} else {
 			$wishlist = $request->session()->get('wishlist', []);
@@ -57,15 +57,15 @@ class WishlistController extends Controller
 				$wishlist[] = $product_id;
 				$request->session()->put('wishlist', $wishlist);
 
-				return redirect()->back()->with('success', 'Product added to wishlist');
+				return redirect()->back()->with('message', 'Product added to wishlist');
 			} else {
 				if (($key = array_search($product_id, $wishlist)) !== false) {
 					unset($wishlist[$key]);
 					$request->session()->put('wishlist', $wishlist);
 
-					return redirect()->back()->with('success', 'Product removed from wishlist');
+					return redirect()->back()->with('message', 'Product removed from wishlist');
 				}
-				return redirect()->back()->with('error', 'Wishlist product not found');
+				return redirect()->back()->with('message', 'Wishlist product not found');
 			}
 		}
 	}
