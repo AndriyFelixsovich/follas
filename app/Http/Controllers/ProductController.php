@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Http\Resources\MarkaAutoResource;
+use App\Http\Resources\ProductsAutoResource;
 use App\Models\MarkaAuto;
-use App\Models\Product;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -15,8 +14,8 @@ class ProductController extends Controller
         $products = $category->products()->paginate(20);
 
         return Inertia::render('Page/Сategory',[
-            'category' => $category,
-            'products' => $products
+            'category' => (new MarkaAutoResource($category))->resolve(),
+						'products' => ProductsAutoResource::collection($products)
         ]);
 
     }
