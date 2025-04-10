@@ -20,7 +20,11 @@ const CategoryTopBar: FC<ICategoryTopBar> = ({ isWishlistPage = false }) => {
 						) : (
 							<td>Add to wishlist</td>
 						)}
-						<td>Quantity</td>
+						{
+							!isWishlistPage && (
+								<td>Quantity</td>
+							)
+						}
 						<td>Add to cart </td>
 					</tr>
 				</tbody>

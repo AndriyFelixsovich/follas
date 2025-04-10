@@ -77,7 +77,11 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 					<SuccessModalWindow message={message} />
 				)}
 			</div>
-			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
+			{
+				!isWishlistPage && (
+					<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} isWishlistPage={isWishlistPage}/>
+				)
+			}
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 		</div>
 
