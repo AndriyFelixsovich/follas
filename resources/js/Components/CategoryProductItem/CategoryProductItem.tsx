@@ -1,5 +1,5 @@
 import React, { FC, useState,useEffect } from 'react';
-import { Link } from '@inertiajs/react';
+import {Link, usePage} from '@inertiajs/react';
 import styles from './style.module.scss';
 import {Product, CategoryProductItemProps, PageProps} from './interface';
 import { useForm   } from '@inertiajs/react';
@@ -11,11 +11,11 @@ import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
 import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
 
-const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage = false }) => {
+const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [inputValue, setInputValue] = useState('');
 	const { post } = useForm({ product_id: product.id,});
-	const [localSuccessMessage, setLocalSuccessMessage] = useState<string | null>(null);
+	const { message } = usePage().props.flash;
 
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
@@ -36,27 +36,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				product_id: product.id,
 			},
 			preserveScroll: true,
-			onSuccess: (page: { props: PageProps }) => {
-				if (page.props.flash?.success) {
-					setLocalSuccessMessage(page.props.flash.success);
-				}
-			},
-			onError: (page: { props: PageProps }) => {
-				if (page.props.flash?.error) {
-					setLocalSuccessMessage(page.props.flash.error);
-				}
-			},
 		});
 	}
-
-	useEffect(() => {
-		if (localSuccessMessage) {
-			const timer = setTimeout(() => {
-				setLocalSuccessMessage(null);
-			}, 2000);
-			return () => clearTimeout(timer);
-		}
-	}, [localSuccessMessage]);
 
 	const addToCart = () => {
 		console.log("product cart", product)
@@ -87,8 +68,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
 			<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} />
 			<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
-			{localSuccessMessage && (
-				<SuccessModalWindow message={localSuccessMessage} />
+			{ message && (
+				<SuccessModalWindow message={message} />
 			)}
 			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
 		</div>
