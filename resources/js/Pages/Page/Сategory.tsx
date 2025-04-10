@@ -11,7 +11,7 @@ import SearchBarInput from '@/Components/SearchBarInput/SearchBarInput';
 import { CategoryProps } from '@/Pages/Page/category.interface';
 
 const Category: FC<CategoryProps> = ({ category, products }) => {
-	const { data, setData } = useForm<{ page: number }>({ page: products.current_page });
+	const { data, setData } = useForm<{ page: number }>({ page: products.meta.current_page });
 
 	const [inputValuePart, setInputValuePart] = useState('');
 	const [inputValueDescription, setInputValueDescription] = useState('');
@@ -53,11 +53,11 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 							<CategoryTopBar />
 								<div className={styles.category_page_wrap}>
 									{products.data.map((product_cat) => (
-										<CategoryProductItem product={product_cat} key={product_cat.id} index={0} />
+										<CategoryProductItem product={product_cat} isWishlistPage={false} key={product_cat.id} index={0} />
 									))}
 								</div>
 
-								<Pagination links={products.links} setCurrentPage={(page:any) => setData('page', page)} />
+								<Pagination links={products.meta.links} setCurrentPage={(page:any) => setData('page', page)} />
 						</>
 					) : (
 						<h2>Category is empty! </h2>
