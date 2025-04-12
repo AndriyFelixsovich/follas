@@ -1,19 +1,34 @@
-import React, {FC} from "react";
+import React, { FC, KeyboardEvent, FocusEvent, ChangeEvent } from "react";
 import Input from '@/Components/_ui/Input/Input';
 import styles from './style.module.scss';
+import TextInput from "@/Components/_ui/TextInput/TextInput";
 
 interface ISearchBarInput {
-	id: string,
-	label: string,
-	onInputHandler: () => void;
-	inputValue: string
+	label?: string
+	className?: string;
+	placeholder?: string;
+	onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+	onKeyPress?: (e: KeyboardEvent<HTMLInputElement>) => void;
+	defaultValue?: any;
 }
 
-const SearchBarInput: FC<ISearchBarInput> = ({id, label, inputValue, onInputHandler}) => {
+const SearchBarInput: FC<ISearchBarInput> = ({
+							 label,
+							 className,
+							 placeholder,
+							 onBlur,
+							 onKeyPress,
+																						}) => {
   return (
-	  <label htmlFor={id} className={styles.label}>
+	  <label className={styles.label}>
 		  {label}
-    	<Input id={id} inputValue={inputValue} onInputHandler={onInputHandler}/>
+    	<TextInput
+				type="text"
+				className={className}
+				placeholder={placeholder}
+				onBlur={onBlur}
+				onKeyPress={onKeyPress}
+			/>
 	  </label>
   );
 }

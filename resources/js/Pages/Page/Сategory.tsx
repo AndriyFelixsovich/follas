@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import {Head, router, useForm, usePage} from '@inertiajs/react';
 import { FC, useState } from 'react';
 import styles from './category.module.scss';
 import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProductItem';
@@ -10,10 +10,27 @@ import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 import SearchBarInput from '@/Components/SearchBarInput/SearchBarInput';
 import { CategoryProps } from '@/Pages/Page/category.interface';
 
-const Category: FC<CategoryProps> = ({ category, products }) => {
+const Category: FC<CategoryProps> = ({ category, products,queryParams = null }) => {
 	const { data, setData } = useForm<{ page: number }>({ page: products.meta.current_page });
+	const {id: categoryId} = usePage().props.category
 
-	const [inputValuePart, setInputValuePart] = useState('');
+	queryParams = queryParams || {}
+	const searchFieldChanged = (name,value) => {
+		if (value) {
+			queryParams[name] = value
+		}else {
+			delete queryParams[name]
+		}
+
+		router.get(route('category.index',{id:categoryId}),queryParams)
+	}
+
+	const onKeyPress = (name, e) => {
+		if (e.key !== 'Enter') return
+		searchFieldChanged(name, e.target.value)
+	}
+
+	/*const [inputValuePart, setInputValuePart] = useState('');
 	const [inputValueDescription, setInputValueDescription] = useState('');
 	const [inputValueOrig, setInputValueOrig] = useState('');
 
@@ -30,7 +47,7 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 		}
 
 		console.log('handlerSearchValue', id, value);
-	};
+	};*/
 
 	return (
 		<MainLayout>
@@ -43,9 +60,26 @@ const Category: FC<CategoryProps> = ({ category, products }) => {
 					<h1 className={styles.title}>{category.name}</h1>
 
 					<div className={styles.search_bar}>
-						<SearchBarInput label="Search by IMS Part No." id="IMS" inputValue={inputValuePart}  onInputHandler={handlerSearchValue}/>
-						<SearchBarInput label="Search by Description." id="description" inputValue={inputValueDescription} onInputHandler={handlerSearchValue} />
-						<SearchBarInput label="Search by Orig. No" id="orig" inputValue={inputValueOrig} onInputHandler={handlerSearchValue} />
+						<SearchBarInput label="Search by IMS Part No."
+														className=""
+														placeholder={"Enter text"}
+														onBlur={e=> searchFieldChanged('our_part_no', e.target.value)}
+														onKeyPress={e=>onKeyPress('our_part_no', e)}
+						/>
+						<SearchBarInput label="Search by Description."
+														className=""
+														placeholder={"Enter text"}
+														onBlur={e=> searchFieldChanged('description', e.target.value)}
+														onKeyPress={e=>onKeyPress('description', e)}
+						/>
+						<SearchBarInput label="Search by Orig."
+														className=""
+														placeholder={"Enter text"}
+														onBlur={e=> searchFieldChanged('original_no', e.target.value)}
+														onKeyPress={e=>onKeyPress('original_no', e)}
+						/>
+						{/*<SearchBarInput label="Search by Description." id="description" inputValue={inputValueDescription} onInputHandler={handlerSearchValue} />*/}
+						{/*<SearchBarInput label="Search by Orig. No" id="orig" inputValue={inputValueOrig} onInputHandler={handlerSearchValue} />*/}
 					</div>
 
 					{products.data.length > 0 ? (

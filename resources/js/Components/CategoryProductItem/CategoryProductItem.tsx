@@ -39,7 +39,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			preserveScroll: true,
 			onSuccess: () => {
 				setShowSuccess(true);
-				setTimeout(() => setShowSuccess(false), 3000);
+				setTimeout(() => setShowSuccess(false), 1000);
 			}
 		});
 	};
