@@ -1,5 +1,4 @@
-import React, { FC, KeyboardEvent, FocusEvent, ChangeEvent } from "react";
-import Input from '@/Components/_ui/Input/Input';
+import React, { FC, KeyboardEvent, FocusEvent } from "react";
 import styles from './style.module.scss';
 import TextInput from "@/Components/_ui/TextInput/TextInput";
 
@@ -12,22 +11,13 @@ interface ISearchBarInput {
 	defaultValue?: any;
 }
 
-const SearchBarInput: FC<ISearchBarInput> = ({
-							 label,
-							 className,
-							 placeholder,
-							 onBlur,
-							 onKeyPress,
-																						}) => {
+const SearchBarInput: FC<ISearchBarInput> = (props) => {
   return (
 	  <label className={styles.label}>
-		  {label}
+		  {props.label}
     	<TextInput
 				type="text"
-				className={className}
-				placeholder={placeholder}
-				onBlur={onBlur}
-				onKeyPress={onKeyPress}
+				{...props}
 			/>
 	  </label>
   );
