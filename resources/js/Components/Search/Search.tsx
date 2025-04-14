@@ -16,7 +16,7 @@ const Search: FC = () => {
 
   return (
 	  <form className={styles.form} action="#">
-		  <Input placeholder="Search" inputValue={inputValue} onInputHandler={onInputHandler}  />
+		  <Input placeholder="Search" value={inputValue} onChange={onInputHandler}  />
 		  <button>
 				<SearchIcon width="27" height="27" fill="#2e3b4c" />
 		  </button>

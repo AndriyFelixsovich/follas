@@ -4,13 +4,11 @@ import styles from './style.module.scss';
 interface InputProps {
 	placeholder?: string;
 	id?: string;
-	inputValue: string;
-	onInputHandler: () => void;
 }
 
-const Input: FC<InputProps> = ({ id,placeholder, inputValue, onInputHandler }) => {
+const Input: FC<InputProps> = (props) => {
 	return (
-		<input type="text" aria-label="input" id={id} className={styles.input} placeholder={placeholder} value={inputValue} onChange={onInputHandler}/>
+		<input type="text" aria-label="input" {...props} className={styles.input}/>
 	);
 }
 
