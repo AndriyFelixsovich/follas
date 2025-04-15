@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\ProductController;
@@ -15,14 +16,30 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [SiteController::class, 'index'])->name('site');
-Route::get('/category/{id}', [ProductController::class, 'index'])->name('category.index');
+
+Route::group([
+	'controller' => ProductController::class,
+], function(){
+	Route::get('/category/{id}', 'index')->name('category.index');
+	Route::post('/addToCart', 'addToCart')->name('addToCart');
+});
+
+
+
 Route::inertia('Page/About', 'Page/About')->name('about');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 
-Route::get('/shopping-cart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::fallback([ErrorController::class, 'notFound']);
+
+Route::group([
+	'controller' => ShoppingCartController::class,
+		'as'    	 => 'cart.'
+],function () {
+	Route::get('/shopping-cart','index')->name('index');
+
+});
 
 
 Route::group([
