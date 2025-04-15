@@ -30,7 +30,7 @@ const Header: FC = () => {
 									<WishlistIcon width="30" height="30" fill="#2e3b4c" />
 								</div>
 							</Link>
-							<Link href={route('shoppingCart.index')}>
+							<Link href={route('cart.index')}>
 								<div className={styles.quantity_wrp}>
 									<CartHeaderQuantity />
 									<CartIcon width="30" height="30" stroke="#2e3b4c" fill="transparent" />
