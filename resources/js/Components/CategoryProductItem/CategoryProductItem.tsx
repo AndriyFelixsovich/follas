@@ -1,8 +1,8 @@
-import React, { FC, useState,useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import {Link, usePage} from '@inertiajs/react';
 import styles from './style.module.scss';
-import {Product, CategoryProductItemProps, PageProps} from './interface';
-import { useForm   } from '@inertiajs/react';
+import {Product, CategoryProductItemProps} from './interface';
+import { useForm } from '@inertiajs/react';
 import Image from '@/Components/_ui/Image/Image';
 import Input from '@/Components/_ui/Input/Input';
 import CartBtn from '@/Components/_ui/CartBtn/CartBtn';
@@ -13,9 +13,17 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
-	const [inputValue, setInputValue] = useState('');
 	const [showSuccess, setShowSuccess] = useState(false);
-	const { post } = useForm({ product_id: product.id,});
+
+	const CartForm = useForm({
+		product_id: product.id,
+		quantity: ""
+	});
+
+	const wishlistForm = useForm({
+		product_id: product.id
+	});
+
 	const { message } = usePage().props.flash;
 
 	const openModal = (product: Product) => {
@@ -27,15 +35,11 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 	const handlerQuantityValue = e => {
 		const value = e.target.value;
-		setInputValue(value)
-		console.log('Quantity', value)
+		CartForm.setData('quantity', value);
 	}
 
 	const addToWishlist = () => {
-		post('/wishlist/toggleWishlistItem', {
-			data: {
-				product_id: product.id,
-			},
+		wishlistForm.post('/wishlist/toggleWishlistItem', {
 			preserveScroll: true,
 			onSuccess: () => {
 				setShowSuccess(true);
@@ -45,16 +49,24 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	};
 
 	const addToCart = () => {
-		console.log("product cart", product)
+		CartForm.post('/addToCart', {
+			preserveScroll: true,
+			onSuccess: () => {
+				setShowSuccess(true);
+				setTimeout(() => setShowSuccess(false), 1000);
+			},
+			onError: (errors) => {
+
+			},
+		});
 	}
 
-	const viewProductInfo =() => {
-		console.log("product viewProductInfo")
+	const viewProductInfo = () => {
+		console.log("product viewProductInfo");
 	}
 
 	return (
 		<div className={styles.category_product_item}>
-
 			<div className={styles.image_block} onClick={() => openModal(product)}>
 				<Image src={`${window.location.origin}/${product.image_path}`} width={'150'} height={'150'} alt={product.description} />
 			</div>
@@ -69,22 +81,25 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				<div>{product.origin_number}</div>
 			</div>
 
-		<div className={styles.controls}>
-			<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
-			<div className={styles.wishlist_btn_wrp}>
-				<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
-				{ message && showSuccess && (
-					<SuccessModalWindow message={message} />
-				)}
-			</div>
-			{
-				!isWishlistPage && (
-					<Input inputValue={inputValue} onInputHandler={handlerQuantityValue} isWishlistPage={isWishlistPage}/>
-				)
-			}
-			<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
-		</div>
+			<div className={styles.controls}>
+				<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
+				<div className={styles.wishlist_btn_wrp}>
+					<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
+					{message && showSuccess && (
+						<SuccessModalWindow message={message} />
+					)}
 
+				</div>
+				{!isWishlistPage && (
+					<Input
+						id="quantity"
+						inputValue={CartForm.data.quantity}
+						onInputHandler={handlerQuantityValue}
+						isWishlistPage={isWishlistPage}
+					/>
+				)}
+				<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
+			</div>
 		</div>
 	);
 };
