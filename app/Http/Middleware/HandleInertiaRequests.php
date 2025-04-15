@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Wishlist;
+use App\Services\WishlistService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Middleware;
@@ -15,6 +16,12 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+		protected $wishlistService;
+
+	public function __construct(WishlistService $wishlistService)
+	{
+		$this->wishlistService = $wishlistService;
+	}
 
     /**
      * Determine the current asset version.
@@ -31,13 +38,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-			$wishlistItemsObj = [];
+			$wishlistItemsObj = $this->wishlistService->getWishlistItems($request);
 
-			if (auth()->check()) {
-				$wishlistItemsObj = Wishlist::query()->where('id', auth()->id())->pluck('product_id')->toArray();
-			} else {
-				$wishlistItemsObj = $request->session()->get('wishlist', []);
-			}
         return [
             ...parent::share($request),
             'auth' => [

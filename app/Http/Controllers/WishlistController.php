@@ -30,7 +30,7 @@ class WishlistController extends Controller
 		$product_id = $request->input('product_id');
 
 		if (!$product_id) {
-			return redirect()->back()->with(['error' => 'Продукт не знайдено']);
+			return redirect()->back()->with(['message' => 'Продукт не знайдено']);
 		}
 
 		if (auth()->check()) {

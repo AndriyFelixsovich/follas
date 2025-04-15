@@ -27,4 +27,13 @@ class WishlistService
 			$request->session()->forget('wishlist');
 		}
 	}
+
+	public function getWishlistItems(Request $request)
+	{
+		if (auth()->check()) {
+			return Wishlist::query()->where('user_id', auth()->id())->pluck('product_id')->toArray();
+		} else {
+			return $request->session()->get('wishlist', []);
+		}
+	}
 }
