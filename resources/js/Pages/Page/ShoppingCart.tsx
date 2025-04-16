@@ -1,18 +1,43 @@
 import {Head} from '@inertiajs/react';
 import { FC } from 'react';
+import { usePage } from '@inertiajs/react';
 import styles from './shopping.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
+import CategoryTopBar from "@/Components/CategoryTopBar/CategoryTopBar";
+import CategoryProductItem from "@/Components/CategoryProductItem/CategoryProductItem";
 
-const ShoppingCart: FC = () => {
+interface IProduct {
+	id: number;
+	image_path: string;
+	description: string;
+	origin_number: string;
+	name: string;
+}
 
-	return (
+interface ICart {
+	cartItemsObj: IProduct[];
+}
+
+const ShoppingCart: FC<ICart> = ({ cartItemsObj }) => {
+
+	console.log(cartItemsObj)
+
+		return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>
 			<div>
 				<Container>
 					<h1>Shopping Cart</h1>
-					<p>Shopping Cart is empty!</p>
+					{cartItemsObj.length === 0 ? (
+						<p className={styles.wishlist_txt}>Shopping Cart is empty!</p>
+					) : (
+						<div className={styles.products}>
+							{cartItemsObj.map((product) => (
+								<CategoryProductItem key={product.id} product={product} />
+							))}
+						</div>
+					)}
 				</Container>
 			</div>
 		</MainLayout>);
