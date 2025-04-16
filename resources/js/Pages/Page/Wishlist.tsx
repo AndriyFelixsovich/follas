@@ -29,7 +29,7 @@ const Wishlist: FC<IWishlist> = ({ productsInWishlist }) => {
 					<h1>Wishlist</h1>
 
 					{productsInWishlist.length === 0 ? (
-						<p>Wishlist is empty!</p>
+						<p className={styles.wishlist_txt}>Wishlist is empty!</p>
 					) : (
 						<div className={styles.products}>
 							<CategoryTopBar isWishlistPage={true} />

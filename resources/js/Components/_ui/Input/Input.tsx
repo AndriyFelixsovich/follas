@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
 import styles from './style.module.scss';
 
-interface InputProps {
-	placeholder?: string;
-	id?: string;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	inputValue: string;
-	onInputHandler: () => void;
+	onInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	isWishlistPage?: boolean;
 }
 
-const Input: FC<InputProps> = ({ id,placeholder, inputValue, onInputHandler }) => {
+const Input: FC<InputProps> = ({ inputValue, onInputHandler, isWishlistPage, ...props }) => {
 	return (
-		<input type="text" aria-label="input" id={id} className={styles.input} placeholder={placeholder} value={inputValue} onChange={onInputHandler}/>
+		<input
+			{...props}
+			type="text"
+			aria-label="input"
+			value={inputValue}
+			onChange={onInputHandler}
+			className={styles.input}
+		/>
 	);
-}
+};
 
 export default Input;
