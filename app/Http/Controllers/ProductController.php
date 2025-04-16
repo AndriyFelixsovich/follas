@@ -5,11 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MarkaAutoResource;
 use App\Http\Resources\ProductsAutoResource;
 use App\Models\MarkaAuto;
+use App\Models\Product;
+use App\Services\CartService;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
-    public function index($id) {
+
+	protected CartService $cartService;
+
+	public function __construct()
+	{
+		$this->cartService = new CartService;
+	}
+	public function index($id) {
         $category = MarkaAuto::findOrFail($id);
         $products = $category->products();
 
@@ -32,6 +43,25 @@ class ProductController extends Controller
 						'products' => ProductsAutoResource::collection($products),
 						'queryParams' =>(object) request()->query()
         ]);
-
     }
+
+	public function addToCart (Request $request)
+	{
+
+		try {
+			$validated = $request->validate([
+				'product_id' => 'required|exists:products,id',
+				'quantity'   => 'required|integer|min:1'
+			]);
+
+			$this->cartService->add($request);
+
+			return redirect()->back()->with('message', ['cart' => 'Товар успешно добавлен в корзину']);
+
+		} catch (\Illuminate\Validation\ValidationException $e) {
+
+			return redirect()->back()->withErrors($e->validator)->with('message', ['cart' => 'Ошибка при добавлении товара в корзину']);
+		}
+
+	}
 }
