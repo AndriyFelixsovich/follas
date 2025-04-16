@@ -18,6 +18,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 	const { cartItemsObj } = usePage().props;
 	const { message } = usePage().props.flash;
+	const wishlistMessage = message?.wishlist;
+	const cartMessage = message?.cart;
 
 
 	useEffect(() => {
@@ -66,7 +68,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			preserveScroll: true,
 			onSuccess: () => {
 				setShowSuccessCart(true);
-				setTimeout(() => setShowSuccessCart(false), 1000);
+				setTimeout(() => setShowSuccessCart(false), 3000);
 			},
 			onError: (errors) => {
 
@@ -98,8 +100,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				<EyeBtn onClick={viewProductInfo} width={30} height={30} fill="#2e3b4c" />
 				<div className={styles.wishlist_btn_wrp}>
 					<WishlistBtn isWishlistPage={isWishlistPage} onClick={addToWishlist} width={30} height={30} fill="#2e3b4c" productId={product.id} />
-					{message && showSuccess && (
-						<SuccessModalWindow message={message} />
+					{wishlistMessage && showSuccess && (
+						<SuccessModalWindow message={wishlistMessage} />
 					)}
 
 				</div>
@@ -111,7 +113,12 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						isWishlistPage={isWishlistPage}
 					/>
 				)}
-				<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id} />
+				<div className={styles.wishlist_btn_wrp}>
+					<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}/>
+					{cartMessage && showSuccessCart && (
+						<SuccessModalWindow message={cartMessage}/>
+					)}
+				</div>
 			</div>
 		</div>
 	);
