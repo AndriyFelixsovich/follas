@@ -1,5 +1,5 @@
-import {Head, router, useForm, usePage} from '@inertiajs/react';
-import { FC } from 'react';
+import { Head, router, useForm, usePage } from '@inertiajs/react';
+import { FC, useState } from 'react';
 import styles from './category.module.scss';
 import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProductItem';
 import Container from '@/Components/_ui/Container/Container';
@@ -10,68 +10,87 @@ import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 import SearchBarInput from '@/Components/SearchBarInput/SearchBarInput';
 import { CategoryProps } from '@/Pages/Page/category.interface';
 
-const Category: FC<CategoryProps> = ({ category, products,queryParams = null }) => {
+const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) => {
 	const { setData } = useForm<{ page: number }>({ page: products.meta.current_page });
-	const {id: categoryId} = usePage().props.category
+	const { id: categoryId } = usePage().props.category;
+	const [ourPartNo, setOurPartNo] = useState(queryParams.our_part_no || '');
+	const [description, setDescription] = useState(queryParams.description || '');
+	const [originalNo, setOriginalNo] = useState(queryParams.original_no || '');
 
-	queryParams = queryParams || {}
+	const searchFieldChanged = (name: string, value: string) => {
+		const newParams = { ...queryParams };
 
-	const searchFieldChanged = (name,value) => {
 		if (value) {
-			queryParams[name] = value
-		}else {
-			delete queryParams[name]
+			newParams[name] = value;
+		} else {
+			delete newParams[name];
 		}
 
-		router.get(route('category.index',{id:categoryId}),queryParams)
-	}
+		router.get(route('category.index', { id: categoryId }), newParams, { preserveState: true });
+	};
 
-	const onKeyPress = (name, e) => {
-		if (e.key !== 'Enter') return
-		searchFieldChanged(name, e.target.value)
-	}
+	const onKeyPress = (name: string, value: string, e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key !== 'Enter') return;
+		searchFieldChanged(name, value);
+	};
 
 	return (
 		<MainLayout>
 			<Head title="Main" />
 			<div className={styles.category_page}>
 
-				<Breadcrumbs categoryName={category.name}/>
+				<Breadcrumbs categoryName={category.name} />
 
 				<Container>
 					<h1 className={styles.title}>{category.name}</h1>
 
 					<div className={styles.search_bar}>
-						<SearchBarInput label="Search by IMS Part No."
-														placeholder={"Search"}
-														onBlur={e=> searchFieldChanged('our_part_no', e.target.value)}
-														onKeyPress={e=>onKeyPress('our_part_no', e)}
+						<SearchBarInput
+							label="Search by IMS Part No."
+							placeholder="Search"
+							value={ourPartNo}
+							onChange={e => setOurPartNo(e.target.value)}
+							onBlur={() => searchFieldChanged('our_part_no', ourPartNo)}
+							onKeyPress={e => onKeyPress('our_part_no', ourPartNo, e)}
 						/>
-						<SearchBarInput label="Search by Description."
-														placeholder={"Search"}
-														onBlur={e=> searchFieldChanged('description', e.target.value)}
-														onKeyPress={e=>onKeyPress('description', e)}
+						<SearchBarInput
+							label="Search by Description."
+							placeholder="Search"
+							value={description}
+							onChange={e => setDescription(e.target.value)}
+							onBlur={() => searchFieldChanged('description', description)}
+							onKeyPress={e => onKeyPress('description', description, e)}
 						/>
-						<SearchBarInput label="Search by Orig."
-														placeholder={"Search"}
-														onBlur={e=> searchFieldChanged('original_no', e.target.value)}
-														onKeyPress={e=>onKeyPress('original_no', e)}
+						<SearchBarInput
+							label="Search by Orig."
+							placeholder="Search"
+							value={originalNo}
+							onChange={e => setOriginalNo(e.target.value)}
+							onBlur={() => searchFieldChanged('original_no', originalNo)}
+							onKeyPress={e => onKeyPress('original_no', originalNo, e)}
 						/>
 					</div>
 
 					{products.data.length > 0 ? (
 						<>
 							<CategoryTopBar />
-								<div className={styles.category_page_wrap}>
-									{products.data.map((product_cat) => (
-										<CategoryProductItem product={product_cat} isWishlistPage={false} key={product_cat.id} index={0} />
-									))}
-								</div>
-
-								<Pagination links={products.meta.links} setCurrentPage={(page:any) => setData('page', page)} />
+							<div className={styles.category_page_wrap}>
+								{products.data.map((product_cat) => (
+									<CategoryProductItem
+										product={product_cat}
+										isWishlistPage={false}
+										key={product_cat.id}
+										index={0}
+									/>
+								))}
+							</div>
+							<Pagination
+								links={products.meta.links}
+								setCurrentPage={(page: any) => setData('page', page)}
+							/>
 						</>
 					) : (
-						<h2>Category is empty! </h2>
+						<h2>Category is empty!</h2>
 					)}
 				</Container>
 
