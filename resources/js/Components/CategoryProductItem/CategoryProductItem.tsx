@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {Link, usePage} from '@inertiajs/react';
 import styles from './style.module.scss';
 import {Product, CategoryProductItemProps} from './interface';
@@ -14,6 +14,16 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
+
+	const { cartItemsObj } = usePage().props;
+
+	useEffect(() => {
+		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
+		if (cartItem) {
+			CartForm.setData('quantity', cartItem.quantity);
+		}
+	}, [cartItemsObj, product.id]);
+
 
 	const CartForm = useForm({
 		product_id: product.id,
@@ -38,6 +48,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		CartForm.setData('quantity', value);
 	}
 
+
 	const addToWishlist = () => {
 		wishlistForm.post('/wishlist/toggleWishlistItem', {
 			preserveScroll: true,
@@ -48,12 +59,13 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		});
 	};
 
+
 	const addToCart = () => {
 		CartForm.post('/addToCart', {
 			preserveScroll: true,
 			onSuccess: () => {
-				setShowSuccess(true);
-				setTimeout(() => setShowSuccess(false), 1000);
+				// setShowSuccess(true);
+				// setTimeout(() => setShowSuccess(false), 1000);
 			},
 			onError: (errors) => {
 
@@ -98,7 +110,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						isWishlistPage={isWishlistPage}
 					/>
 				)}
-				<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" />
+				<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id} />
 			</div>
 		</div>
 	);

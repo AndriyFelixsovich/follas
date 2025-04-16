@@ -21,8 +21,6 @@ interface ICart {
 
 const ShoppingCart: FC<ICart> = ({ cartItemsObj }) => {
 
-	console.log(cartItemsObj)
-
 		return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>
