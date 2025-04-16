@@ -1,4 +1,5 @@
 import React, { FormEvent } from 'react';
+import "./auth.scss";
 import Checkbox from '@/Components/_ui/Checkbox/Checkbox';
 import InputError from '@/Components/_ui/InputError/InputError';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
@@ -68,19 +69,19 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 					<InputError message={errors.password} className="mt-2" />
 				</div>
 
-				<div className="mt-4 block">
-					<label className="flex items-center cursor-pointer">
+				<div className="remember-block">
+					<label>
 						<Checkbox
 							name="remember"
 							checked={data.remember}
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("remember", e.target.checked)}
 							style={{ width: "fit-content" }}
 						/>
-						<span className="ms-2 text-sm text-gray-600">Remember me</span>
+						<span>Remember me</span>
 					</label>
 				</div>
 
-				<div className="mt-4 flex items-center justify-between">
+				<div className="forgot_txt">
 					{canResetPassword && (
 						<PrimaryLink href={route('password.request')}>Forgot your password?</PrimaryLink>
 					)}

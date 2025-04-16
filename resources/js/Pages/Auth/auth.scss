@@ -4,3 +4,33 @@
 	margin-top: 1rem;
 	justify-content: space-between;
 }
+
+.forgot_txt {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.remember-block {
+	margin-top: 0.7rem;
+	label {
+		cursor: pointer;
+	}
+	span {
+		font-size: 15px;
+	}
+}
+
+.container {
+	max-width: 1600px;
+	padding: 0 0.75rem;
+	margin: 0 auto;
+}
+
+header {
+	padding: 0.7rem 0;
+	background: linear-gradient(85.66deg, #cdd5e1 9.39%, rgba(205, 213, 225, 0) 96.81%, rgba(205, 213, 225, 0) 96.81%);
+}
+
+
