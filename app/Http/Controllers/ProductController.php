@@ -56,11 +56,11 @@ class ProductController extends Controller
 
 			$this->cartService->add($request);
 
-			return redirect()->back()->with('message', ['cart' => 'Товар успешно добавлен в корзину']);
+			return redirect()->back()->with('message', ['cart' => 'Prodcut add to cart']);
 
 		} catch (\Illuminate\Validation\ValidationException $e) {
 
-			return redirect()->back()->withErrors($e->validator)->with('message', ['cart' => 'Ошибка при добавлении товара в корзину']);
+			return redirect()->back()->withErrors($e->validator)->with('message', ['cart' => 'Prodcut add to cart error']);
 		}
 
 	}

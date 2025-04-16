@@ -14,8 +14,11 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
+	const [showSuccessCart, setShowSuccessCart] = useState(false);
 
 	const { cartItemsObj } = usePage().props;
+	const { message } = usePage().props.flash;
+
 
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
@@ -33,8 +36,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const wishlistForm = useForm({
 		product_id: product.id
 	});
-
-	const { message } = usePage().props.flash;
 
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
@@ -64,8 +65,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		CartForm.post('/addToCart', {
 			preserveScroll: true,
 			onSuccess: () => {
-				// setShowSuccess(true);
-				// setTimeout(() => setShowSuccess(false), 1000);
+				setShowSuccessCart(true);
+				setTimeout(() => setShowSuccessCart(false), 1000);
 			},
 			onError: (errors) => {
 
