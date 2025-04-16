@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CartService
 {
@@ -22,6 +22,14 @@ class CartService
 
 	}
 
+	public function getCartItems(Request $request)
+	{
+		if (auth()->check()) {
+			return ShoppingCart::query()->where('user_id', auth()->id())->pluck('product_id','quantity')->toArray();
+		} else {
+			return $request->session()->get('cart', []);
+		}
+	}
 //	public function getSessionId(Request $request)
 //	{
 //			if(!$request->session()->has('cart_id')) {

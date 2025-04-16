@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Wishlist;
+use App\Services\CartService;
 use App\Services\WishlistService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,10 +18,12 @@ class HandleInertiaRequests extends Middleware
      */
     protected $rootView = 'app';
 		protected $wishlistService;
+		protected $cartService;
 
-	public function __construct(WishlistService $wishlistService)
+	public function __construct(WishlistService $wishlistService, CartService $cartService)
 	{
 		$this->wishlistService = $wishlistService;
+		$this->cartService 		 = $cartService;
 	}
 
     /**
@@ -39,6 +42,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
 			$wishlistItemsObj = $this->wishlistService->getWishlistItems($request);
+			$cartItemsObj = $this->cartService->getCartItems($request);
 
         return [
             ...parent::share($request),
@@ -49,6 +53,7 @@ class HandleInertiaRequests extends Middleware
 						'flash' => [
 							'message' => fn () => $request->session()->get('message')
 						],
+					  'cartItemsObj' => $cartItemsObj,
         ];
     }
 }
