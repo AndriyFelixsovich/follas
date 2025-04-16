@@ -12,6 +12,15 @@ class MarkaAuto extends Model
 
 	protected $table = 'marka_autos';
 
+	public function sluggable(): array
+	{
+		return [
+			'slug' => [
+				'source' => 'name'
+			]
+		];
+	}
+
 	public function models()
 	{
 		// Зв'язок - Категорія може мати багато моделей

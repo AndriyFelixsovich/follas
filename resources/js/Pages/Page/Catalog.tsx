@@ -15,6 +15,7 @@ interface ICatalog {
 	category: IProductCategory[];
 }
 
+console.log()
 const Catalog: FC<ICatalog> = ({ category }) => {
 	return (
 		<MainLayout>
@@ -27,7 +28,7 @@ const Catalog: FC<ICatalog> = ({ category }) => {
 						<h1>Catalog</h1>
 						<div className={styles.catalog_item_wrap}>
 							{category.map(cat => (
-								<CategoryItem cat={cat} key={cat.id} />
+								<CategoryItem cat={cat} key={cat.id} slug={cat.slug} />
 							))}
 						</div>
 					</Container>

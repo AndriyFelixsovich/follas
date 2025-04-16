@@ -20,7 +20,7 @@ Route::get('/', [SiteController::class, 'index'])->name('site');
 Route::group([
 	'controller' => ProductController::class,
 ], function(){
-	Route::get('/category/{id}', 'index')->name('category.index');
+	Route::get('/category/{slug}', 'index')->name('category.index');
 	Route::post('/addToCart', 'addToCart')->name('addToCart');
 });
 
