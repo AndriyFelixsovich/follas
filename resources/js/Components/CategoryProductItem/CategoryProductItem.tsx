@@ -29,6 +29,14 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		}
 	}, [cartItemsObj, product.id]);
 
+	useEffect(() => {
+		if (cartMessage) {
+			setShowSuccessCart(true);
+			const timeout = setTimeout(() => setShowSuccessCart(false), 1000);
+			return () => clearTimeout(timeout);
+		}
+	}, [cartMessage]);
+
 
 	const CartForm = useForm({
 		product_id: product.id,
@@ -66,13 +74,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const addToCart = () => {
 		CartForm.post('/addToCart', {
 			preserveScroll: true,
-			onSuccess: () => {
-				setShowSuccessCart(true);
-				setTimeout(() => setShowSuccessCart(false), 3000);
-			},
-			onError: (errors) => {
-
-			},
 		});
 	}
 
@@ -115,7 +116,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				)}
 				<div className={styles.wishlist_btn_wrp}>
 					<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}/>
-					{cartMessage && showSuccessCart && (
+					{cartMessage && showSuccessCart && product.id === message.product_id && (
 						<SuccessModalWindow message={cartMessage}/>
 					)}
 				</div>

@@ -57,11 +57,17 @@ class ProductController extends Controller
 
 		if ($validator->fails()) {
 			return redirect()->back()
-				->with('message', (object)['cart' => 'Вкажіть кількість']);
+				->with('message', (object)[
+					'cart' => 'Вкажіть кількість',
+					'product_id' => $request->product_id
+					]);
 		}
 
 		$this->cartService->add($request);
 
-		return redirect()->back()->with('message', (object)['cart' => 'Prodcut add to cart']);
+		return redirect()->back()->with('message', (object)[
+			'cart' => 'Prodcut add to cart',
+			'product_id' => $request->product_id
+		]);
 	}
 }
