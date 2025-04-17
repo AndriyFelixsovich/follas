@@ -12,7 +12,7 @@ import { CategoryProps } from '@/Pages/Page/category.interface';
 
 const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) => {
 	const { setData } = useForm<{ page: number }>({ page: products.meta.current_page });
-	const { id: categoryId } = usePage().props.category;
+	const { slug: categorySlug } = usePage().props.category;
 	const [ourPartNo, setOurPartNo] = useState(queryParams.our_part_no || '');
 	const [description, setDescription] = useState(queryParams.description || '');
 	const [originalNo, setOriginalNo] = useState(queryParams.original_no || '');
@@ -26,7 +26,7 @@ const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) =
 			delete newParams[name];
 		}
 
-		router.get(route('category.index', { id: categoryId }), newParams, { preserveState: true });
+		router.get(route('category.index', { slug: categorySlug }), newParams, { preserveState: true });
 	};
 
 	const onKeyPress = (name: string, value: string, e: React.KeyboardEvent<HTMLInputElement>) => {
