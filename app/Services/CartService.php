@@ -2,19 +2,23 @@
 
 namespace App\Services;
 
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CartService
 {
 
 	public function add(Request $request)
 	{
+		$productId = $request->input('product_id');
+		$quantityToAdd = $request->input('quantity');
 
-
-		if (!session()->has('cart')) {
-			session()->put('cart', []);
-		}
+		$cart = Session::get('cart', []);
+//		if(isset($cart[$productId])) {
+//		}
 		session()->push('cart', [
 			'product_id' => $request->input('product_id'),
 			'quantity' => $request->input('quantity')
@@ -22,19 +26,32 @@ class CartService
 
 	}
 
-	public function getCartItems(Request $request)
+	public function remove(Request $request): bool
+	{
+		$productId = $request->input('product_id');
+
+		if (!in_array($productId, array_column($this->getCartItems(), 'product_id'))) {
+			return false;
+		}
+
+		$items = array_filter($this->getCartItems(), fn($element) => $element['product_id'] != $productId);
+
+		$this->set($items);
+
+		return true;
+	}
+
+	public function getCartItems()
 	{
 		if (auth()->check()) {
 			return ShoppingCart::query()->where('user_id', auth()->id())->pluck('product_id','quantity')->toArray();
 		} else {
-			return $request->session()->get('cart', []);
+			return Session::get('cart', []);
 		}
 	}
-//	public function getSessionId(Request $request)
-//	{
-//			if(!$request->session()->has('cart_id')) {
-//				$request->session()->put('cart_id', Str::uuid()->toString());
-//			}
-//		return $request->session()->get('cart_id');
-//	}
+
+	private function set(array $items): void
+	{
+		session(['cart'=>$items]);
+	}
 }

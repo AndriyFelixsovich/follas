@@ -21,8 +21,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const wishlistMessage = message?.wishlist;
 	const cartMessage = message?.cart;
 
-	console.log(cartItemsObj)
-
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
 		if (cartItem) {
@@ -78,12 +76,13 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	};
 
 	const removeCart = () => {
-		console.log('remove')
+		CartForm.post('/removeFromCart', {
+			preserveScroll: true,
+		});
 	}
 
 	const cartFuncHandler = () => {
 		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
-
 		if (existingCartItem) {
 			removeCart();
 		} else {

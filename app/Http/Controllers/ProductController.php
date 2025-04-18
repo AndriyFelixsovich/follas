@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MarkaAutoResource;
 use App\Http\Resources\ProductsAutoResource;
 use App\Models\MarkaAuto;
+use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -68,5 +69,15 @@ class ProductController extends Controller
 			'cart' => 'Product added to cart',
 			'product_id' => $request->product_id
 		]);
+	}
+
+	public function removeFromCart(Request $request)
+	{
+
+		if ($this->cartService->remove($request)) {
+			return back();
+		}
+
+		return back()->with('error', 'Failed to remove product from cart');
 	}
 }

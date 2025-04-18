@@ -22,6 +22,7 @@ Route::group([
 ], function(){
 	Route::get('/category/{slug}', 'index')->name('category.index');
 	Route::post('/addToCart', 'addToCart')->name('addToCart');
+	Route::post('/removeFromCart', 'removeFromCart')->name('removeFromCart');
 });
 
 
