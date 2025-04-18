@@ -72,14 +72,22 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 
 	const addToCart = () => {
+		CartForm.post('/addToCart', {
+			preserveScroll: true,
+		});
+	};
+
+	const removeCart = () => {
+		console.log('remove')
+	}
+
+	const cartFuncHandler = () => {
 		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
 
 		if (existingCartItem) {
-			console.log('remove');
+			removeCart();
 		} else {
-			CartForm.post('/addToCart', {
-				preserveScroll: true,
-			});
+			addToCart();
 		}
 	};
 
@@ -123,7 +131,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 					/>
 				)}
 				<div className={styles.wishlist_btn_wrp}>
-					<CartBtn onClick={addToCart} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}/>
+					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}/>
 					{cartMessage && showSuccessCart && product.id === message.product_id && (
 						<SuccessModalWindow message={cartMessage}/>
 					)}
