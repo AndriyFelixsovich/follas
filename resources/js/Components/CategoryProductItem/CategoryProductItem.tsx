@@ -75,7 +75,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
 
 		if (existingCartItem) {
-			if (existingCartItem.quantity === CartForm.data.quantity) return;
+			console.log('remove');
 		} else {
 			CartForm.post('/addToCart', {
 				preserveScroll: true,
