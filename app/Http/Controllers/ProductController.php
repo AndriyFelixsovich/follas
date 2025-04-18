@@ -47,8 +47,7 @@ class ProductController extends Controller
 		]);
 	}
 
-	public function addToCart(Request $request)
-	{
+	public function addToCart(Request $request) {
 
 		$validator = Validator::make($request->all(), [
 			'product_id' => 'required|exists:products,id',
@@ -58,7 +57,7 @@ class ProductController extends Controller
 		if ($validator->fails()) {
 			return redirect()->back()
 				->with('message', (object)[
-					'cart' => 'Вкажіть кількість',
+					'cart' => 'Please add quantity',
 					'product_id' => $request->product_id
 					]);
 		}
@@ -66,7 +65,7 @@ class ProductController extends Controller
 		$this->cartService->add($request);
 
 		return redirect()->back()->with('message', (object)[
-			'cart' => 'Prodcut add to cart',
+			'cart' => 'Product added to cart',
 			'product_id' => $request->product_id
 		]);
 	}

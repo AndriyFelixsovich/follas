@@ -21,6 +21,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const wishlistMessage = message?.wishlist;
 	const cartMessage = message?.cart;
 
+	console.log(cartItemsObj)
 
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
@@ -59,7 +60,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		CartForm.setData('quantity', value);
 	}
 
-
 	const addToWishlist = () => {
 		wishlistForm.post('/wishlist/toggleWishlistItem', {
 			preserveScroll: true,
@@ -72,10 +72,17 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 
 	const addToCart = () => {
-		CartForm.post('/addToCart', {
-			preserveScroll: true,
-		});
-	}
+		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
+
+		if (existingCartItem) {
+			if (existingCartItem.quantity === CartForm.data.quantity) return;
+		} else {
+			CartForm.post('/addToCart', {
+				preserveScroll: true,
+			});
+		}
+	};
+
 
 	const viewProductInfo = () => {
 		console.log("product viewProductInfo");
@@ -112,6 +119,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						inputValue={CartForm.data.quantity}
 						onInputHandler={handlerQuantityValue}
 						isWishlistPage={isWishlistPage}
+						onKeyDown={e => e.key === 'Enter' && addToCart()}
 					/>
 				)}
 				<div className={styles.wishlist_btn_wrp}>
