@@ -17,13 +17,18 @@ class CartService
 		$quantityToAdd = $request->input('quantity');
 
 		$cart = Session::get('cart', []);
-//		if(isset($cart[$productId])) {
-//		}
-		session()->push('cart', [
-			'product_id' => $request->input('product_id'),
-			'quantity' => $request->input('quantity')
-		]);
 
+		if(empty($cart)){
+			session()->push('cart', [
+				'product_id' => $productId,
+				'quantity' => $quantityToAdd
+			]);
+		}else {
+			foreach($cart as &$car) {
+				$car['quantity'] = $quantityToAdd;
+			}
+			Session::put('cart', $cart);
+		}
 	}
 
 	public function remove(Request $request): bool
