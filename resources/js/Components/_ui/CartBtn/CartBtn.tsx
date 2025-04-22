@@ -9,13 +9,15 @@ interface ICartBtn {
 	onClick?: () => void;
 	productId: number;
 	stroke?: string;
+	preventToggle?: boolean;
+	cartValue: number;
 }
 
 interface PageProps {
 	cartItemsObj?: { product_id: number }[];
 }
 
-const CartBtn: FC<ICartBtn> = ({ width, height, fill, onClick, stroke, productId }) => {
+const CartBtn: FC<ICartBtn> = ({ width, height, fill, onClick, stroke, productId, cartValue }) => {
 	const [isActive, setActive] = useState(false);
 	const { cartItemsObj } = usePage().props as PageProps;
 
@@ -29,6 +31,9 @@ const CartBtn: FC<ICartBtn> = ({ width, height, fill, onClick, stroke, productId
 	const handlerClick = () => {
 		setActive(prev => !prev);
 		if (onClick) onClick();
+		if(!cartValue) {
+			setActive(false)
+		}
 	};
 
 	return (

@@ -15,11 +15,14 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
+	const [inputError, setInputError] = useState(false);
 
 	const { cartItemsObj } = usePage().props;
 	const { message } = usePage().props.flash;
 	const wishlistMessage = message?.wishlist;
 	const cartMessage = message?.cart;
+
+	console.log(cartItemsObj)
 
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
@@ -56,6 +59,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const handlerQuantityValue = e => {
 		const value = e.target.value;
 		CartForm.setData('quantity', value);
+		setInputError(false)
 	}
 
 	const addToWishlist = () => {
@@ -70,18 +74,35 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 
 	const addToCart = () => {
-		CartForm.post('/addToCart', {
-			preserveScroll: true,
-		});
+		if (!CartForm.data.quantity) {
+			setInputError(true);
+			return;
+		}
+
+		setInputError(false);
+
+		if(CartForm.data.quantity) {
+			CartForm.post('/addToCart', {
+				preserveScroll: true,
+			});
+		}
 	};
 
 	const removeCart = () => {
+		CartForm.setData('quantity', '');
 		CartForm.post('/removeFromCart', {
 			preserveScroll: true,
 		});
 	}
 
 	const cartFuncHandler = () => {
+		if (!CartForm.data.quantity) {
+			setInputError(true);
+			return;
+		}
+
+		setInputError(false);
+
 		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
 		if (existingCartItem) {
 			removeCart();
@@ -126,11 +147,12 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						inputValue={CartForm.data.quantity}
 						onInputHandler={handlerQuantityValue}
 						isWishlistPage={isWishlistPage}
+						error={inputError}
 						onKeyDown={e => e.key === 'Enter' && addToCart()}
 					/>
 				)}
 				<div className={styles.wishlist_btn_wrp}>
-					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}/>
+					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id} cartValue={CartForm.data.quantity}/>
 					{cartMessage && showSuccessCart && product.id === message.product_id && (
 						<SuccessModalWindow message={cartMessage}/>
 					)}

@@ -7,7 +7,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	isWishlistPage?: boolean;
 }
 
-const Input: FC<InputProps> = ({ inputValue, onInputHandler, isWishlistPage, ...props }) => {
+const Input: FC<InputProps> = ({ inputValue, onInputHandler, isWishlistPage, error, ...props }) => {
 	return (
 		<input
 			{...props}
@@ -16,6 +16,7 @@ const Input: FC<InputProps> = ({ inputValue, onInputHandler, isWishlistPage, ...
 			value={inputValue}
 			onChange={onInputHandler}
 			className={styles.input}
+			style={{border: error ? '1px solid red' : '1px solid #ccc',}}
 		/>
 	);
 };
