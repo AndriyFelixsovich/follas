@@ -8,7 +8,7 @@ import CategoryProductItem from "@/Components/CategoryProductItem/CategoryProduc
 
 const ShoppingCart: FC = () => {
 	const page = usePage();
-	const productInCart = page.props.cartItemsObj;
+	const productInCart = page.props.products.data;
 
 		return (
 		<MainLayout>
@@ -16,15 +16,17 @@ const ShoppingCart: FC = () => {
 			<div>
 				<Container>
 					<h1>Shopping Cart</h1>
-					<CategoryTopBar />
 					{productInCart.length === 0 ? (
 						<p className={styles.wishlist_txt}>Shopping Cart is empty!</p>
 					) : (
-						<div className={styles.products}>
-							{productInCart.map((product) => (
-								<CategoryProductItem key={product.product_id} product={product}  />
-							))}
-						</div>
+						<>
+							<CategoryTopBar />
+							<div className={styles.products}>
+								{productInCart.map((product, index) => (
+									<CategoryProductItem key={index} product={product}  />
+								))}
+							</div>
+						</>
 					)}
 				</Container>
 			</div>

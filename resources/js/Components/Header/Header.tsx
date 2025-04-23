@@ -36,9 +36,11 @@ const Header: FC = () => {
 									<CartIcon width="30" height="30" stroke="#2e3b4c" fill="transparent" />
 								</div>
 							</Link>
-							<Link href={route('login')}>
-								<LoginIcon width="30" height="30" fill="#2e3b4c" />
+							<Link href={route('login')} className={styles.login}>
+								<LoginIcon width="30" height="30" fill="#2e3b4c"/>
+								<span>userName</span>
 							</Link>
+
 						</div>
 				</div>
       </Container>

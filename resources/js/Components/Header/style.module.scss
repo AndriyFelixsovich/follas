@@ -18,4 +18,9 @@ header {
 	.quantity_wrp {
 		position: relative;
 	}
+	.login {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }

@@ -152,13 +152,11 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						{cartMessage && showSuccessCart && product.id === message.product_id && (
 							<SuccessModalWindow message={cartMessage}/>
 						)}
-					{
-						isInCart && (
+					{!isWishlistPage && isInCart && (
 						<button onClick={removeCart}>
 							<CloseIcon fill={'#dc3545'} width={30} height={30} />
 						</button>
-						)
-					}
+					)}
 				</div>
 			</div>
 		</div>
