@@ -10,6 +10,7 @@ import WishlistBtn from '@/Components/_ui/WishlistBtn/WishlistBtn';
 import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
 import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
+import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
@@ -17,12 +18,15 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
 	const [inputError, setInputError] = useState(false);
 
+	console.log(quantity)
+
 	const { cartItemsObj } = usePage().props;
 	const { message } = usePage().props.flash;
 	const wishlistMessage = message?.wishlist;
 	const cartMessage = message?.cart;
 
-	console.log(cartItemsObj)
+	const isInCart = cartItemsObj.some((item: { product_id: number }) => item.product_id === product.id);
+
 
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
@@ -103,14 +107,8 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 		setInputError(false);
 
-		const existingCartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
-		if (existingCartItem) {
-			removeCart();
-		} else {
-			addToCart();
-		}
+		addToCart();
 	};
-
 
 	const viewProductInfo = () => {
 		console.log("product viewProductInfo");
@@ -153,9 +151,16 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				)}
 				<div className={styles.wishlist_btn_wrp}>
 					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id} cartValue={CartForm.data.quantity}/>
-					{cartMessage && showSuccessCart && product.id === message.product_id && (
-						<SuccessModalWindow message={cartMessage}/>
-					)}
+						{cartMessage && showSuccessCart && product.id === message.product_id && (
+							<SuccessModalWindow message={cartMessage}/>
+						)}
+					{
+						isInCart && (
+						<button onClick={removeCart}>
+							<CloseIcon fill={'#dc3545'} width={30} height={30} />
+						</button>
+						)
+					}
 				</div>
 			</div>
 		</div>
