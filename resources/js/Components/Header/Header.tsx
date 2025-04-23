@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Container from '@/Components/_ui/Container/Container';
 import Image from '@/Components/_ui/Image/Image';
 import WishlistIcon from '@/Components/_ui/Icons/WishlistIcon';
@@ -13,6 +13,8 @@ import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const Header: FC = () => {
+	const page = usePage();
+	const user = page.props.auth.user;
 
 	return (
     <header>
@@ -38,7 +40,7 @@ const Header: FC = () => {
 							</Link>
 							<Link href={route('login')} className={styles.login}>
 								<LoginIcon width="30" height="30" fill="#2e3b4c"/>
-								<span>userName</span>
+								{user && <span>{user.name}</span>}
 							</Link>
 
 						</div>
