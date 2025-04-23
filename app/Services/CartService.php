@@ -17,26 +17,25 @@ class CartService
 
 		if (auth()->check()) {
 
-//			$userId = auth()->id();
-//			$exists = ShoppingCart::query()->where('user_id', $userId)->where( 'product_id', $productId)->exists();
-//			if (!$exists) {
-//				ShoppingCart::query()->create([
-//					'product_id' => $productId,
-//					'user_id' => $userId]);
-//
-//				return redirect()->back()->with('message',(object) ['wishlist' => 'Product added to wishlist']);
-//			}
-//			else {
-//				ShoppingCart::query()
-//					->where('user_id', $userId)
-//					->where('product_id', $product_id)
-//					->delete();
-//
-//				return redirect()->back()->with('message',(object) ['wishlist' =>'Product removed from wishlist']);
-//			}
-
-
+			$userId = auth()->id();
+			$sessionId = session()->getId();
+			$exists = ShoppingCart::query()->where('user_id', $userId)->where( 'product_id', $productId)->exists();
+			if (!$exists) {
+				ShoppingCart::query()->create([
+					'product_id' => $productId,
+					'user_id' => $userId,
+					'quantity' => $quantityToAdd,
+					'session_id' => $sessionId
+				]);
+				return redirect()->back()->with('message',(object) ['cart' => 'Product added to wishlist']);
+			} else {
+				ShoppingCart::query()->where('user_id', $userId)->where( 'product_id', $productId)->update([
+					'quantity' => $quantityToAdd,
+					'session_id' => $sessionId
+				]);
+			}
 		}else {
+
 			$cart = Session::get('cart', []);
 			$productExists = false;
 
@@ -63,15 +62,27 @@ class CartService
 	{
 		$productId = $request->input('product_id');
 
-		if (!in_array($productId, array_column($this->getCartItems(), 'product_id'))) {
-			return false;
+		if (auth()->check()) {
+			$userId = auth()->id();
+
+			ShoppingCart::query()
+				->where('user_id', $userId)
+				->where('product_id', $productId)
+				->delete();
+
+			return true;
+		}else {
+
+			if (!in_array($productId, array_column($this->getCartItems(), 'product_id'))) {
+				return false;
+			}
+
+			$items = array_filter($this->getCartItems(), fn($element) => $element['product_id'] != $productId);
+
+			$this->set($items);
+
+			return true;
 		}
-
-		$items = array_filter($this->getCartItems(), fn($element) => $element['product_id'] != $productId);
-
-		$this->set($items);
-
-		return true;
 	}
 
 	public function getCartItems()
