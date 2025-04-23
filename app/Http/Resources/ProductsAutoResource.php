@@ -22,6 +22,7 @@ class ProductsAutoResource extends JsonResource
 			'image_path' => $this->image_path,
 			'description' => $this->description,
 			'price' => $this->price,
+			'quantity' => $this->quantity
 		];
 	}
 }
