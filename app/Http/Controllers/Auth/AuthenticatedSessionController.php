@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Services\CartService;
 use App\Services\WishlistService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,10 +16,12 @@ use Inertia\Response;
 class AuthenticatedSessionController extends Controller
 {
 		protected $wishlistService;
+		protected $cartService;
 
-		public function __construct(WishlistService $wishlistService)
+		public function __construct(WishlistService $wishlistService, CartService $cartService)
 		{
 			$this->wishlistService = $wishlistService;
+			$this->cartService = $cartService;
 		}
     /**
      * Display the login view.
@@ -41,6 +44,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
 				$this->wishlistService->transferWishlistFromSession($request);
+				$this->cartService->transferSessionCartToUserCart($request);
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

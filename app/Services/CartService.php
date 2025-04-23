@@ -87,4 +87,34 @@ class CartService
 	{
 		session(['cart' => $items]);
 	}
+
+	public function transferSessionCartToUserCart(Request $request)
+	{
+		if ($request->session()->has('cart')) {
+
+			$sessionCart = $request->session()->get('cart', []);
+			$userId = auth()->id();
+			$sessionId = session()->getId();
+
+			foreach ($sessionCart as $cart) {
+				$exists = ShoppingCart::where('user_id', $userId)->where('product_id', $cart['product_id'])->exists();
+
+				if (!$exists) {
+					ShoppingCart::create([
+						'product_id' => $cart['product_id'],
+						'user_id' => $userId,
+						'quantity' => $cart['quantity'],
+						'session_id' => $sessionId
+					]);
+				}else{
+					ShoppingCart::query()->where('user_id', $userId)->where('product_id', $cart['product_id'])->update([
+						'quantity' => $cart['quantity'],
+						'session_id' => $sessionId
+					]);
+				}
+			}
+
+			$request->session()->forget('cart');
+		}
+	}
 }

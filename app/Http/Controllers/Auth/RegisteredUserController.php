@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\CartService;
 use App\Services\WishlistService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -17,9 +18,11 @@ use Inertia\Response;
 class RegisteredUserController extends Controller
 {
 		protected $wishlistService;
-		public function __construct(WishlistService $wishlistService)
+		protected $cartService;
+		public function __construct(WishlistService $wishlistService, CartService $cartService)
 		{
 			$this->wishlistService = $wishlistService;
+			$this->cartService = $cartService;
 		}
     /**
      * Display the registration view.
@@ -53,6 +56,8 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
 				$this->wishlistService->transferWishlistFromSession($request);
+				$this->cartService->transferSessionCartToUserCart($request);
+
 
         return redirect(route('dashboard', absolute: false));
     }
