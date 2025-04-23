@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductsAutoResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -19,7 +20,7 @@ class ShoppingCartController extends Controller {
 			}
 
 			return Inertia::render('Page/ShoppingCart', [
-				 'product' => $products,
+				 'products' => ProductsAutoResource::collection($products)
 			 ]);
     }
 }
