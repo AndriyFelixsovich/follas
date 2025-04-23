@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartService
@@ -17,18 +15,24 @@ class CartService
 		$quantityToAdd = $request->input('quantity');
 
 		$cart = Session::get('cart', []);
+		$productExists = false;
 
-		if(empty($cart)){
-			session()->push('cart', [
-				'product_id' => $productId,
-				'quantity' => $quantityToAdd
-			]);
-		}else {
-			foreach($cart as &$car) {
-				$car['quantity'] = $quantityToAdd;
+		foreach ($cart as $key => &$item) {
+			if ($item['product_id'] == $productId) {
+				$cart[$key]['quantity'] = $quantityToAdd;
+				$productExists = true;
+				break;
 			}
-			Session::put('cart', $cart);
 		}
+
+		if (!$productExists) {
+			$cart[] = [
+				'product_id' => $productId,
+				'quantity' => $quantityToAdd,
+			];
+		}
+
+		Session::put('cart', $cart);
 	}
 
 	public function remove(Request $request): bool
@@ -49,7 +53,7 @@ class CartService
 	public function getCartItems()
 	{
 		if (auth()->check()) {
-			return ShoppingCart::query()->where('user_id', auth()->id())->pluck('product_id','quantity')->toArray();
+			return ShoppingCart::query()->where('user_id', auth()->id())->pluck('product_id', 'quantity')->toArray();
 		} else {
 			return Session::get('cart', []);
 		}
@@ -57,6 +61,6 @@ class CartService
 
 	private function set(array $items): void
 	{
-		session(['cart'=>$items]);
+		session(['cart' => $items]);
 	}
 }
