@@ -42,7 +42,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
 			$wishlistItemsObj = $this->wishlistService->getWishlistItems($request);
-			$cartItemsObj = $this->cartService->getCartItems($request);
+			$cartItemsObj = $this->cartService->getCartItems();
 
         return [
             ...parent::share($request),

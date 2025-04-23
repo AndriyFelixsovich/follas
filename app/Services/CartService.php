@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,25 +15,48 @@ class CartService
 		$productId = $request->input('product_id');
 		$quantityToAdd = $request->input('quantity');
 
-		$cart = Session::get('cart', []);
-		$productExists = false;
+		if (auth()->check()) {
 
-		foreach ($cart as $key => &$item) {
-			if ($item['product_id'] == $productId) {
-				$cart[$key]['quantity'] = $quantityToAdd;
-				$productExists = true;
-				break;
+//			$userId = auth()->id();
+//			$exists = ShoppingCart::query()->where('user_id', $userId)->where( 'product_id', $productId)->exists();
+//			if (!$exists) {
+//				ShoppingCart::query()->create([
+//					'product_id' => $productId,
+//					'user_id' => $userId]);
+//
+//				return redirect()->back()->with('message',(object) ['wishlist' => 'Product added to wishlist']);
+//			}
+//			else {
+//				ShoppingCart::query()
+//					->where('user_id', $userId)
+//					->where('product_id', $product_id)
+//					->delete();
+//
+//				return redirect()->back()->with('message',(object) ['wishlist' =>'Product removed from wishlist']);
+//			}
+
+
+		}else {
+			$cart = Session::get('cart', []);
+			$productExists = false;
+
+			foreach ($cart as $key => &$item) {
+				if ($item['product_id'] == $productId) {
+					$cart[$key]['quantity'] = $quantityToAdd;
+					$productExists = true;
+					break;
+				}
 			}
-		}
 
-		if (!$productExists) {
-			$cart[] = [
-				'product_id' => $productId,
-				'quantity' => $quantityToAdd,
-			];
-		}
+			if (!$productExists) {
+				$cart[] = [
+					'product_id' => $productId,
+					'quantity' => $quantityToAdd,
+				];
+			}
 
-		Session::put('cart', $cart);
+			Session::put('cart', $cart);
+		}
 	}
 
 	public function remove(Request $request): bool
@@ -53,7 +77,7 @@ class CartService
 	public function getCartItems()
 	{
 		if (auth()->check()) {
-			return ShoppingCart::query()->where('user_id', auth()->id())->pluck('product_id', 'quantity')->toArray();
+			return ShoppingCart::query()->where('user_id', auth()->id())->select('product_id', 'quantity')->get();
 		} else {
 			return Session::get('cart', []);
 		}
