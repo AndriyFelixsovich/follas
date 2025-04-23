@@ -10,7 +10,6 @@ const ShoppingCart: FC = () => {
 	const page = usePage();
 	const productInCart = page.props.cartItemsObj;
 
-
 		return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>

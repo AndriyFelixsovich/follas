@@ -18,8 +18,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
 	const [inputError, setInputError] = useState(false);
 
-	console.log(quantity)
-
 	const { cartItemsObj } = usePage().props;
 	const { message } = usePage().props.flash;
 	const wishlistMessage = message?.wishlist;
