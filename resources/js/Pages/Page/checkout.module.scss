@@ -5,3 +5,25 @@ $media-4: 1024px;
 $media-5: 1366px;
 $media-6: 1400px;
 $media-7: 1200px;
+
+.checkout_wrap {
+	display: grid;
+	grid-template-columns: 48% 48%;
+	gap: 4rem;
+	margin-top: 2.5rem;
+	margin-bottom: 4rem;
+	h3 {
+		background: linear-gradient(85.66deg, #cdd5e1 9.39%, rgba(205, 213, 225, 0) 96.81%, rgba(205, 213, 225, 0) 96.81%);
+		padding: 1rem;
+	}
+	.form_field {
+		margin: 1rem 0;
+	}
+	.form_field_send {
+		display: flex;
+		justify-content: center;
+		button {
+			width: 24%;
+		}
+	}
+}

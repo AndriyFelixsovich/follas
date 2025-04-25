@@ -9,7 +9,7 @@ interface ILabelProps {
 
 const InputLabel: FC<ILabelProps> = ({value, children, className}) => {
 	return (
-		<label className={`${styles.label} ${className}`}>{value || children}</label>
+		<label className={`${styles.label} ${className}`}>{value || children} <strong>*</strong></label>
 	);
 }
 

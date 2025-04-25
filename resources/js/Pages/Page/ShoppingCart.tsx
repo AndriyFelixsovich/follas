@@ -5,6 +5,7 @@ import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
 import CategoryTopBar from "@/Components/CategoryTopBar/CategoryTopBar";
 import CategoryProductItem from "@/Components/CategoryProductItem/CategoryProductItem";
+import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 
 const ShoppingCart: FC = () => {
 	const page = usePage();
@@ -13,6 +14,7 @@ const ShoppingCart: FC = () => {
 		return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>
+			<Breadcrumbs title="Shopping Cart"/>
 			<div>
 				<Container>
 					<h1>Shopping Cart</h1>
