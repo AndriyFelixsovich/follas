@@ -1,4 +1,4 @@
-import {  FC  } from "react";
+import {  FC, useState  } from "react";
 import {  Head, usePage, useForm  } from '@inertiajs/react';
 import styles from './checkout.module.scss';
 import Container from '@/Components/_ui/Container/Container';
@@ -12,11 +12,24 @@ import OrderItem from '@/Components/OrderItem/OrderItem';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 
 const CheckOut: FC = () => {
-	const page = usePage();
-	console.log(page)
+	const [formData, setFormData] = useState({
+		name: '',
+		phone: '',
+		email: '',
+		comment: ''
+	});
 
-	const formSubmitHandler = () => {
-		console.log('submit')
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prev) => ({
+			...prev,
+			[name]: value
+		}));
+	};
+
+	const formSubmitHandler = (e) => {
+		e.preventDefault();
+		console.log(formData);
 	}
 
 	return (
@@ -33,19 +46,19 @@ const CheckOut: FC = () => {
 							<form onSubmit={formSubmitHandler}>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="name" value="Name"/>
-									<TextInput type="text" id="name"/>
+									<TextInput type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="phone" value="Phone"/>
-									<TextInput type="text" id="phone"/>
+									<TextInput type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="email" value="Email"/>
-									<TextInput type="text" id="email"/>
+									<TextInput type="text" id="email" name="email" value={formData.email} onChange={handleChange} />
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="comment" value="Comment"/>
-									<Textarea id="comment" />
+									<Textarea id="comment"  name="comment" value={formData.comment} onChange={handleChange} />
 								</div>
 							</form>
 

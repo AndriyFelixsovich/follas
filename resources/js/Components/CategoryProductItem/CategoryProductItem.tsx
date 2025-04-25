@@ -101,9 +101,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			setInputError(true);
 			return;
 		}
-
 		setInputError(false);
-
 		addToCart();
 	};
 
