@@ -23,7 +23,7 @@ const ShoppingCart: FC = () => {
 							<CategoryTopBar />
 							<div className={styles.products}>
 								{productInCart.map((product, index) => (
-									<CategoryProductItem key={index} product={product}  />
+									<CategoryProductItem key={index} product={product}  isCartPage={true} />
 								))}
 							</div>
 							<div className={styles.total_price}>
