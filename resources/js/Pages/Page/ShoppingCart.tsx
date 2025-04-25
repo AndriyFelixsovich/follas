@@ -1,4 +1,4 @@
-import {Head, usePage} from '@inertiajs/react';
+import {Head, usePage, Link} from '@inertiajs/react';
 import { FC } from 'react';
 import styles from './shopping.module.scss';
 import Container from '@/Components/_ui/Container/Container';
@@ -25,6 +25,10 @@ const ShoppingCart: FC = () => {
 								{productInCart.map((product, index) => (
 									<CategoryProductItem key={index} product={product}  />
 								))}
+							</div>
+							<div className={styles.total_price}>
+								<div className={styles.price}>25$</div>
+								<Link className={styles.buy_btn} href={route('index')}>Buy</Link>
 							</div>
 						</>
 					)}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactsController;
@@ -29,6 +30,7 @@ Route::group([
 
 Route::inertia('Page/About', 'Page/About')->name('about');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
+Route::get('/check-out', [CheckOutController::class, 'index'])->name('index');
 
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');

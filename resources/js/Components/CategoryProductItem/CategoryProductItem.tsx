@@ -25,7 +25,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 	const isInCart = cartItemsObj.some((item: { product_id: number }) => item.product_id === product.id);
 
-
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
 		if (cartItem) {
@@ -135,7 +134,6 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 					{wishlistMessage && showSuccess && (
 						<SuccessModalWindow message={wishlistMessage} />
 					)}
-
 				</div>
 				{!isWishlistPage && (
 					<Input
@@ -148,13 +146,15 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 					/>
 				)}
 				<div className={styles.wishlist_btn_wrp}>
-					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id} cartValue={CartForm.data.quantity}/>
-						{cartMessage && showSuccessCart && product.id === message.product_id && (
-							<SuccessModalWindow message={cartMessage}/>
-						)}
+					<div>{product.price}$</div>
+					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}
+					         cartValue={CartForm.data.quantity}/>
+					{cartMessage && showSuccessCart && product.id === message.product_id && (
+						<SuccessModalWindow message={cartMessage}/>
+					)}
 					{!isWishlistPage && isInCart && (
 						<button onClick={removeCart}>
-							<CloseIcon fill={'#dc3545'} width={30} height={30} />
+							<CloseIcon fill={'#dc3545'} width={30} height={30}/>
 						</button>
 					)}
 				</div>

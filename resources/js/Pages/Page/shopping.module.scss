@@ -5,3 +5,22 @@ $media-4: 1024px;
 $media-5: 1366px;
 $media-6: 1400px;
 $media-7: 1200px;
+
+
+.total_price {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	justify-content: flex-end;
+	.buy_btn {
+		background: #28a745;
+		color: #fff;
+		border: 0;
+		padding: .375rem .75rem;
+		border-radius: .25rem;
+	}
+	.price {
+		font-weight: 500;
+		font-size: 1.5rem;
+	}
+}

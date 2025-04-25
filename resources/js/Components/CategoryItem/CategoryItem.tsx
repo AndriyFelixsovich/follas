@@ -18,7 +18,7 @@ const CategoryItem: FC<CategoryItemProps> = ({ cat }) => {
 	return (
 		<Link className={styles.category_item} href={route('category.index', { slug: cat.slug })}>
 			<Image src={logo} alt={logo} width={'80'} height={'80'} className={styles.category_img}/>
-			<Link href={route('category.index', { slug: cat.slug })}>{cat.name}</Link>
+			<div href={route('category.index', { slug: cat.slug })}>{cat.name}</div>
 		</Link>
 	);
 };
