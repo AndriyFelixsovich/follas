@@ -12,7 +12,7 @@ import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalW
 import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
 import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 
-const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage }) => {
+const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
@@ -101,9 +101,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 			setInputError(true);
 			return;
 		}
-
 		setInputError(false);
-
 		addToCart();
 	};
 
@@ -147,8 +145,18 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 				)}
 				<div className={styles.wishlist_btn_wrp}>
 					<div>{product.price}$</div>
-					<CartBtn onClick={cartFuncHandler} width={30} height={30} fill="#fff" stroke="#0c0310" productId={product.id}
-					         cartValue={CartForm.data.quantity}/>
+					{!isCartPage && (
+						<CartBtn
+							onClick={cartFuncHandler}
+							width={30}
+							height={30}
+							fill="#fff"
+							stroke="#0c0310"
+							productId={product.id}
+							cartValue={CartForm.data.quantity}
+							isCartPage={isCartPage}
+						/>
+					)}
 					{cartMessage && showSuccessCart && product.id === message.product_id && (
 						<SuccessModalWindow message={cartMessage}/>
 					)}

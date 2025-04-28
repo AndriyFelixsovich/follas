@@ -39,7 +39,7 @@ const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) =
 			<Head title="Main" />
 			<div className={styles.category_page}>
 
-				<Breadcrumbs categoryName={category.name} />
+				<Breadcrumbs title={category.name} />
 
 				<Container>
 					<h1 className={styles.title}>{category.name}</h1>

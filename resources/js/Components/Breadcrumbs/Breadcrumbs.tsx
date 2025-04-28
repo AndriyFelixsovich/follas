@@ -6,10 +6,10 @@ import logo from '../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 interface IBreadcrumbs {
-	categoryName: string
+	title: string
 }
 
-const Breadcrumbs: FC<IBreadcrumbs> = ({categoryName}) => {
+const Breadcrumbs: FC<IBreadcrumbs> = ({  title }) => {
 	return (
 		<div className={styles.breadcrumbs}>
 			<div className={styles.breadcrumbs_inner}>
@@ -17,7 +17,7 @@ const Breadcrumbs: FC<IBreadcrumbs> = ({categoryName}) => {
 					<Image src={logo} alt={logo} width={'80'} height={'80'}/>
 				</Link>
 				<div className={styles.divider}><ChevronRight width={15} height={15}/></div>
-				<strong>{categoryName}</strong>
+				<strong>{title}</strong>
 			</div>
 		</div>
 	);

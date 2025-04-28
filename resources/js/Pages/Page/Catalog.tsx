@@ -22,7 +22,7 @@ const Catalog: FC<ICatalog> = ({ category }) => {
 			<div className={styles.catalog}>
 				<Head title="Catalog"/>
 				<div>
-					<Breadcrumbs categoryName="Catalog"/>
+					<Breadcrumbs title="Catalog"/>
 
 					<Container>
 						<h1>Catalog</h1>
