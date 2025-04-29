@@ -7,9 +7,15 @@ import CategoryTopBar from "@/Components/CategoryTopBar/CategoryTopBar";
 import CategoryProductItem from "@/Components/CategoryProductItem/CategoryProductItem";
 import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 
-const ShoppingCart: FC = () => {
+const ShoppingCart: FC = ({ totalPrice }) => {
 	const page = usePage();
 	const productInCart = page.props.products.data;
+
+	const send = () => {
+		console.log(productInCart)
+	}
+
+
 
 		return (
 		<MainLayout>
@@ -29,8 +35,9 @@ const ShoppingCart: FC = () => {
 								))}
 							</div>
 							<div className={styles.total_price}>
-								<div className={styles.price}>25$</div>
-								<Link className={styles.buy_btn} href={route('index')}>Buy</Link>
+								<div className={styles.price}>{totalPrice}$</div>
+								<div onClick={send}>buy</div>
+								{/*<Link className={styles.buy_btn} href={route('index')}>Buy</Link>*/}
 							</div>
 						</>
 					)}

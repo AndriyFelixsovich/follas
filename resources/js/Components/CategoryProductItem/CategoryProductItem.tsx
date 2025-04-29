@@ -61,6 +61,15 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		const value = e.target.value;
 		CartForm.setData('quantity', value);
 		setInputError(false)
+
+		CartForm.post('/addToCart', {
+			preserveScroll: true,
+			replace: true,
+			onSuccess: () => {
+				console.log('заєбісь')
+				console.log(cartItemsObj)
+			}
+		});
 	}
 
 	const addToWishlist = () => {
