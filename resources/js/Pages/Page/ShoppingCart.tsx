@@ -1,4 +1,4 @@
-import {Head, usePage, Link} from '@inertiajs/react';
+import {Head, usePage, Link, useForm} from '@inertiajs/react';
 import { FC } from 'react';
 import styles from './shopping.module.scss';
 import Container from '@/Components/_ui/Container/Container';
@@ -11,8 +11,19 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 	const page = usePage();
 	const productInCart = page.props.products.data;
 
+	const { data, setData, post, processing, errors } = useForm({
+		products: productInCart,
+	});
+
 	const send = () => {
 		console.log(productInCart)
+		// post(route('cart.buy'), {
+		// 	preserveScroll: true,
+		// 	onSuccess: () => {
+		// 		console.log("Send!");
+		// 		console.log(productInCart)
+		// 	},
+		// });
 	}
 
 		return (
@@ -29,7 +40,11 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 							<CategoryTopBar />
 							<div className={styles.products}>
 								{productInCart.map((product, index) => (
-									<CategoryProductItem key={index} product={product} isCartPage={true} />
+									<CategoryProductItem
+										key={index}
+										product={product}
+										isCartPage={true}
+									/>
 								))}
 							</div>
 							<div className={styles.total_price}>
