@@ -18,6 +18,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
 	const [inputError, setInputError] = useState(false);
+	const [checked, setChecked] = useState(false);
 
 	const { cartItemsObj } = usePage().props;
 	const { message } = usePage().props.flash;
@@ -28,10 +29,11 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 	useEffect(() => {
 		const cartItem = cartItemsObj.find((item: { product_id: number }) => item.product_id === product.id);
-		if (cartItem) {
+		if (cartItem && !CartForm.data.quantity) {
 			CartForm.setData('quantity', cartItem.quantity);
 		}
 	}, [cartItemsObj, product.id]);
+
 
 	useEffect(() => {
 		if (cartMessage) {
@@ -51,6 +53,11 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		product_id: product.id
 	});
 
+	const handleChangeCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
+		const isChecked = e.target.checked;
+		setChecked(isChecked);
+	};
+
 	const openModal = (product: Product) => {
 		setModals(prev => [...prev, product]);
 	}
@@ -63,14 +70,15 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		CartForm.setData('quantity', value);
 		setInputError(false)
 
-		CartForm.post('/addToCart', {
-			preserveScroll: true,
-			replace: true,
-			onSuccess: () => {
-				console.log('заєбісь')
-				console.log(cartItemsObj)
-			}
-		});
+		if(value) {
+			CartForm.post('/addToCart', {
+				preserveScroll: true,
+				replace: true,
+				onSuccess: () => {
+					CartForm.setData('quantity', value);
+				}
+			});
+		}
 	}
 
 	const addToWishlist = () => {
@@ -123,7 +131,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		<div className={styles.category_product_item}>
 			{isCartPage && (
 					<div className={styles.checkbox_block}>
-						<Checkbox isCartPage={isCartPage}/>
+						<Checkbox isCartPage={false}  onHandleChangeCheckBox={handleChangeCheckBox}  checked={checked} />
 					</div>
 				)
 			}
