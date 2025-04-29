@@ -24,3 +24,8 @@ $media-7: 1200px;
 		font-size: 1.5rem;
 	}
 }
+
+.products > div {
+	display: grid;
+	grid-template-columns: 3% 20% 38% 36%;
+}

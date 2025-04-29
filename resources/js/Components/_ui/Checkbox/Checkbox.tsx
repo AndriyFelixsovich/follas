@@ -1,13 +1,14 @@
-import { InputHTMLAttributes } from "react";
+import React, { FC, InputHTMLAttributes } from 'react';
+import styles from './style.module.scss';
 
-interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {}
-
-export default function Checkbox({ className = "", ...props }: CheckboxProps) {
-	return (
-		<input
-			{...props}
-			type="checkbox"
-			className={`rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 ${className}`}
-		/>
-	);
+interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+	className?: string;
 }
+
+const Checkbox: FC<CheckboxProps> = ({ className = '', ...props }) => {
+	return (
+		<input type="checkbox" className={`${styles.checkbox} ${className}`.trim()} {...props} />
+	);
+};
+
+export default Checkbox;

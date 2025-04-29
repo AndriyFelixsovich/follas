@@ -1,0 +1,26 @@
+.checkbox {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	width: 20px;
+	height: 20px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 0.3rem;
+	background-color: transparent;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.checkbox:checked {
+	background-color: transparent;
+	border-color: rgb(204, 204, 204);
+}
+
+.checkbox:checked::before {
+	content: '✔';
+	position: absolute;
+	top: 0;
+	left: 4px;
+	color: #000;
+}

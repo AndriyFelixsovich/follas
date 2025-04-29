@@ -15,8 +15,6 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 		console.log(productInCart)
 	}
 
-
-
 		return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>
@@ -31,7 +29,7 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 							<CategoryTopBar />
 							<div className={styles.products}>
 								{productInCart.map((product, index) => (
-									<CategoryProductItem key={index} product={product}  isCartPage={true} />
+									<CategoryProductItem key={index} product={product} isCartPage={true} />
 								))}
 							</div>
 							<div className={styles.total_price}>

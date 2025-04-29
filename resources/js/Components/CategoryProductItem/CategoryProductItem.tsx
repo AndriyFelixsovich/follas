@@ -11,6 +11,7 @@ import EyeBtn from '@/Components/_ui/EyeBtn/EyeBtn';
 import CategoryModalWindow from '@/Components/CategoryModalWindow/CategoryModalWindow';
 import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWindow';
 import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
+import Checkbox from '@/Components/_ui/Checkbox/Checkbox';
 
 const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage }) => {
 	const [modals, setModals] = useState<Product[]>([]);
@@ -120,7 +121,13 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 
 	return (
 		<div className={styles.category_product_item}>
-			<div className={styles.image_block} onClick={() => openModal(product)}>
+			{isCartPage && (
+					<div className={styles.checkbox_block}>
+						<Checkbox isCartPage={isCartPage}/>
+					</div>
+				)
+			}
+				<div className={styles.image_block} onClick={() => openModal(product)}>
 				<Image src={`${window.location.origin}/${product.image_path}`} width={'150'} height={'150'} alt={product.description} />
 			</div>
 
