@@ -10,6 +10,7 @@ export interface CategoryProductItemProps {
 	product: Product;
 	index: number;
 	isWishlistPage?: boolean;
+	onSelectChange?: (id: number, checked: boolean) => void;
 }
 
 export interface PageProps {

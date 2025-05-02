@@ -13,7 +13,7 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 import Checkbox from '@/Components/_ui/Checkbox/Checkbox';
 
-const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage }) => {
+const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage, onSelectChange }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
@@ -56,6 +56,9 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 	const handleChangeCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
 		const isChecked = e.target.checked;
 		setChecked(isChecked);
+		if (onSelectChange) {
+			onSelectChange(product.id, isChecked);
+		}
 	};
 
 	const openModal = (product: Product) => {
@@ -131,7 +134,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 		<div className={styles.category_product_item}>
 			{isCartPage && (
 					<div className={styles.checkbox_block}>
-						<Checkbox isCartPage={false}  onHandleChangeCheckBox={handleChangeCheckBox}  checked={checked} />
+						<Checkbox isCartPage={false}  onHandleChangeCheckBox={handleChangeCheckBox} checked={checked} />
 					</div>
 				)
 			}

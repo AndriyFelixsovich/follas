@@ -1,5 +1,5 @@
 import {Head, usePage, Link, useForm} from '@inertiajs/react';
-import { FC } from 'react';
+import { FC, useState  } from 'react';
 import styles from './shopping.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
@@ -11,12 +11,30 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 	const page = usePage();
 	const productInCart = page.props.products.data;
 
-	const { data, setData, post, processing, errors } = useForm({
+	const [selectedProducts, setSelectedProducts] = useState([]);
+
+	const { data, setData, post } = useForm({
 		products: productInCart,
 	});
 
+	const handleSelectChange = (id: number, checked: boolean) => {
+		if (checked) {
+			setSelectedProducts(prev => [...prev, id]);
+		} else {
+			setSelectedProducts(prev => prev.filter(pid => pid !== id));
+		}
+	};
+
+
 	const send = () => {
-		console.log(productInCart)
+		const selectedItems = productInCart.filter(product => selectedProducts.includes(product.id));
+
+		if (selectedItems.length === 0) {
+			const allProductIds = productInCart.map(product => product.id);
+			setSelectedProducts(allProductIds);
+		}
+
+		console.log('send selected products', selectedItems);
 		// post(route('cart.buy'), {
 		// 	preserveScroll: true,
 		// 	onSuccess: () => {
@@ -44,6 +62,8 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 										key={index}
 										product={product}
 										isCartPage={true}
+									  index={index}
+										onSelectChange={handleSelectChange}
 									/>
 								))}
 							</div>
