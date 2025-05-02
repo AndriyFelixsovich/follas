@@ -1,0 +1,22 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+$media-7: 1200px;
+
+.login_wrp {
+	.form {
+		min-width: 400px;
+		.form_control {
+			margin: .7rem 0;
+		}
+	}
+	.button_wrp {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+
