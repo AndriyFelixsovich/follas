@@ -10,9 +10,14 @@ import styles from './style.module.scss';
 
 const Login: FC = () => {
 
-	const sendForm = (e) => {
+	const {data, setData,post, errors } = useForm({
+		username: '',
+		password: '',
+	});
+
+	const sendForm = e => {
 		e.preventDefault();
-		console.log('send')
+		console.log('send', data)
 	}
 
 	return (
@@ -22,14 +27,14 @@ const Login: FC = () => {
 						<div className={styles.login_wrp}>
 							<form onSubmit={sendForm} className={styles.form}>
 								<div className={styles.form_control}>
-									<InputLabel htmlFor="email" value="Email"/>
+									<InputLabel htmlFor="username" value="Username"/>
 
 									<TextInput
-										id="email"
-										type="email"
-										name="email"
-										// value={data.email}
-										// onChange={(e) => setData('email', e.target.value)}
+										id="username"
+										type="text"
+										name="username"
+										value={data.username}
+										onChange={(e) => setData('username', e.target.value)}
 									/>
 
 									{/*<InputError message={errors.email} />*/}
@@ -41,8 +46,8 @@ const Login: FC = () => {
 										id="password"
 										type="password"
 										name="password"
-										// value={data.password}
-										// onChange={(e) => setData('password', e.target.value)}
+										value={data.password}
+										onChange={(e) => setData('password', e.target.value)}
 									/>
 
 									{/*<InputError message={errors.password} />*/}
