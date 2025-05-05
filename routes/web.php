@@ -13,7 +13,8 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\ErrorController;
 use Illuminate\Foundation\Application;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,7 +30,9 @@ Route::group([
 
 
 Route::inertia('Page/About', 'Page/About')->name('about');
+
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/admin-dashboard', [DashboardController::class, 'index'])->name('admin');
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/check-out', [CheckOutController::class, 'index'])->name('index');

@@ -1,4 +1,4 @@
-import { Head, usePage, useForm } from '@inertiajs/react';
+import {Head, usePage, useForm, Link} from '@inertiajs/react';
 import React, { FC } from "react";
 import Container from '@/Components/_ui/Container/Container';
 import AdminLayout from "@/Layouts/AdminLayout";
@@ -7,6 +7,8 @@ import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 import InputLabel from '@/Components/_ui/InputLabel/InputLabel';
 import InputError from '@/Components/_ui/InputError/InputError';
 import styles from './style.module.scss';
+import Image from "@/Components/_ui/Image/Image";
+import logo from "../../../../img/follas_logo.svg";
 
 const Login: FC = () => {
 
@@ -25,6 +27,11 @@ const Login: FC = () => {
 				<Head title="Login"/>
 					<Container>
 						<div className={styles.login_wrp}>
+							<div className={styles.login_img}>
+								<Link href="/">
+									<Image src={logo} alt={logo} width={'120'} height={'80'} />
+								</Link>
+							</div>
 							<form onSubmit={sendForm} className={styles.form}>
 								<div className={styles.form_control}>
 									<InputLabel htmlFor="username" value="Username"/>
