@@ -31,8 +31,12 @@ Route::group([
 
 Route::inertia('Page/About', 'Page/About')->name('about');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::get('/admin-dashboard', [DashboardController::class, 'index'])->name('admin');
+Route::group([
+	'prefix' => 'admin',
+	'as'     => 'admin.'
+], function (){
+	Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+})->middleware(['auth', 'admin']);
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/check-out', [CheckOutController::class, 'index'])->name('index');

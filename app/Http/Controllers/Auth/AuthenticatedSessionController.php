@@ -46,6 +46,19 @@ class AuthenticatedSessionController extends Controller
 				$this->wishlistService->transferWishlistFromSession($request);
 				$this->cartService->transferSessionCartToUserCart($request);
 
+			if (session()->has('url.intended')) {
+				$intendedUrl = session('url.intended');
+				session()->forget('url.intended');
+
+				if (str_contains($intendedUrl, '/admin') && auth()->user()->isAdmin()) {
+					return redirect()->to($intendedUrl);
+				}
+			}
+
+			if (auth()->user()->isAdmin() && request()->query('redirect') === 'admin') {
+				return redirect()->route('admin.dashboard');
+			}
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
