@@ -21,7 +21,7 @@ class AdminMiddleware
 		}
 
 		if (!auth()->user()->isAdmin()) {
-			return redirect()->route('dashboard')->with('error', 'У вас немає прав адміністратора.');
+			return back()->with('error', 'You do not have administrator rights.');
 		}
 
 		return $next($request);
