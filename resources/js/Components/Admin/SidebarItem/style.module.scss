@@ -1,0 +1,42 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+$media-7: 1200px;
+
+.sidebar_item {
+	margin: .7rem 0;
+	.content {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.4s ease-out;
+	}
+
+	.open {
+		max-height: 500px;
+		transition: max-height 0.4s ease-in;
+	}
+
+	.content_bl {
+		margin: .7rem 0 0 2rem;
+	}
+
+	.button {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 1.2rem;
+		cursor: pointer;
+		font-weight: 500;
+	}
+
+	.button_icon {
+		transition: transform 0.4s ease;
+		&.open {
+			transform: rotate(180deg);
+		}
+	}
+}
+
