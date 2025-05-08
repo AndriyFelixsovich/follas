@@ -12,10 +12,17 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 	const productInCart = page.props.products.data;
 
 	const [selectedProducts, setSelectedProducts] = useState([]);
+	const [quantities, setQuantities] = useState<Record<number, string>>({});
+
 
 	const { data, setData, post } = useForm({
 		products: productInCart,
 	});
+
+	const handleQuantityChange = (id: number, quantity: string) => {
+		setQuantities(prev => ({ ...prev, [id]: quantity }));
+	};
+
 
 	const handleSelectChange = (id: number, checked: boolean) => {
 		if (checked) {
@@ -27,7 +34,12 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 
 
 	const send = () => {
-		const selectedItems = productInCart.filter(product => selectedProducts.includes(product.id));
+		const selectedItems = productInCart
+			.filter(product => selectedProducts.includes(product.id))
+			.map(product => ({
+				...product,
+				quantity: quantities[product.id] || product.quantity
+			}));
 
 		if (selectedItems.length === 0) {
 			const allProductIds = productInCart.map(product => product.id);
@@ -64,6 +76,7 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 										isCartPage={true}
 									  index={index}
 										onSelectChange={handleSelectChange}
+										onQuantityChange={handleQuantityChange}
 									/>
 								))}
 							</div>

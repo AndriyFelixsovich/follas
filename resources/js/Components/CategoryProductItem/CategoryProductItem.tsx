@@ -13,7 +13,7 @@ import SuccessModalWindow from '@/Components/SuccessModalWindow/SuccessModalWind
 import CloseIcon from '@/Components/_ui/Icons/CloseIcon';
 import Checkbox from '@/Components/_ui/Checkbox/Checkbox';
 
-const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage, onSelectChange }) => {
+const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlistPage, isCartPage, onQuantityChange, onSelectChange }) => {
 	const [modals, setModals] = useState<Product[]>([]);
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showSuccessCart, setShowSuccessCart] = useState(false);
@@ -81,6 +81,9 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 					CartForm.setData('quantity', value);
 				}
 			});
+		}
+		if (onQuantityChange) {
+			onQuantityChange(product.id, value);
 		}
 	}
 
