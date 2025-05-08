@@ -80,3 +80,12 @@ $media-7: 600px;
 	padding: 0;
 	border: 0;
 }
+
+.dashboard_inner {
+	.cols {
+		display: grid;
+		grid-template-columns: 27% 71%;
+		gap: 2rem;
+	}
+}
+

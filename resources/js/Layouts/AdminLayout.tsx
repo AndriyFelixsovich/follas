@@ -1,5 +1,7 @@
 import React from 'react';
+import TopBar from '@/Components/Admin/TopBar/TopBar';
 import styles from './guest_layout.module.scss';
+import Sidebar from "@/Components/Admin/Sidebar/Sidebar";
 
 
 interface AdminLayoutProps {
@@ -10,7 +12,13 @@ interface AdminLayoutProps {
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children, className }) => {
 	return (
 		<>
-			{children}
+			<div className={styles.dashboard_inner}>
+				<TopBar/>
+				<div className={styles.cols}>
+					<Sidebar />
+					{children}
+				</div>
+			</div>
 		</>
 	);
 };
