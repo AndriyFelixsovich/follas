@@ -7,32 +7,11 @@ import MainLayout from "@/Layouts/MainLayout";
 import Pagination from '@/Components/Pagination/Pagination';
 import CategoryTopBar from '@/Components/CategoryTopBar/CategoryTopBar';
 import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
-import SearchBarInput from '@/Components/SearchBarInput/SearchBarInput';
+import CategorySearchBar from '@/Components/CategorySearchBar/CategorySearchBar';
 import { CategoryProps } from '@/Pages/Page/category.interface';
 
-const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) => {
+const Category: FC<CategoryProps> = ({ category, products }) => {
 	const { setData } = useForm<{ page: number }>({ page: products.meta.current_page });
-	const { slug: categorySlug } = usePage().props.category;
-	const [ourPartNo, setOurPartNo] = useState(queryParams.our_part_no || '');
-	const [description, setDescription] = useState(queryParams.description || '');
-	const [originalNo, setOriginalNo] = useState(queryParams.original_no || '');
-
-	const searchFieldChanged = (name: string, value: string) => {
-		const newParams = { ...queryParams };
-
-		if (value) {
-			newParams[name] = value;
-		} else {
-			delete newParams[name];
-		}
-
-		router.get(route('category.index', { slug: categorySlug }), newParams, { preserveState: true });
-	};
-
-	const onKeyPress = (name: string, value: string, e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key !== 'Enter') return;
-		searchFieldChanged(name, value);
-	};
 
 	return (
 		<MainLayout>
@@ -44,32 +23,7 @@ const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) =
 				<Container>
 					<h1 className={styles.title}>{category.name}</h1>
 
-					<div className={styles.search_bar}>
-						<SearchBarInput
-							label="Search by IMS Part No."
-							placeholder="Search"
-							value={ourPartNo}
-							onChange={e => setOurPartNo(e.target.value)}
-							onBlur={() => searchFieldChanged('our_part_no', ourPartNo)}
-							onKeyPress={e => onKeyPress('our_part_no', ourPartNo, e)}
-						/>
-						<SearchBarInput
-							label="Search by Description."
-							placeholder="Search"
-							value={description}
-							onChange={e => setDescription(e.target.value)}
-							onBlur={() => searchFieldChanged('description', description)}
-							onKeyPress={e => onKeyPress('description', description, e)}
-						/>
-						<SearchBarInput
-							label="Search by Orig."
-							placeholder="Search"
-							value={originalNo}
-							onChange={e => setOriginalNo(e.target.value)}
-							onBlur={() => searchFieldChanged('original_no', originalNo)}
-							onKeyPress={e => onKeyPress('original_no', originalNo, e)}
-						/>
-					</div>
+					<CategorySearchBar />
 
 					{products.data.length > 0 ? (
 						<>

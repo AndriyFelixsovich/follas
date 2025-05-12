@@ -13,17 +13,6 @@ $media-7: 1200px;
 	.category_page_wrap {
     margin-bottom: 5rem;
 	}
-	.search_bar {
-		display: flex;
-		gap: 1rem;
-		flex-direction: column;
-		background: linear-gradient(85.66deg, #cdd5e1 9.39%, rgba(205, 213, 225, 0) 96.81%, rgba(205, 213, 225, 0) 96.81%);
-		padding: .5rem;
-		@media (min-width: $media-2) {
-			flex-direction: row;
-			justify-content: space-evenly;
-		}
-	}
 	.empty_cat_txt {
 		margin-top: 3rem;
 	}

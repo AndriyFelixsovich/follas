@@ -1,0 +1,19 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+$media-7: 1200px;
+
+.search_bar {
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+	background: linear-gradient(85.66deg, #cdd5e1 9.39%, rgba(205, 213, 225, 0) 96.81%, rgba(205, 213, 225, 0) 96.81%);
+	padding: .5rem;
+	@media (min-width: $media-2) {
+		flex-direction: row;
+		justify-content: space-evenly;
+	}
+}

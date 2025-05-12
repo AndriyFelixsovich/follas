@@ -6,6 +6,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\SearchResultController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\WishlistController;
@@ -30,6 +31,7 @@ Route::group([
 
 
 Route::inertia('Page/About', 'Page/About')->name('about');
+Route::get('/search-result', [SearchResultController::class, 'index'])->name('index');
 
 Route::group([
 	'prefix' => 'admin',
