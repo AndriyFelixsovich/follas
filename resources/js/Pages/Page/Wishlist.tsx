@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, usePage, useForm } from '@inertiajs/react';
 import { FC } from 'react';
 import styles from './wishlist.module.scss';
 import Container from '@/Components/_ui/Container/Container';
@@ -20,6 +20,9 @@ interface IWishlist {
 }
 
 const Wishlist: FC<IWishlist> = ({ productsInWishlist }) => {
+	const page = usePage();
+	console.log(page)
+
 
 	return (
 		<MainLayout>

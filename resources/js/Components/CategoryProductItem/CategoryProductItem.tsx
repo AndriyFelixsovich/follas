@@ -163,16 +163,14 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 						<SuccessModalWindow message={wishlistMessage} />
 					)}
 				</div>
-				{!isWishlistPage && (
 					<Input
 						id="quantity"
 						inputValue={CartForm.data.quantity}
 						onInputHandler={handlerQuantityValue}
-						isWishlistPage={isWishlistPage}
 						error={inputError}
 						onKeyDown={e => e.key === 'Enter' && addToCart()}
 					/>
-				)}
+
 				<div className={styles.wishlist_btn_wrp}>
 					<div>{product.price}$</div>
 					{!isCartPage && (

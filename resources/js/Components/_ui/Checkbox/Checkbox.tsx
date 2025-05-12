@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes } from 'react';
+import React, {FC, InputHTMLAttributes} from 'react';
 import styles from './style.module.scss';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,14 +9,20 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Checkbox: FC<CheckboxProps> = ({
-	                                     className = '',
-	                                     isCartPage,
-	                                     onHandleChangeCheckBox,
-	                                     checked ,
-	                                     ...props
-}) => {
+	 className = '',
+	 isCartPage,
+	 onHandleChangeCheckBox,
+	 checked,
+	 ...props
+   }) => {
 	return (
-		<input type="checkbox" className={`${styles.checkbox} ${className}`.trim()} {...props} onChange={onHandleChangeCheckBox}  checked={checked} />
+		<input
+			type="checkbox"
+			className={`${styles.checkbox} ${className}`.trim()}
+			{...props}
+		  onChange={onHandleChangeCheckBox}
+			checked={checked}
+		/>
 	);
 };
 

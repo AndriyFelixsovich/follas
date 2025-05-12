@@ -73,9 +73,7 @@ const Login: React.FC<LoginProps> = ({ status, canResetPassword }) => {
 					<label>
 						<Checkbox
 							name="remember"
-							checked={data.remember}
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData("remember", e.target.checked)}
-							style={{ width: "fit-content" }}
 						/>
 						<span>Remember me</span>
 					</label>
