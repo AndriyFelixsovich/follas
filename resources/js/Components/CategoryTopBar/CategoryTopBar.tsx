@@ -9,22 +9,19 @@ const CategoryTopBar: FC<ICategoryTopBar> = ({ isWishlistPage = false,  }) => {
 
 	return (
 		<div className={styles.top_bar}>
-			<table>
-				<tbody>
-					<tr>
-						<td>IMS Part No.</td>
-						<td>Description</td>
-						<td>Orig. No.</td>
-						{isWishlistPage ? (
-							<td>Remove</td>
-						) : (
-							<td>Add to wishlist</td>
-						)}
-						<td>Quantity</td>
-						<td>Add to cart </td>
-					</tr>
-				</tbody>
-			</table>
+			<div className={styles.top_bar_table}>
+				<div></div>
+				<div>IMS Part No.</div>
+				<div>Description</div>
+				<div>Orig. No.</div>
+				{isWishlistPage ? (
+					<div>Remove</div>
+				) : (
+					<div>Add to wishlist</div>
+				)}
+				<div>Quantity</div>
+				<div>Add to cart</div>
+			</div>
 		</div>
 	);
 };

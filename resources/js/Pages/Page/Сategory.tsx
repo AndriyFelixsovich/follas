@@ -90,7 +90,9 @@ const Category: FC<CategoryProps> = ({ category, products, queryParams = {} }) =
 							/>
 						</>
 					) : (
-						<h2>Category is empty!</h2>
+						<div className={styles.empty_cat_txt}>
+							<h2>No products available!</h2>
+						</div>
 					)}
 				</Container>
 

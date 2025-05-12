@@ -40,7 +40,7 @@ const Header: FC = () => {
 							</Link>
 							<Link href={route('login')} className={styles.login}>
 								<LoginIcon width="30" height="30" fill="#2e3b4c"/>
-								{user && <span>{user.name}</span>}
+								{user && <strong>{user.name}</strong>}
 							</Link>
 
 						</div>
