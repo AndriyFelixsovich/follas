@@ -193,6 +193,7 @@ const CategoryProductItem: FC<CategoryProductItemProps> = ({ product, isWishlist
 							<CloseIcon fill={'#dc3545'} width={30} height={30}/>
 						</button>
 					)}
+
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,7 @@ import styles from './wishlist.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProductItem';
 import CategoryTopBar from '@/Components/CategoryTopBar/CategoryTopBar';
+import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 import MainLayout from '@/Layouts/MainLayout';
 
 interface IProduct {
@@ -20,13 +21,10 @@ interface IWishlist {
 }
 
 const Wishlist: FC<IWishlist> = ({ productsInWishlist }) => {
-	const page = usePage();
-	console.log(page)
-
-
 	return (
 		<MainLayout>
 			<Head title="Wishlist" />
+			<Breadcrumbs title="Wishlist"/>
 			<div className={styles.wishlist}>
 				<Container>
 					<h1>Wishlist</h1>
