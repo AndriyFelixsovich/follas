@@ -22,8 +22,12 @@ const Search: FC = () => {
 			setInputError(true);
 		}
 
-		console.log(data.value);
-		// post('/search');
+		post('/SearchResultController/index', {
+			onSuccess: () => {
+				console.log('Send!');
+			}
+		});
+
 	};
 
 	return (
