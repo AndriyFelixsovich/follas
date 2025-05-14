@@ -8,22 +8,22 @@ const Search: FC = () => {
 	const [inputError, setInputError] = useState(false);
 
 	const searchForm = useForm({
-		value: ''
+		search: ''
 	});
 
 	const onInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		searchForm.setData('value', e.target.value);
+		searchForm.setData('search', e.target.value);
 	};
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (!searchForm.data.value) {
+		if (!searchForm.data.search) {
 			setInputError(true);
 			return;
 		}
 
-		searchForm.post('/SearchResultController/index', {
+		searchForm.get('/search-result', {
 			onSuccess: () => {
 				console.log('Send!');
 			}
@@ -32,7 +32,7 @@ const Search: FC = () => {
 
 	return (
 		<form className={styles.form} onSubmit={sendForm}>
-			<Input placeholder="Search" onInputHandler={onInputHandler} inputValue={searchForm.data.value} error={inputError} />
+			<Input placeholder="Search" onInputHandler={onInputHandler} inputValue={searchForm.search} error={inputError} />
 			<button type="submit">
 				<SearchIcon width="27" height="27" fill="#2e3b4c" />
 			</button>
