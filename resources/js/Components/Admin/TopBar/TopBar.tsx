@@ -6,7 +6,6 @@ import logo from '../../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const TopBar: FC = () => {
-
 	const logout = () => {
 		console.log('log')
 	}

@@ -1,5 +1,5 @@
-import { Head, router, useForm, usePage } from '@inertiajs/react';
-import { FC, useState } from 'react';
+import { Head, useForm } from '@inertiajs/react';
+import { FC } from 'react';
 import styles from './category.module.scss';
 import CategoryProductItem from '@/Components/CategoryProductItem/CategoryProductItem';
 import Container from '@/Components/_ui/Container/Container';

@@ -1,5 +1,5 @@
-import {Head} from '@inertiajs/react';
-import {FC} from "react";
+import { Head,usePage, useForm } from '@inertiajs/react';
+import { FC } from "react";
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
 import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';

@@ -1,5 +1,5 @@
+import { Head,usePage, useForm } from '@inertiajs/react';
 import { FC } from "react";
-import { Head, useForm } from '@inertiajs/react';
 import styles from './checkout.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";

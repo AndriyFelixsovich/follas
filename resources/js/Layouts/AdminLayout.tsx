@@ -3,7 +3,6 @@ import TopBar from '@/Components/Admin/TopBar/TopBar';
 import styles from './guest_layout.module.scss';
 import Sidebar from "@/Components/Admin/Sidebar/Sidebar";
 
-
 interface AdminLayoutProps {
 	children: React.ReactNode;
 	className?: string;
