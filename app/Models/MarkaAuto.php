@@ -12,6 +12,11 @@ class MarkaAuto extends Model
 
 	protected $table = 'marka_autos';
 
+	protected $fillable = [
+		'name',
+		'slug'
+	];
+
 	public function sluggable(): array
 	{
 		return [

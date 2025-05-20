@@ -30,7 +30,7 @@ class Product extends Model
 
 	public function modelAutos()
 	{
-		return $this->belongsToMany(ModelAuto::class, 'model_autos');
+		return $this->belongsToMany(ModelAuto::class, 'product_relation_model', 'product_id', 'model_auto_id');
 	}
 
 	public function modelAutoYears()
