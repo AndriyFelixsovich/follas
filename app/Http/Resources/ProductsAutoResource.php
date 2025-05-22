@@ -16,7 +16,7 @@ class ProductsAutoResource extends JsonResource
 	{
 
 		return [
-//			'id' => $this->id,
+			'id' => $this->id,
 			'name' => $this->name,
 			'origin_number' => $this->origin_number,
 			'image_path' => $this->image_path,
