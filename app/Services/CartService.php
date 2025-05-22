@@ -85,9 +85,9 @@ class CartService
 		}
 	}
 
-	public function cartCheck()
+	public function cartCheck(Request $request)
 	{
-		echo "<pre>"; var_dump(5555);echo "</pre>"; die();
+		echo "<pre>"; var_dump($request->all());echo "</pre>"; die();
 	}
 
 	public function getCartItems()

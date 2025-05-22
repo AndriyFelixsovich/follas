@@ -5,8 +5,7 @@ use App\Http\Resources\ProductsAutoResource;
 use App\Models\Product;
 use App\Models\ShoppingCart;
 use App\Services\CartService;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ShoppingCartController extends Controller {
@@ -61,8 +60,9 @@ class ShoppingCartController extends Controller {
 			]);
     }
 
-		private function AddToCartCheck(Request $request)
+	public function addToCartCheck(Request $request)
 		{
+			dd($request->all());
 			$this->cartService->cartCheck($request);
 		}
 
