@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductsAutoResource;
 use App\Models\Product;
 use App\Models\ShoppingCart;
+use App\Services\CartService;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class ShoppingCartController extends Controller {
+
+	protected $cartService;
+
+	public function __construct(CartService $cartService)
+	{
+		$this->cartService = $cartService;
+	}
     public function index() {
 
 			$products = collect();
@@ -51,4 +60,11 @@ class ShoppingCartController extends Controller {
 				'totalPrice' => $totalPrice
 			]);
     }
+
+		private function AddToCartCheck(Request $request)
+		{
+			$this->cartService->cartCheck($request);
+		}
+
+
 }

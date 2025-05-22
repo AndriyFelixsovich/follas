@@ -85,6 +85,11 @@ class CartService
 		}
 	}
 
+	public function cartCheck()
+	{
+		echo "<pre>"; var_dump(5555);echo "</pre>"; die();
+	}
+
 	public function getCartItems()
 	{
 		if (auth()->check()) {

@@ -52,7 +52,7 @@ Route::group([
 		'as'    	 => 'cart.'
 ],function () {
 	Route::get('/shopping-cart','index')->name('index');
-
+	Route::post('/cartCheck', 'cartCheck')->name('cartCheck');
 });
 
 

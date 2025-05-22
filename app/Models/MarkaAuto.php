@@ -13,8 +13,9 @@ class MarkaAuto extends Model
 	protected $table = 'marka_autos';
 
 	protected $fillable = [
+		'id',
 		'name',
-		'slug'
+		'slug',
 	];
 
 	public function sluggable(): array
