@@ -54,6 +54,8 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 			check: 1,
 		};
 
+		setData(postData);
+
 		console.log('Sending data:', postData);
 
 		post(route('cart.cartCheck'), {
