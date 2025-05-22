@@ -23,11 +23,7 @@ const Search: FC = () => {
 			return;
 		}
 
-		searchForm.get('/search-result', {
-			onSuccess: () => {
-				console.log('Send!');
-			}
-		});
+		searchForm.get('/search-result');
 	};
 
 	return (
