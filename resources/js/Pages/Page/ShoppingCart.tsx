@@ -33,6 +33,11 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 	};
 
 
+	const CartForm = useForm({
+		product_id: product.id,
+		check: 1
+	});
+
 	const send = () => {
 		const selectedItems = productInCart
 			.filter(product => selectedProducts.includes(product.id))
@@ -44,10 +49,21 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 		if (selectedItems.length === 0) {
 			const allProductIds = productInCart.map(product => product.id);
 			setSelectedProducts(allProductIds);
+			return;
 		}
 
-		post(route('cart.cartCheck'))
-	}
+		CartForm.setData({
+			selectedItems: selectedItems,
+			check: 1
+		});
+
+
+		CartForm.post(route('cart.cartCheck'), {
+			preserveScroll: true,
+			replace: true,
+		});
+	};
+
 
 		return (
 		<MainLayout>
