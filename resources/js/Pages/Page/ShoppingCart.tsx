@@ -1,5 +1,5 @@
 import {Head, usePage, Link, useForm} from '@inertiajs/react';
-import { FC, useState  } from 'react';
+import { FC, useState, useEffect  } from 'react';
 import styles from './shopping.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
@@ -32,33 +32,38 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 		}
 	};
 
-
 	const send = () => {
-		const selectedItems = productInCart
-			.filter(product => selectedProducts.includes(product.id))
-			.map(product => ({
+		let selectedItems = [];
+
+		if (selectedProducts.length === 0) {
+			selectedItems = productInCart.map(product => ({
 				...product,
 				quantity: quantities[product.id] || product.quantity
 			}));
-
-		if (selectedItems.length === 0) {
-			const allProductIds = productInCart.map(product => product.id);
-			setSelectedProducts(allProductIds);
-			return;
+		} else {
+			selectedItems = productInCart
+				.filter(product => selectedProducts.includes(product.id))
+				.map(product => ({
+					...product,
+					quantity: quantities[product.id] || product.quantity
+				}));
 		}
 
-		setData({
-			product_id: selectedItems.id,
-			quantity: selectedItems.quantity,
-			check: 1
-		});
+		const postData = {
+			products: selectedItems,
+			check: 1,
+		};
 
+		console.log('Sending data:', postData);
 
 		post(route('cart.cartCheck'), {
 			preserveScroll: true,
 			replace: true,
+			data: postData,
 		});
 	};
+
+
 
 
 		return (
