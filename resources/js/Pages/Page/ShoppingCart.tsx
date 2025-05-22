@@ -10,7 +10,7 @@ import Breadcrumbs from '@/Components/Breadcrumbs/Breadcrumbs';
 const ShoppingCart: FC = ({ totalPrice }) => {
 	const page = usePage();
 	const productInCart = page.props.products.data;
-
+	const [shouldPost, setShouldPost] = useState(false);
 	const [selectedProducts, setSelectedProducts] = useState([]);
 	const [quantities, setQuantities] = useState<Record<number, string>>({});
 
@@ -31,6 +31,14 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 			setSelectedProducts(prev => prev.filter(pid => pid !== id));
 		}
 	};
+
+
+	useEffect(() => {
+		if (shouldPost) {
+			post(route('cart.cartCheck'), data, { preserveScroll: true, replace: true });
+			setShouldPost(false);
+		}
+	}, [data, shouldPost]);
 
 	const send = () => {
 		let selectedItems = [];
@@ -55,20 +63,10 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 		};
 
 		setData(postData);
-
-		console.log('Sending data:', postData);
-
-		post(route('cart.cartCheck'), {
-			preserveScroll: true,
-			replace: true,
-			data: postData,
-		});
+		setShouldPost(true);
 	};
 
-
-
-
-		return (
+	return (
 		<MainLayout>
 			<Head title="Shopping Cart"/>
 			<Breadcrumbs title="Shopping Cart"/>
