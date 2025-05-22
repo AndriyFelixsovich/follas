@@ -33,11 +33,6 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 	};
 
 
-	const CartForm = useForm({
-		product_id: product.id,
-		check: 1
-	});
-
 	const send = () => {
 		const selectedItems = productInCart
 			.filter(product => selectedProducts.includes(product.id))
@@ -52,13 +47,14 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 			return;
 		}
 
-		CartForm.setData({
-			selectedItems: selectedItems,
+		setData({
+			product_id: selectedItems.id,
+			quantity: selectedItems.quantity,
 			check: 1
 		});
 
 
-		CartForm.post(route('cart.cartCheck'), {
+		post(route('cart.cartCheck'), {
 			preserveScroll: true,
 			replace: true,
 		});
