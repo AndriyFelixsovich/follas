@@ -46,14 +46,7 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 			setSelectedProducts(allProductIds);
 		}
 
-		console.log('send selected products', selectedItems);
-		// post(route('cart.buy'), {
-		// 	preserveScroll: true,
-		// 	onSuccess: () => {
-		// 		console.log("Send!");
-		// 		console.log(productInCart)
-		// 	},
-		// });
+		post(route('cart.cartCheck'))
 	}
 
 		return (
@@ -82,8 +75,7 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 							</div>
 							<div className={styles.total_price}>
 								<div className={styles.price}>{totalPrice}$</div>
-								<div onClick={send}>buy</div>
-								{/*<Link className={styles.buy_btn} href={route('index')}>Buy</Link>*/}
+								<div onClick={send} className={styles.buy_btn}>Buy</div>
 							</div>
 						</>
 					)}
