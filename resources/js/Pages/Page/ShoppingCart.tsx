@@ -57,12 +57,10 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 				}));
 		}
 
-		const postData = {
-			products: selectedItems,
-			check: 1,
-		};
+		setData({
+			products: selectedItems.map(product => product.id)
+		});
 
-		setData(postData);
 		setShouldPost(true);
 	};
 
