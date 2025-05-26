@@ -35,6 +35,7 @@ Route::inertia('Page/About', 'Page/About')->name('about');
 Route::get('/search-result', [SearchResultController::class, 'index'])->name('index');
 
 Route::group([
+	'middleware' => ['auth', 'admin'],
 	'prefix' => 'admin',
 	'as'     => 'admin.'
 ], function (){
