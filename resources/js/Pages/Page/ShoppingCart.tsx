@@ -58,7 +58,10 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 		}
 
 		setData({
-			products: selectedItems.map(product => product.id)
+			products: selectedItems.map(product => ({
+				id: product.id,
+				quantity: product.quantity
+			}))
 		});
 
 		setShouldPost(true);
@@ -89,7 +92,7 @@ const ShoppingCart: FC = ({ totalPrice }) => {
 								))}
 							</div>
 							<div className={styles.total_price}>
-								<div className={styles.price}>{totalPrice}$</div>
+								<div className={styles.price}>Total amount: {totalPrice}$</div>
 								<div onClick={send} className={styles.buy_btn}>Buy</div>
 							</div>
 						</>
