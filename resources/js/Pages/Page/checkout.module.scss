@@ -8,7 +8,7 @@ $media-7: 1200px;
 
 .checkout_wrap {
 	display: grid;
-	grid-template-columns: 48% 48%;
+	grid-template-columns: 40% 56%;
 	gap: 4rem;
 	margin-top: 2.5rem;
 	margin-bottom: 4rem;
@@ -25,5 +25,11 @@ $media-7: 1200px;
 		button {
 			width: 24%;
 		}
+	}
+	.total_amount {
+		color: #dc3545;
+		display: block;
+		text-align: right;
+		margin: 1rem 0;
 	}
 }

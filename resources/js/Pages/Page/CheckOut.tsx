@@ -11,12 +11,13 @@ import InputError from '@/Components/_ui/InputError/InputError';
 import OrderItem from '@/Components/OrderItem/OrderItem';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 
-const CheckOut: FC = () => {
+const CheckOut: FC = ({ products }) => {
+
 	const { data, setData, post, errors } = useForm({
 		name: '',
 		phone: '',
 		email: '',
-		comment: ''
+		address: '',
 	});
 
 	const handleChange = e => setData(e.target.name, e.target.value);
@@ -41,33 +42,39 @@ const CheckOut: FC = () => {
 							<form onSubmit={formSubmitHandler}>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="name" value="Name"/>
-									<TextInput type="text" id="name" name="name" value={data.name} onChange={handleChange} />
-									{errors.name && <InputError message={errors.name} />}
+									<TextInput type="text" id="name" name="name" value={data.name} onChange={handleChange}/>
+									{errors.name && <InputError message={errors.name}/>}
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="phone" value="Phone"/>
 									<TextInput type="text" id="phone" name="phone" value={data.phone} onChange={handleChange}/>
-									{errors.phone && <InputError message={errors.phone} />}
+									{errors.phone && <InputError message={errors.phone}/>}
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="email" value="Email"/>
 									<TextInput type="text" id="email" name="email" value={data.email} onChange={handleChange}/>
-									{errors.email && <InputError message={errors.email} />}
+									{errors.email && <InputError message={errors.email}/>}
 								</div>
 								<div className={styles.form_field}>
-									<InputLabel htmlFor="comment" value="Comment"/>
-									<Textarea id="comment" name="comment" value={data.comment} onChange={handleChange}/>
-									{errors.comment && <InputError message={errors.comment} />}
+									<InputLabel htmlFor="address" value="Delivery address"/>
+									<Textarea id="address" name="address" value={data.address} onChange={handleChange}/>
+									{errors.address && <InputError message={errors.address}/>}
 								</div>
 
+								<strong className={styles.total_amount}>Total amount: 3$</strong>
 								<div className={styles.form_field_send}>
 									<PrimaryButton onClick={formSubmitHandler}>Send</PrimaryButton>
 								</div>
 							</form>
+
 						</div>
 						<div>
 							<h3>Product order</h3>
-							<OrderItem />
+							{
+								products.data.map((product, index) => (
+									<OrderItem product={product} key={product.id} index={index} />
+								))
+							}
 						</div>
 					</div>
 				</Container>
