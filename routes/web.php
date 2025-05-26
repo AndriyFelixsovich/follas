@@ -9,6 +9,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\SearchResultController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SuccessOrderController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ShoppingCartController;
@@ -42,6 +43,7 @@ Route::group([
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout.index');
+Route::get('/success-order', [SuccessOrderController::class, 'index'])->name('success.index');
 
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
