@@ -63,15 +63,21 @@ class ShoppingCartController extends Controller {
 
 	public function addToCartCheck(Request $request)
 		{
-			$productIds = $request->input('products');
+			$productData = collect($request->input('products'))->keyBy('id');
 			$products = Product::query()
-								->whereIn('id',$productIds)
-								->get();
+								->whereIn('id',$productData->keys())
+								->get()
+								->map(function ($product) use ($productData){
+									$product->quantity = $productData[$product->id]['quantity'];
+									return $product;
+								});
+			$totalPrice = $products->sum(function ($product){
+				return ($product->price ?? 0) * ($product->quantity ?? 0);
+			});
 
-			return Inertia::render('Page/CheckOut', [
-				'products' => ProductsAutoResource::collection($products),
-			]);
+			$request->session()->put('checkout_products', ProductsAutoResource::collection($products)->toArray($request));
+			$request->session()->put('checkout_total_price', $totalPrice);
+
+			return redirect()->route('checkout.index');
 		}
-
-
 }

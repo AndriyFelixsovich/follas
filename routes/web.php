@@ -41,7 +41,7 @@ Route::group([
 })->middleware(['auth', 'admin']);
 
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
-Route::get('/checkout', [CheckOutController::class, 'index'])->name('index');
+Route::get('/checkout', [CheckOutController::class, 'index'])->name('checkout.index');
 
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
