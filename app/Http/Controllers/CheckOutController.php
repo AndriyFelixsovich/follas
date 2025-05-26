@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductsAutoResource;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 

@@ -11,8 +11,10 @@ import InputError from '@/Components/_ui/InputError/InputError';
 import OrderItem from '@/Components/OrderItem/OrderItem';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 
-const CheckOut: FC = ({ products }) => {
+const CheckOut: FC = ({ totalPrice }) => {
 	const [error, setErrors] = useState({});
+	const page = usePage();
+	const products = page.props.product;
 
 	const { data, setData, post, errors } = useForm({
 		name: '',
@@ -89,7 +91,7 @@ const CheckOut: FC = ({ products }) => {
 									{error.address && <InputError message={error.address}/>}
 								</div>
 
-								<strong className={styles.total_amount}>Total amount: 3$</strong>
+								<strong className={styles.total_amount}>Total amount: {totalPrice} $</strong>
 								<div className={styles.form_field_send}>
 									<PrimaryButton onClick={formSubmitHandler}>Send</PrimaryButton>
 								</div>
@@ -99,8 +101,8 @@ const CheckOut: FC = ({ products }) => {
 						<div>
 							<h3>Product order</h3>
 							{
-								products.data.map((product, index) => (
-									<OrderItem product={product} key={product.id} index={index} />
+								products.map((product, index) => (
+									<OrderItem product={product} key={index} index={index} />
 								))
 							}
 						</div>
