@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Facades\DataTable;
 use App\Http\Resources\ProductsAutoResource;
 use App\Models\Product;
 use App\Models\ShoppingCart;
@@ -62,8 +63,14 @@ class ShoppingCartController extends Controller {
 
 	public function addToCartCheck(Request $request)
 		{
-			dd($request->all());
-			$this->cartService->cartCheck($request);
+			$productIds = $request->input('products');
+			$products = Product::query()
+								->whereIn('id',$productIds)
+								->get();
+
+			return Inertia::render('Page/CheckOut', [
+				'products' => ProductsAutoResource::collection($products),
+			]);
 		}
 
 
