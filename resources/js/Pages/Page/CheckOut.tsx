@@ -1,5 +1,5 @@
 import { Head,usePage, useForm } from '@inertiajs/react';
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from './checkout.module.scss';
 import Container from '@/Components/_ui/Container/Container';
 import MainLayout from "@/Layouts/MainLayout";
@@ -12,6 +12,7 @@ import OrderItem from '@/Components/OrderItem/OrderItem';
 import PrimaryButton from '@/Components/_ui/PrimaryButton/PrimaryButton';
 
 const CheckOut: FC = ({ products }) => {
+	const [error, setErrors] = useState({});
 
 	const { data, setData, post, errors } = useForm({
 		name: '',
@@ -24,9 +25,36 @@ const CheckOut: FC = ({ products }) => {
 
 	const formSubmitHandler = e => {
 		e.preventDefault();
-		// post('/checkout');
+
+		const newErrors = {};
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const phoneRegex = /^\+\d{10,15}$/;
+
+		if (!data.name.trim()) newErrors.name = 'Name is required';
+
+		if (!data.phone.trim()) {
+			newErrors.phone = 'Phone is required';
+		} else if (!phoneRegex.test(data.phone)) {
+			newErrors.phone = 'Phone must start with "+" and contain only digits';
+		}
+
+		if (!data.email.trim()) {
+			newErrors.email = 'Email is required';
+		} else if (!emailRegex.test(data.email)) {
+			newErrors.email = 'Invalid email format';
+		}
+
+		if (!data.address.trim()) newErrors.address = 'Address is required';
+
+		if (Object.keys(newErrors).length > 0) {
+			setErrors(newErrors);
+			return;
+		}
+
+		// post('/test', data);
 		console.log(data)
 	};
+
 
 	return (
 		<MainLayout>
@@ -43,22 +71,22 @@ const CheckOut: FC = ({ products }) => {
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="name" value="Name"/>
 									<TextInput type="text" id="name" name="name" value={data.name} onChange={handleChange}/>
-									{errors.name && <InputError message={errors.name}/>}
+									{error.name && <InputError message={error.name}/>}
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="phone" value="Phone"/>
 									<TextInput type="text" id="phone" name="phone" value={data.phone} onChange={handleChange}/>
-									{errors.phone && <InputError message={errors.phone}/>}
+									{error.phone && <InputError message={error.phone}/>}
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="email" value="Email"/>
-									<TextInput type="text" id="email" name="email" value={data.email} onChange={handleChange}/>
-									{errors.email && <InputError message={errors.email}/>}
+									<TextInput type="email" id="email" name="email" value={data.email} onChange={handleChange}/>
+									{error.email && <InputError message={error.email}/>}
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="address" value="Delivery address"/>
 									<Textarea id="address" name="address" value={data.address} onChange={handleChange}/>
-									{errors.address && <InputError message={errors.address}/>}
+									{error.address && <InputError message={error.address}/>}
 								</div>
 
 								<strong className={styles.total_amount}>Total amount: 3$</strong>
