@@ -15,7 +15,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, className }) => {
 				<TopBar/>
 				<div className={styles.cols}>
 					<Sidebar />
-					{children}
+					<div className={styles.wrap}>
+						{children}
+					</div>
 				</div>
 			</div>
 		</>

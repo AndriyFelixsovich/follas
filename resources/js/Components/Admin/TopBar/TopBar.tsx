@@ -6,6 +6,9 @@ import logo from '../../../../img/follas_logo.svg';
 import styles from './style.module.scss';
 
 const TopBar: FC = () => {
+	const page = usePage();
+	const user = page.props.auth.user;
+
 	const logout = () => {
 		console.log('log')
 	}
@@ -13,13 +16,13 @@ const TopBar: FC = () => {
 	return (
 		<div className={styles.topbar}>
 			<div className={styles.logo}>
-				<Link href="/">
+				<Link href="/admin">
 					<Image src={logo} alt={logo} width={'100'} height={'100'} />
 				</Link>
 			</div>
 			<div className={styles.info}>
 				<ul className={styles.list}>
-					<li>Username</li>
+					<li>{user.name}</li>
 					<li><a href="/" target="_blank">Store Follas</a></li>
 					<li><PrimaryButton onClick={logout}>Log out</PrimaryButton></li>
 				</ul>
