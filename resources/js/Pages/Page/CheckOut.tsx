@@ -77,7 +77,7 @@ const CheckOut: FC = ({ totalPrice }) => {
 								</div>
 								<div className={styles.form_field}>
 									<InputLabel htmlFor="phone" value="Phone"/>
-									<TextInput type="text" id="phone" name="phone" value={data.phone} onChange={handleChange}/>
+									<TextInput type="text" id="phone" name="phone"  placeholder="+XXXXXXXXXXXX" value={data.phone} onChange={handleChange}/>
 									{error.phone && <InputError message={error.phone}/>}
 								</div>
 								<div className={styles.form_field}>

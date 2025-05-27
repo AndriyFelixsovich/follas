@@ -20,13 +20,16 @@ $media-7: 1200px;
 	}
 
 	.content_bl {
-		margin: .7rem 0 0 2rem;
+		margin: .7rem 0 0 1rem;
+		div {
+			margin: .7rem 0;
+		}
 	}
 
 	.button {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
+		justify-content: space-between;
 		font-size: 1.2rem;
 		cursor: pointer;
 		font-weight: 500;

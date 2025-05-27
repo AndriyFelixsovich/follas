@@ -5,9 +5,23 @@ import styles from './style.module.scss';
 
 const Sidebar: FC = () => {
 
+	const sidebarLinks = [
+		{ id: 1, title: 'Pages', route: '/admin/pages' },
+		{ id: 2, title: 'Categories', route: '/admin/categories'},
+		{ id: 3, title: 'Products', route: '/admin/products' },
+	]
+
 	return (
 		<div className={styles.sidebar}>
-			<SidebarItem />
+			{
+				sidebarLinks.map((link, index) => (
+					<SidebarItem
+						key={link.id + index}
+						title={link.title}
+						route={link.route}
+					/>
+				))
+			}
 		</div>
 	);
 };

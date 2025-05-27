@@ -25,6 +25,7 @@
 		"ziggy-js": "^2.5.2"
 	},
 	"dependencies": {
-		"@heroicons/react": "^2.2.0"
+		"@heroicons/react": "^2.2.0",
+		"@react-input/mask": "^2.0.4"
 	}
 }
