@@ -2,13 +2,14 @@ import { Head, usePage, useForm, Link } from '@inertiajs/react';
 import { FC } from "react";
 import styles from './style.module.scss';
 
-const Tabs: FC = () => {
+const Controls: FC = () => {
 
 	return (
-		<div>
-			tabs
-		</div>
+		<ul className={styles.wrap}>
+			<li>All products</li>
+			<li>Add product</li>
+		</ul>
 	);
 };
 
-export default Tabs;
+export default Controls;
