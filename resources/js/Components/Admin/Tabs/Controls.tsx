@@ -1,13 +1,18 @@
-import { Head, usePage, useForm, Link } from '@inertiajs/react';
 import { FC } from "react";
 import styles from './style.module.scss';
 
-const Controls: FC = () => {
+interface IControlsProps {
+	setActiveTab: (tab: string) => void;
+}
 
+const Controls: FC<IControlsProps> = ({ setActiveTab, tabs }) => {
 	return (
 		<ul className={styles.wrap}>
-			<li>All products</li>
-			<li>Add product</li>
+			{
+				tabs.map((tab, index) => (
+					<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>{tab.title}</li>
+				))
+			}
 		</ul>
 	);
 };
