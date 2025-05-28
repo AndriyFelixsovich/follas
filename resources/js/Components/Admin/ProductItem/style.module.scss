@@ -1,0 +1,19 @@
+$media-1: 575px;
+$media-2: 767px;
+$media-3: 992px;
+$media-4: 1024px;
+$media-5: 1366px;
+$media-6: 1400px;
+$media-7: 1200px;
+
+.product_item {
+	display: grid;
+	grid-template-columns: repeat(6, 15.7%);
+	gap: 1rem;
+	align-items: center;
+	border-bottom: 1px solid #e1e7f2;
+	padding: 1rem;
+	div {
+		font-weight: 500;
+	}
+}
