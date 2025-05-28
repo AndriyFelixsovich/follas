@@ -27,6 +27,7 @@ $media-7: 450px;
 		grid-template-columns: 100%;
 		gap: 1rem;
 		align-items: center;
+		word-break: break-all;
 		@media (min-width: $media-7) {
 			grid-template-columns: repeat(3, 32.4%);
 		}

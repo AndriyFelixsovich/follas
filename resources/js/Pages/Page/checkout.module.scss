@@ -8,10 +8,31 @@ $media-7: 1200px;
 
 .checkout_wrap {
 	display: grid;
-	grid-template-columns: 40% 56%;
-	gap: 4rem;
+	grid-template-columns: 100%;
+	gap: 1rem;
 	margin-top: 2.5rem;
 	margin-bottom: 4rem;
+	@media (min-width: $media-4) {
+		grid-template-columns: 40% 56%;
+		gap: 2rem;
+		margin-top: 2.5rem;
+		margin-bottom: 4rem;
+	}
+	@media (min-width: $media-6) {
+		gap: 4rem;
+	}
+	.info_col {
+		order: 2;
+		@media (min-width: $media-4) {
+			order: 1;
+		}
+	}
+	.order_col {
+		order: 1;
+		@media (min-width: $media-4) {
+			order: 2;
+		}
+	}
 	h3 {
 		background: linear-gradient(85.66deg, #cdd5e1 9.39%, rgba(205, 213, 225, 0) 96.81%, rgba(205, 213, 225, 0) 96.81%);
 		padding: 1rem;

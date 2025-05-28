@@ -66,7 +66,7 @@ const CheckOut: FC = ({ totalPrice }) => {
 				<Container>
 					<h1>Order</h1>
 					<div className={styles.checkout_wrap}>
-						<div>
+						<div className={styles.info_col}>
 							<h3>Contact information</h3>
 
 							<form onSubmit={formSubmitHandler}>
@@ -98,7 +98,7 @@ const CheckOut: FC = ({ totalPrice }) => {
 							</form>
 
 						</div>
-						<div>
+						<div className={styles.order_col}>
 							<h3>Product order</h3>
 							{
 								products.map((product, index) => (
