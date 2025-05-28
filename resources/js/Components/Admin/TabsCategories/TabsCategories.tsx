@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import Controls from "@/Components/Admin/Tabs/Controls";
-import Content from "@/Components/Admin/Tabs/Content";
+import Controls from "@/Components/Admin/TabsCategories/Controls";
+import Content from "@/Components/Admin/TabsCategories/Content";
 import styles from './style.module.scss';
 
 const Tabs: FC = ({ tabs, products }) => {

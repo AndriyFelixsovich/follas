@@ -1,7 +1,6 @@
 import { Head, usePage, useForm } from '@inertiajs/react';
 import { FC } from "react";
-import Tabs from "@/Components/Admin/Tabs/Tabs";
-import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
+import TabsProduct from "@/Components/Admin/TabsProduct/TabsProduct";
 import AdminLayout from "@/Layouts/AdminLayout";
 import styles from "@/Layouts/guest_layout.module.scss";
 
@@ -15,15 +14,8 @@ const Products: FC = ({ products }) => {
 	return (
 		<AdminLayout>
 			<Head title="Products"/>
-
 				<h3>Products</h3>
-				<Tabs tabs={tabs} products={products}/>
-
-			{
-				products.data.map((product, index) => (
-					<ProductItem key={product.id} index={index} product={product} />
-				))
-			}
+				<TabsProduct tabs={tabs} products={products}/>
 
 		</AdminLayout>
 	);
