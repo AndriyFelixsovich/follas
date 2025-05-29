@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import styles from './style.module.scss';
 import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
+import AddProductForm from "@/Components/Admin/AddProductForm/AddProductForm";
 import Pagination from '@/Components/Pagination/Pagination';
 
 interface IContent {
@@ -36,7 +37,7 @@ const Content: FC<IContent> = ({ activeTab, products }) => {
 			<div>
 				{
 					activeTab === 2 &&
-					<div>new product.</div>
+					<AddProductForm />
 				}
 			</div>
 		</div>

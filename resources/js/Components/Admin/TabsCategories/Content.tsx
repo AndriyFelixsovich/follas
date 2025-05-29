@@ -10,8 +10,8 @@ const Content: FC<IContent> = ({ activeTab, products }) => {
 
 	return (
 		<div className={styles.content}>
-			{activeTab === 1 && <div>all products.</div>}
-			{activeTab === 2 && <div>new product.</div>}
+			{activeTab === 1 && <div>all Cat.</div>}
+			{activeTab === 2 && <div>new Cat.</div>}
 		</div>
 	);
 };
