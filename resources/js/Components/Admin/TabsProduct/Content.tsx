@@ -23,9 +23,10 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 	const [currentPage, setCurrentPage] = useState<string | null>(null);
 	const [showEditForm, setShowEditForm] = useState(false);
 
-	const editProduct = () => {
+	const editProduct = (product) => {
 		setShowEditForm(true);
-		setShowTab(true)
+		setShowTab(true);
+		let productSelected: any = product;
 	}
 
 	return (
@@ -38,7 +39,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 								<SearchBarInput placeholder="Search"/>
 							</div>
 							{products.data.map((product, index) => (
-								<ProductItem key={product.id} index={index} product={product} editProduct={editProduct}/>
+								<ProductItem key={product.id} index={index} product={product} editProduct={() => editProduct(product)} />
 							))}
 						</>
 					)
@@ -59,7 +60,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 			<div>
 				{activeTab === 3 && showEditForm && (
 					<>
-						<ProductEditForm />
+						<ProductEditForm products={products} productId={editProduct} />
 					</>
 				)}
 			</div>

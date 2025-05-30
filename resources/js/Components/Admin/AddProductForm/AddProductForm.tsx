@@ -35,7 +35,6 @@ const AddProductForm: FC = () => {
 	};
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
 
 		const isFormValid =
 			data.name.trim() !== '' &&
@@ -71,7 +70,7 @@ const AddProductForm: FC = () => {
 					</div>
 				)}
 				<div className={styles.form_field_bl}>
-					<InputLabel htmlFor="image" value="Image"/>
+					<InputLabel htmlFor="image" value="Image" />
 					<TextInput
 						id="image"
 						type="file"
