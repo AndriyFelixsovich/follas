@@ -14,6 +14,8 @@ interface FormData {
 	quantity: string;
 }
 const AddProductForm: FC = () => {
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
+
 	const { data, setData, post, processing, errors, reset } = useForm<FormData>({
 		image: null,
 		name: '',
@@ -22,6 +24,14 @@ const AddProductForm: FC = () => {
 		price: '',
 		quantity: ''
 	});
+
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (file) {
+			setData('image', file);
+			setImagePreview(URL.createObjectURL(file));
+		}
+	};
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -37,13 +47,18 @@ const AddProductForm: FC = () => {
 	return (
 		<div className={styles.product_item}>
 			<form onSubmit={sendForm}>
+				{imagePreview && (
+					<div>
+						<img src={imagePreview} alt="preview" className={styles.img_preview} />
+					</div>
+				)}
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="image" value="Image"/>
 					<TextInput
 						id="image"
 						type="file"
 						name="image"
-						onChange={(e) => setData('image', e.target.files[0])}
+						onChange={handleImageChange}
 					/>
 				</div>
 				<div className={styles.form_field_bl}>

@@ -17,13 +17,10 @@ interface IProductData {
 
 interface IProduct {
 	product: IProductData[];
+	editProduct: () => void;
 }
 
-const ProductItem: FC<IProduct> = ({ product }) => {
-
-	const editProduct = () => {
-		console.log('edit')
-	}
+const ProductItem: FC<IProduct> = ({ product, editProduct }) => {
 
 	const removeProduct = () => {
 		console.log('remove')

@@ -14,7 +14,6 @@ interface ICatalog {
 	category: IProductCategory[];
 }
 
-console.log()
 const Catalog: FC<ICatalog> = ({ category }) => {
 	return (
 		<MainLayout>

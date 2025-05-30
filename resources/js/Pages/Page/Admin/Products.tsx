@@ -9,6 +9,7 @@ const Products: FC = ({ products }) => {
 	const tabs = [
 		{id: 1, title: 'All products'},
 		{id: 2, title: 'Add product'},
+		{id: 3, title: 'Edit product'},
 	]
 
 	return (
@@ -16,7 +17,6 @@ const Products: FC = ({ products }) => {
 			<Head title="Products"/>
 				<h3>Products</h3>
 				<TabsProduct tabs={tabs} products={products}/>
-
 		</AdminLayout>
 	);
 }
