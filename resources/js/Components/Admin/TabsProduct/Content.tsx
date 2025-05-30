@@ -4,6 +4,7 @@ import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
 import AddProductForm from "@/Components/Admin/AddProductForm/AddProductForm";
 import Pagination from '@/Components/Pagination/Pagination';
 import SearchBarInput from '@/Components/SearchBarInput/SearchBarInput';
+import ProductEditForm from '@/Components/Admin/ProductEditForm/ProductEditForm';
 
 interface IContent {
 	activeTab: number;
@@ -58,7 +59,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 			<div>
 				{activeTab === 3 && showEditForm && (
 					<>
-						<h3>Edit Product</h3>
+						<ProductEditForm />
 					</>
 				)}
 			</div>

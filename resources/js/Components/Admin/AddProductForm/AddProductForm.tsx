@@ -15,8 +15,9 @@ interface FormData {
 }
 const AddProductForm: FC = () => {
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [error, setError] = useState(false)
 
-	const { data, setData, post, processing, errors, reset } = useForm<FormData>({
+	const { data, setData, post } = useForm<FormData>({
 		image: null,
 		name: '',
 		description: '',
@@ -35,7 +36,24 @@ const AddProductForm: FC = () => {
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log(data)
+
+		const isFormValid =
+			data.name.trim() !== '' &&
+			data.description.trim() !== '' &&
+			data.origin_number.trim() !== '' &&
+			data.price.trim() !== '' &&
+			data.quantity.trim() !== '' &&
+			data.image !== null;
+
+		if (!isFormValid) {
+			setError(true);
+			console.log('Form has empty fields', data);
+			return;
+		}
+
+		setError(false);
+
+		console.log('Success', data);
 
 		// post('/test', {
 		// 	forceFormData: true,
@@ -60,6 +78,7 @@ const AddProductForm: FC = () => {
 						name="image"
 						onChange={handleImageChange}
 					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="name" value="Name"/>
@@ -68,7 +87,9 @@ const AddProductForm: FC = () => {
 						type="text"
 						name="name"
 						value={data.name}
-						onChange={(e) => setData('name', e.target.value)}/>
+						onChange={(e) => setData('name', e.target.value)}
+					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="description" value="Description"/>
@@ -77,7 +98,9 @@ const AddProductForm: FC = () => {
 						type="text"
 						name="description"
 						value={data.description}
-						onChange={(e) => setData('description', e.target.value)}/>
+						onChange={(e) => setData('description', e.target.value)}
+					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="origin" value="Origin number" />
@@ -86,7 +109,9 @@ const AddProductForm: FC = () => {
 						type="text"
 						name="origin"
 						value={data.origin_number}
-						onChange={(e) => setData('origin_number', e.target.value)}/>
+						onChange={(e) => setData('origin_number', e.target.value)}
+					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="price" value="Price"/>
@@ -95,7 +120,9 @@ const AddProductForm: FC = () => {
 						type="text"
 						name="price"
 						value={data.price}
-						onChange={(e) => setData('price', e.target.value)} />
+						onChange={(e) => setData('price', e.target.value)}
+					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<InputLabel htmlFor="quantity" value="Quantity" />
@@ -104,7 +131,9 @@ const AddProductForm: FC = () => {
 						type="text"
 						name="quantity"
 						value={data.quantity}
-						onChange={(e) => setData('quantity', e.target.value)}/>
+						onChange={(e) => setData('quantity', e.target.value)}
+					/>
+					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.send_button}>
 					<SecondButton onClick={sendForm}>Add</SecondButton>
