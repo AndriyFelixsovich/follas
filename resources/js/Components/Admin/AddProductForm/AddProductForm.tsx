@@ -5,6 +5,7 @@ import InputLabel from "@/Components/_ui/InputLabel/InputLabel";
 import TextInput from "@/Components/_ui/TextInput/TextInput";
 import SecondButton from "@/Components/_ui/SecondButton/SecondButton";
 import InputError from '@/Components/_ui/InputError/InputError';
+import Select from '@/Components/Admin/Select/Select';
 
 interface FormData {
 	name: string;
@@ -35,7 +36,6 @@ const AddProductForm: FC = () => {
 	};
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
-
 		const isFormValid =
 			data.name.trim() !== '' &&
 			data.description.trim() !== '' &&
@@ -54,11 +54,11 @@ const AddProductForm: FC = () => {
 
 		console.log('Success', data);
 
-		// post('/test', {
-		// 	forceFormData: true,
-		// 	onSuccess: () => console.log('Form submitted successfully'),
-		// 	onFinish: () => reset('image', 'name', 'description', 'origin_number', 'price', 'quantity'),
-		// });
+		get(route('admin.products.create'), {
+			forceFormData: true,
+			onSuccess: () => console.log('Form submitted successfully'),
+			onFinish: () => reset('image', 'name', 'description', 'origin_number', 'price', 'quantity'),
+		});
 	}
 
 	return (
@@ -66,17 +66,29 @@ const AddProductForm: FC = () => {
 			<form onSubmit={sendForm}>
 				{imagePreview && (
 					<div>
-						<img src={imagePreview} alt="preview" className={styles.img_preview} />
+						<img src={imagePreview} alt="preview" className={styles.img_preview}/>
 					</div>
 				)}
 				<div className={styles.form_field_bl}>
-					<InputLabel htmlFor="image" value="Image" />
+					<InputLabel htmlFor="image" value="Image"/>
 					<TextInput
 						id="image"
 						type="file"
 						name="image"
 						onChange={handleImageChange}
 					/>
+					{error && <InputError message="The field is required"/>}
+				</div>
+				<div className={styles.form_field_bl}>
+					<Select htmlFor="name" value="Марка" message="Brand"/>
+					{error && <InputError message="The field is required"/>}
+				</div>
+				<div className={styles.form_field_bl}>
+					<Select htmlFor="name" value="Марка" message="Modal"/>
+					{error && <InputError message="The field is required"/>}
+				</div>
+				<div className={styles.form_field_bl}>
+					<Select htmlFor="name" value="Марка" message="Year"/>
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
@@ -102,7 +114,7 @@ const AddProductForm: FC = () => {
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
-					<InputLabel htmlFor="origin" value="Origin number" />
+					<InputLabel htmlFor="origin" value="Origin number"/>
 					<TextInput
 						id="origin"
 						type="text"
@@ -124,7 +136,7 @@ const AddProductForm: FC = () => {
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
-					<InputLabel htmlFor="quantity" value="Quantity" />
+					<InputLabel htmlFor="quantity" value="Quantity"/>
 					<TextInput
 						id="quantity"
 						type="text"
