@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
+import { usePage, useForm, Link } from '@inertiajs/react';
 import styles from './style.module.scss';
 import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
 import AddProductForm from "@/Components/Admin/AddProductForm/AddProductForm";
@@ -22,12 +23,27 @@ interface IContent {
 const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 	const [currentPage, setCurrentPage] = useState<string | null>(null);
 	const [showEditForm, setShowEditForm] = useState(false);
-
+	const { get } = useForm();
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
 		let productSelected: any = product;
 	}
+
+	const tab2 = () => {
+		if (activeTab === 2) {
+			get(route('admin.products.create'), {
+				forceFormData: true,
+				onSuccess: () => console.log('Form submitted successfully'),
+			});
+		}
+	}
+
+	useEffect(() => {
+		if (activeTab === 2) {
+			tab2();
+		}
+	}, [activeTab]);
 
 	return (
 		<div className={styles.content}>
@@ -54,7 +70,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 			<div>
 				{
 					activeTab === 2 &&
-					<AddProductForm/>
+					<AddProductForm />
 				}
 			</div>
 			<div>
