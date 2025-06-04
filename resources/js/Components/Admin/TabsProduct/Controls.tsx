@@ -15,7 +15,10 @@ const Controls: FC<IControlsProps> = ({ setActiveTab, tabs, showTab }) => {
 				.filter(tab => tab.id !== 3 || showTab)
 				.map((tab, index) => (
 				<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
-					<Link href={route(tab.href)} key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
+					<Link href={route(tab.href)} key={tab.id + index} onClick={() => setActiveTab(tab.id)}
+					      preserveScroll
+					      preserveState
+					>
 						{tab.title}
 					</Link>
 				</li>
