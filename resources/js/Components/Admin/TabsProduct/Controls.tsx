@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { usePage, useForm, Link } from '@inertiajs/react';
 import styles from './style.module.scss';
 
 interface IControlsProps {
@@ -13,12 +14,15 @@ const Controls: FC<IControlsProps> = ({ setActiveTab, tabs, showTab }) => {
 			{tabs
 				.filter(tab => tab.id !== 3 || showTab)
 				.map((tab, index) => (
-					<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
+				<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
+					<Link href={route(tab.href)} key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
 						{tab.title}
-					</li>
-				))}
-		</ul>
-	);
+					</Link>
+				</li>
+	)
+)}
+</ul>
+);
 };
 
 export default Controls;

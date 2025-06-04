@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { usePage, useForm, Link } from '@inertiajs/react';
 import styles from './style.module.scss';
+import { route } from 'ziggy-js';
 import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
 import AddProductForm from "@/Components/Admin/AddProductForm/AddProductForm";
 import Pagination from '@/Components/Pagination/Pagination';
@@ -20,30 +21,15 @@ interface IContent {
 	};
 }
 
-const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
+const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab }) => {
 	const [currentPage, setCurrentPage] = useState<string | null>(null);
 	const [showEditForm, setShowEditForm] = useState(false);
-	const { get } = useForm();
+
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
 		let productSelected: any = product;
 	}
-
-	const tab2 = () => {
-		if (activeTab === 2) {
-			get(route('admin.products.create'), {
-				forceFormData: true,
-				onSuccess: () => console.log('Form submitted successfully'),
-			});
-		}
-	}
-
-	useEffect(() => {
-		if (activeTab === 2) {
-			tab2();
-		}
-	}, [activeTab]);
 
 	return (
 		<div className={styles.content}>
@@ -54,13 +40,13 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab }) => {
 							<div className={styles.search}>
 								<SearchBarInput placeholder="Search"/>
 							</div>
-							{products.data.map((product, index) => (
+							{products?.data?.map((product, index) => (
 								<ProductItem key={product.id} index={index} product={product} editProduct={() => editProduct(product)} />
 							))}
 						</>
 					)
 				}
-				{activeTab === 1 && (
+				{activeTab === 1 && products?.links && (
 					<Pagination
 						links={products.links}
 						setCurrentPage={setCurrentPage}

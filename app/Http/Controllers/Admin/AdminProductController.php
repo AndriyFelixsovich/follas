@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\MarkaAuto;
+use App\Models\ModelAuto;
+use App\Models\ModelAutoYear;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,6 +21,7 @@ class AdminProductController extends Controller
 
 			return Inertia::render('Page/Admin/Products', [
 				'products' =>$products,
+				'selectedTab2' => '2'
 			]);
 
     }
@@ -27,7 +31,16 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        //
+	    $markas =  MarkaAuto::all();
+	    $models = ModelAuto::all();
+	    $years =  ModelAutoYear::all();
+
+	    return Inertia::render('Page/Admin/Products', [
+		    'markas' => $markas,
+		    'models' => $models,
+		    'years' => $years,
+		    'selectedTab2' => '2'
+	    ]);
     }
 
     /**

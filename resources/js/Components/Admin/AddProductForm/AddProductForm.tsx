@@ -53,12 +53,6 @@ const AddProductForm: FC = () => {
 		setError(false);
 
 		console.log('Success', data);
-
-		get(route('admin.products.create'), {
-			forceFormData: true,
-			onSuccess: () => console.log('Form submitted successfully'),
-			onFinish: () => reset('image', 'name', 'description', 'origin_number', 'price', 'quantity'),
-		});
 	}
 
 	return (
