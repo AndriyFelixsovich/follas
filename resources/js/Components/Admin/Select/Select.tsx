@@ -25,7 +25,7 @@ const Select: FC<ISelect> = ({ htmlFor, message, variations = [],  value, onChan
 					<option value="">Select option</option>
 					{variations.map(option => (
 						<option key={option.id} value={option.slug}>
-							{option.name}
+							{option.name || option.year_range}
 						</option>
 					))}
 				</select>
