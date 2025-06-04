@@ -16,7 +16,12 @@ interface FormData {
 }
 const AddProductForm: FC = () => {
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
-	const [error, setError] = useState(false)
+	const [error, setError] = useState(false);
+
+	const page= usePage();
+	const markas = page.props.markas;
+	const models = page.props.models;
+	const years = page.props.years;
 
 	const { data, setData, post } = useForm<FormData>({
 		image: null,
@@ -24,7 +29,10 @@ const AddProductForm: FC = () => {
 		description: '',
 		origin_number: '',
 		price: '',
-		quantity: ''
+		quantity: '',
+		brand: '',
+		model: '',
+		year: ''
 	});
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +44,7 @@ const AddProductForm: FC = () => {
 	};
 
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
 		const isFormValid =
 			data.name.trim() !== '' &&
 			data.description.trim() !== '' &&
@@ -52,7 +61,7 @@ const AddProductForm: FC = () => {
 
 		setError(false);
 
-		console.log('Success', data);
+		console.log(data)
 	}
 
 	return (
@@ -74,15 +83,33 @@ const AddProductForm: FC = () => {
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
-					<Select htmlFor="name" value="Марка" message="Brand"/>
+					<Select
+						htmlFor="Brand"
+						message="Brand"
+						variations={markas}
+						value={data.brand}
+						onChange={(e) => setData('brand', e.target.value)}
+					/>
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
-					<Select htmlFor="name" value="Марка" message="Modal"/>
+					<Select
+						htmlFor="Modal"
+						message="Modal"
+						variations={models}
+						value={data.model}
+						onChange={(e) => setData('model', e.target.value)}
+					/>
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
-					<Select htmlFor="name" value="Марка" message="Year"/>
+					<Select
+						htmlFor="Year"
+						message="Year"
+						variations={years}
+						value={data.year}
+						onChange={(e) => setData('year', e.target.value)}
+					/>
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
