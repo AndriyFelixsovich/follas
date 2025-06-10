@@ -64,6 +64,9 @@ const AddProductForm: FC = () => {
 		console.log(data)
 	}
 
+	const filteredModels = Array.isArray(models) ? models.filter((model: any) => model.category_id === Number(data.brand)) : [];
+
+
 	return (
 		<div className={styles.product_item}>
 			<form onSubmit={sendForm}>
@@ -86,19 +89,19 @@ const AddProductForm: FC = () => {
 					<Select
 						htmlFor="Brand"
 						message="Brand"
-						variations={markas}
 						value={data.brand}
-						onChange={(e) => setData('brand', e.target.value)}
+						variations={markas}
+						onChange={(e) => setData('brand', (e.target.value))}
 					/>
 					{error && <InputError message="The field is required"/>}
 				</div>
 				<div className={styles.form_field_bl}>
 					<Select
-						htmlFor="Modal"
-						message="Modal"
-						variations={models}
+						htmlFor="Model"
+						message="Model"
 						value={data.model}
-						onChange={(e) => setData('model', e.target.value)}
+						variations={filteredModels}
+						onChange={(e) => setData('model', (e.target.value))}
 					/>
 					{error && <InputError message="The field is required"/>}
 				</div>
@@ -106,9 +109,9 @@ const AddProductForm: FC = () => {
 					<Select
 						htmlFor="Year"
 						message="Year"
-						variations={years}
 						value={data.year}
-						onChange={(e) => setData('year', e.target.value)}
+						variations={years}
+						onChange={(e) => setData('year', (e.target.value))}
 					/>
 					{error && <InputError message="The field is required"/>}
 				</div>

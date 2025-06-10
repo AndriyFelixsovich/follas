@@ -19,17 +19,18 @@ interface ISelect {
 const Select: FC<ISelect> = ({ htmlFor, message, variations = [],  value, onChange }) => {
 
 	return (
-			<>
-				<InputLabel htmlFor={htmlFor} value={message} />
-				<select name={htmlFor} id={htmlFor} className={styles.select} value={value} onChange={onChange}>
-					<option value="">Select option</option>
-					{variations.map(option => (
-						<option key={option.id} value={option.slug}>
-							{option.name || option.year_range}
-						</option>
-					))}
-				</select>
-			</>
+		<>
+			<InputLabel htmlFor={htmlFor} value={message}/>
+			<select value={value} onChange={onChange} id={htmlFor} className={styles.select}>
+				<option value="">Select...</option>
+				{variations.map((item) => (
+					<option key={item.id} value={item.id}>
+						{item.name || item.year_range}
+					</option>
+				))}
+			</select>
+
+		</>
 	);
 };
 
