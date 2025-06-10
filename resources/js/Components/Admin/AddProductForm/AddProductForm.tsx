@@ -61,7 +61,15 @@ const AddProductForm: FC = () => {
 
 		setError(false);
 
-		console.log(data)
+		post('admin.products.store', {
+			preserveScroll: true,
+			onSuccess: () => {
+				setData(data);
+			},
+			onError: (errors) => {
+				console.error('Validation errors:', errors);
+			}
+		});
 	}
 
 	const filteredModels = Array.isArray(models) ? models.filter((model: any) => model.category_id === Number(data.brand)) : [];
