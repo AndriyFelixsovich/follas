@@ -110,7 +110,30 @@ echo "<pre>"; var_dump('Потрібно доробити зберігання �
      */
     public function edit(Product $product)
     {
-        //
+			$markas =  MarkaAuto::all();
+			$models = ModelAuto::all();
+
+			$years = ModelAutoYear::with('getYearByModels')
+				->get()
+				->map(function ($year) {
+					// Додаємо поле 'model_id', яке містить унікальні ID пов'язаних моделей
+					$year->model_id = $year->getYearByModels->pluck('id')->unique()->values()->toArray();
+					return $year;
+				});
+
+			$product = Product::with(['markaAutos', 'modelAutos', 'modelYears'])->find($product->id);
+
+			$product->marka_ids = $product->markaAutos->pluck('id');
+			$product->model_ids = $product->modelAutos->pluck('id');
+			$product->year_ids  = $product->modelYears->pluck('id');
+
+			return Inertia::render('Page/Admin/Products', [
+				'markas' => $markas,
+				'models' => $models,
+				'years' => $years,
+				'product' => $product
+			]);
+
     }
 
     /**

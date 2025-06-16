@@ -38,4 +38,9 @@ class Product extends Model
 		return $this->belongsToMany(ModelAutoYear::class, 'model_auto_years');
 	}
 
+	public function modelYears()
+	{
+		return $this->belongsToMany(ModelAutoYear::class, 'product_relation_model_auto_year', 'product_id', 'model_auto_year_id');
+	}
+
 }

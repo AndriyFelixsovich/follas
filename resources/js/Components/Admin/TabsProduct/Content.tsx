@@ -29,7 +29,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab })
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
-		const path = `/posts/${product.id}/edit`;
+		const path = `/admin/products/${product.id}/edit`;
 		router.visit(path);
 	}
 
