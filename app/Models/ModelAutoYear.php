@@ -11,6 +11,7 @@ class ModelAutoYear extends Model
 
 	protected $table = 'model_auto_years';
 	protected $fillable = ['model_auto_id', 'year_range'];
+	protected $hidden = ['getYearByModels'];
 
 	public function modelAuto()
 	{
@@ -20,5 +21,18 @@ class ModelAutoYear extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'product_model_auto_year');
+	}
+
+	/**
+	 * Отримати моделі автомобілів, пов'язані з роком.
+	 */
+	public function getYearByModels()
+	{
+		return $this->belongsToMany(
+			ModelAuto::class,
+			'product_relation_model_auto_year',
+			'model_auto_year_id',
+			'model_auto_id'
+		);
 	}
 }

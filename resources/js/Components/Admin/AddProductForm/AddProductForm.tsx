@@ -61,7 +61,7 @@ const AddProductForm: FC = () => {
 
 		setError(false);
 
-		post('admin.products.store', {
+		post(route('admin.products.store'), {
 			preserveScroll: true,
 			onSuccess: () => {
 				setData(data);
