@@ -8,8 +8,8 @@ const Products: FC = ({ products, selectedTab2 }) => {
 
 	const tabs = [
 		{id: 1, title: 'All products', href: 'admin.products.index'},
-		{id: 2, title: 'Add product', href: 'admin.products.create'},
-		{id: 3, title: 'Edit product'},
+		{id: 2, title: 'Add product',  href: 'admin.products.create'},
+		{id: 3, title: 'Edit product', href: 'admin.products.edit'},
 	]
 
 	return (

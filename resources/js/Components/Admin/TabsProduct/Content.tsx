@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { usePage, useForm, Link } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import styles from './style.module.scss';
 import { route } from 'ziggy-js';
 import ProductItem from "@/Components/Admin/ProductItem/ProductItem";
@@ -28,7 +29,8 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab })
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
-		// let productSelected: any = product;
+		router.visit(route('posts.edit', product.id));
+		console.log(product.id)
 	}
 
 	return (
