@@ -29,8 +29,8 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab })
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
-		router.visit(route('posts.edit', product.id));
-		console.log(product.id)
+		const path = `/posts/${product.id}/edit`;
+		router.visit(path);
 	}
 
 	return (
