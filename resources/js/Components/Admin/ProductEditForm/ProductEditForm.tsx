@@ -1,9 +1,10 @@
 import { Head, usePage, useForm, Link } from '@inertiajs/react';
-import React, { FC } from "react";
+import React, {FC, useState} from "react";
 import styles from './style.module.scss';
 import InputLabel from "@/Components/_ui/InputLabel/InputLabel";
 import TextInput from "@/Components/_ui/TextInput/TextInput";
 import SecondButton from "@/Components/_ui/SecondButton/SecondButton";
+import InputError from "@/Components/_ui/InputError/InputError";
 
 interface FormData {
 	image: string;
@@ -18,7 +19,9 @@ interface IProductEditForm {
 	products: FormData[];
 }
 
-const ProductEditForm: FC<IProductEditForm> = ({productId}) => {
+const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [error, setError] = useState(false);
 
 	const { data, setData, post } = useForm<FormData>({
 		image: null,
@@ -31,6 +34,14 @@ const ProductEditForm: FC<IProductEditForm> = ({productId}) => {
 
 	console.log('productId', productId)
 
+	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (file) {
+			setData('image', file);
+			setImagePreview(URL.createObjectURL(file));
+		}
+	};
+
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		console.log('send')
@@ -38,6 +49,21 @@ const ProductEditForm: FC<IProductEditForm> = ({productId}) => {
 
 	return (
 		<form onSubmit={sendForm}>
+			{imagePreview && (
+				<div>
+					<img src={imagePreview} alt="preview" className={styles.img_preview}/>
+				</div>
+			)}
+			<div className={styles.form_field_bl}>
+				<InputLabel htmlFor="image" value="Image"/>
+				<TextInput
+					id="image"
+					type="file"
+					name="image"
+					onChange={handleImageChange}
+				/>
+				{error && <InputError message="The field is required"/>}
+			</div>
 			<div className={styles.form_field}>
 				<InputLabel htmlFor="name" value="Name"/>
 				<TextInput

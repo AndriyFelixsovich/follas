@@ -14,18 +14,22 @@ const Controls: FC<IControlsProps> = ({ setActiveTab, tabs, showTab }) => {
 			{tabs
 				.filter(tab => tab.id !== 3 || showTab)
 				.map((tab, index) => (
-				<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
-					<Link href={route(tab.href)} key={tab.id + index} onClick={() => setActiveTab(tab.id)}
-					      preserveScroll
-					      preserveState
-					>
-						{tab.title}
-					</Link>
-				</li>
-	)
-)}
-</ul>
-);
+					<li key={tab.id + index} onClick={() => setActiveTab(tab.id)}>
+						{tab.href ? (
+							<Link
+								href={route(tab.href)}
+								preserveScroll
+								preserveState
+							>
+								{tab.title}
+							</Link>
+						) : (
+							<span>{tab.title}</span>
+						)}
+					</li>
+				))}
+		</ul>
+	);
 };
 
 export default Controls;
