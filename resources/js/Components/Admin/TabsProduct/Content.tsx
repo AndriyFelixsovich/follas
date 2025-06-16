@@ -28,7 +28,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab })
 	const editProduct = (product) => {
 		setShowEditForm(true);
 		setShowTab(true);
-		let productSelected: any = product;
+		// let productSelected: any = product;
 	}
 
 	return (
