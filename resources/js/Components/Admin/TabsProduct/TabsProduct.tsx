@@ -10,7 +10,7 @@ const TabsProduct: FC = ({ tabs, products, selectedTab }) => {
 	return (
 		<div className={styles.tabs}>
 			<Controls setActiveTab={setActiveTab} tabs={tabs} showTab={showTab}  />
-			<Content activeTab={activeTab} products={products} setShowTab={setShowTab} selectedTab={selectedTab} />
+			<Content activeTab={activeTab} products={products} setShowTab={setShowTab} selectedTab={selectedTab} setActiveTab={setActiveTab} />
 		</div>
 	);
 };

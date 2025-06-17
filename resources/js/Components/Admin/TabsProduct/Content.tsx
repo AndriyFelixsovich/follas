@@ -12,6 +12,7 @@ import ProductEditForm from '@/Components/Admin/ProductEditForm/ProductEditForm'
 interface IContent {
 	activeTab: number;
 	setShowTab: () => void;
+	setActiveTab: any;
 	products: {
 		data: any[];
 		links: {
@@ -22,16 +23,23 @@ interface IContent {
 	};
 }
 
-const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab }) => {
+const Content: FC<IContent> = ({ activeTab, products, setShowTab, setActiveTab }) => {
 	const [currentPage, setCurrentPage] = useState<string | null>(null);
-	const [showEditForm, setShowEditForm] = useState(false);
 
 	const editProduct = (product) => {
-		setShowEditForm(true);
 		setShowTab(true);
-		const path = `/admin/products/${product.id}/edit`;
-		router.visit(path);
+		setActiveTab(3);
 	}
+
+	useEffect(() => {
+		if (
+			window.location.pathname.includes('/admin/products/') &&
+			window.location.pathname.includes('/edit')
+		) {
+			setShowTab(true);
+			setActiveTab(3)
+		}
+	}, []);
 
 	return (
 		<div className={styles.content}>
@@ -62,7 +70,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, selectedTab })
 				}
 			</div>
 			<div>
-				{activeTab === 3 && showEditForm && (
+				{activeTab === 3 &&  (
 					<>
 						<ProductEditForm products={products} productId={editProduct} />
 					</>

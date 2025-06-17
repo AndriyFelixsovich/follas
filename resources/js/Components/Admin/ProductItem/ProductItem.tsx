@@ -34,9 +34,9 @@ const ProductItem: FC<IProduct> = ({ product, editProduct }) => {
 			<div>{product.price} $</div>
 			<div>{product.origin_number}</div>
 			<div>{product.quantity}</div>
-			<button className={styles.edit_button} onClick={editProduct}>
+			<Link href={`/admin/products/${product.id}/edit`} className={styles.edit_button} onClick={editProduct}>
 				<EditIcon width={25} height={25} fill={'#25a0e2'}/>
-			</button>
+			</Link>
 			<button className={styles.remove_button} onClick={removeProduct}>
 				<CloseIcon width={25} height={25}  fill={'red'}/>
 			</button>
