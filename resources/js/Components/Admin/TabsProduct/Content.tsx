@@ -72,7 +72,7 @@ const Content: FC<IContent> = ({ activeTab, products, setShowTab, setActiveTab }
 			<div>
 				{activeTab === 3 &&  (
 					<>
-						<ProductEditForm products={products} productId={editProduct} />
+						<ProductEditForm products={products} />
 					</>
 				)}
 			</div>

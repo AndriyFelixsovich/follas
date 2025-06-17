@@ -1,5 +1,5 @@
 import { Head, usePage, useForm, Link } from '@inertiajs/react';
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from './style.module.scss';
 import InputLabel from "@/Components/_ui/InputLabel/InputLabel";
 import TextInput from "@/Components/_ui/TextInput/TextInput";
@@ -19,7 +19,7 @@ interface IProductEditForm {
 	products: FormData[];
 }
 
-const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
+const ProductEditForm: FC<IProductEditForm> = () => {
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [error, setError] = useState(false);
 
@@ -43,6 +43,10 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 	const sendForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		console.log('send')
+	}
+
+	const chan = () => {
+		console.log('123')
 	}
 
 	return (
@@ -69,6 +73,7 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 					type="text"
 					name="name"
 					value=""
+					onChange={chan}
 				/>
 			</div>
 			<div className={styles.form_field}>
@@ -78,6 +83,7 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 					type="text"
 					name="description"
 					value=""
+					onChange={chan}
 				/>
 			</div>
 			<div className={styles.form_field}>
@@ -87,6 +93,7 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 					type="text"
 					name="origin"
 					value=""
+					onChange={chan}
 				/>
 			</div>
 			<div className={styles.form_field}>
@@ -96,6 +103,7 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 					type="text"
 					name="price"
 					value=""
+					onChange={chan}
 				/>
 			</div>
 			<div className={styles.form_field}>
@@ -105,6 +113,7 @@ const ProductEditForm: FC<IProductEditForm> = ({ productId }) => {
 					type="text"
 					name="quantity"
 					value=""
+					onChange={chan}
 				/>
 			</div>
 			<div className={styles.send_button}>
